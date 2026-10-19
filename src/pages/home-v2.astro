@@ -1,0 +1,2051 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+// Figma Images
+import heroImage from "../assets/images/figma/hero-image.png";
+import imgFeature1 from "../assets/images/figma/feature-1.png";
+import imgDiscover from "../assets/images/figma/image-4.png";
+import imgUnderstand from "../assets/images/figma/feature-2.png";
+import imgAct from "../assets/images/figma/feature-3.png";
+
+// Missed Sections Images
+import imgSales from "../assets/images/figma/card-sales.png";
+import imgMarketing from "../assets/images/figma/card-marketing.png";
+import imgRevops from "../assets/images/figma/card-revops.png";
+import imgBannerPipeline from "../assets/images/figma/banner-pipeline.png";
+import imgIntegrations from "../assets/images/figma/integrations.png";
+import ctaBg from "../assets/images/cta-bg.png";
+---
+
+<BaseLayout
+  headerStyle="v1"
+  footerStyle="v1"
+  title="Vero — Premium GTM Intelligence"
+>
+  <!-- Main Wrapper with Figma's exact light background -->
+  <main
+    class="w-full bg-[#FAFAF8] text-[#171719] font-['Manrope'] overflow-hidden"
+  >
+    <!-- 1. HERO SECTION -->
+    <section
+      class="relative pt-12 md:pt-32 pb-16 px-4 md:px-8 max-w-[1280px] mx-auto flex flex-col items-center text-center"
+    >
+      <!-- Glow Decor -->
+      <div
+        class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/20 blur-[100px] pointer-events-none rounded-full animate-pulse-glow z-2"
+      >
+      </div>
+
+      <!-- Floating Elements -->
+      <div
+        class="absolute top-[30%] left-[10%] w-16 h-16 bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-[10px] animate-float-slow pointer-events-none -z-10 hidden md:block"
+      >
+      </div>
+      <div
+        class="absolute top-[50%] right-[15%] w-24 h-24 bg-gradient-to-tl from-primary/20 to-transparent rounded-full blur-[12px] animate-float-slower pointer-events-none -z-10 hidden md:block"
+      >
+      </div>
+      <div
+        class="absolute top-[10%] right-[30%] w-8 h-8 bg-primary/30 rounded-full blur-[4px] animate-float-slow pointer-events-none -z-10 hidden md:block"
+        style="animation-direction: reverse;"
+      >
+      </div>
+
+      <!-- Pill -->
+      <div
+        data-animate="fade-up"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#E3E2DD] bg-white/40 backdrop-blur-sm mb-10 shadow-sm relative"
+      >
+        <span
+          class="text-[12px] font-[800] tracking-[0.105em] text-[#77767C] uppercase"
+          >GTM Intelligence, Reimagined</span
+        >
+      </div>
+
+      <!-- Headline -->
+      <h1
+        data-animate="fade-up"
+        class="text-[50px] md:text-[80px] font-[650] text-[#171719] tracking-[-0.066em] leading-[1.05] max-w-4xl mx-auto mb-6 relative"
+      >
+        Know who’s ready to buy. <br />
+        <span class="text-primary relative inline-block">
+          Before anyone else.
+        </span>
+      </h1>
+
+      <!-- Description -->
+      <p
+        data-animate="fade-up"
+        class="text-[18px] text-[#69686E] font-[400] max-w-[590px] mx-auto mb-10 leading-[28px] relative"
+      >
+        Vero turns every market signal into a clear next move—so your revenue
+        team can find demand, reach the right people, and build pipeline with
+        precision.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div
+        data-animate="fade-up"
+        class="flex flex-wrap items-center justify-center gap-3 mb-16 w-full sm:w-auto relative"
+      >
+        <a
+          href="#"
+          class="px-6 py-3.5 bg-primary text-white font-[700] text-[16px] rounded-[7px] shadow-[0px_6px_18px_rgba(22,22,26,0.12)] hover:-translate-y-0.5 hover:shadow-[0px_10px_20px_rgba(22,22,26,0.2)] transition-all flex items-center justify-center gap-2"
+        >
+          Start building pipeline
+          <span class="material-symbols-outlined text-[16px]"
+            >arrow_forward</span
+          >
+        </a>
+        <a
+          href="#"
+          class="px-6 py-3.5 bg-white text-[#171719] font-[700] text-[16px] border border-[#E3E2DD] rounded-[7px] hover:bg-[#F0EFEC] transition-all flex items-center justify-center"
+        >
+          Explore the platform
+        </a>
+      </div>
+
+      <!-- Hero Image -->
+      <div
+        data-animate="fade-up"
+        class="w-full max-w-[1061px] mx-auto relative group z-10"
+      >
+        <!-- Intense purple shadow behind the image -->
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/5 blur-[80px] -z-10 rounded-[30px] animate-pulse-glow"
+        >
+        </div>
+
+        <Image
+          src={heroImage}
+          alt="Vero Dashboard"
+          class="w-full h-auto block rounded-2xl shadow-[0_30px_100px_-20px_rgba(101,88,217,0.3)] border border-[#E3E2DD]/60 relative z-10"
+          quality="max"
+        />
+      </div>
+    </section>
+
+    <!-- 2. SOCIAL PROOF LOGOS -->
+    <section
+      class="border-y border-[#E3E2DD] bg-white pt-[40px] pb-[50px] overflow-hidden"
+    >
+      <div class="text-center mb-8 px-4">
+        <p
+          class="text-[12px] font-[800] tracking-[0.1em] text-[#99989D] uppercase"
+        >
+          Trusted by modern revenue teams at
+        </p>
+      </div>
+      <div class="flex w-full overflow-hidden relative group">
+        <!-- Marquee Track 1 -->
+        <div
+          class="flex shrink-0 gap-[100px] px-[50px] animate-marquee opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500"
+        >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >VERTEX</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >arcwise</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >MONO</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >NORTHSTAR</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >Plain</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >Layers</span
+          >
+          <!-- Duplicated list to ensure it's wide enough -->
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >VERTEX</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >arcwise</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >MONO</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >NORTHSTAR</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >Plain</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >Layers</span
+          >
+        </div>
+        <!-- Marquee Track 2 -->
+        <div
+          class="flex shrink-0 gap-[100px] px-[50px] animate-marquee opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500"
+          aria-hidden="true"
+        >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >VERTEX</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >arcwise</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >MONO</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >NORTHSTAR</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >Plain</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >Layers</span
+          >
+          <!-- Duplicated list to ensure it's wide enough -->
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >VERTEX</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >arcwise</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >MONO</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >NORTHSTAR</span
+          >
+          <span
+            class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449] italic"
+            >Plain</span
+          >
+          <span class="text-[28px] font-[800] tracking-[-0.04em] text-[#454449]"
+            >Layers</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FEATURE 1: INTELLIGENCE -->
+    <section class="py-[80px] bg-[#FAFAF8] relative overflow-hidden">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start mb-16"
+        >
+          <div data-animate="fade-up">
+            <span
+              class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+              >01 / INTELLIGENCE</span
+            >
+            <h2 class="text-h2 text-[#171719]">
+              Know where the opportunity is before your competitors do.
+            </h2>
+          </div>
+          <div data-animate="fade-up" class="pt-2">
+            <p
+              class="text-[18px] text-[#737278] font-[400] leading-[28px] text-right lg:text-left"
+            >
+              Vero connects scattered buying signals into one complete,
+              continuously updated view of every account in your market.
+            </p>
+          </div>
+        </div>
+
+        <div
+          data-animate="fade-up"
+          class="w-full rounded-[16px] overflow-hidden shadow-xl"
+        >
+          <Image
+            src={imgFeature1}
+            alt="Intelligence Dashboard"
+            class="w-full h-auto block"
+            quality="max"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WORKFLOW GRID (DARK SECTION) -->
+    <section
+      class="py-[80px] bg-[#1D1D22] text-white border-y border-[#37363C]"
+    >
+      <div class="max-w-[1180px] mx-auto px-4 text-left">
+        <div data-animate="fade-up" class="mb-14">
+          <span
+            class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+            >02 / ONE CONTINUOUS WORKFLOW</span
+          >
+          <h2 class="text-h2 text-white max-w-[600px]">
+            From market signal to meaningful conversation.
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-y-12 lg:gap-y-0"
+        >
+          <!-- Step 1 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              01
+            </div>
+            <!-- Arrow on border -->
+            <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]">search</span>
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Discover</h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Find accounts showing real buying intent.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              02
+            </div>
+            <!-- Arrow on border -->
+            <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >receipt_long</span
+              >
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Enrich</h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Complete every account and contact record.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              03
+            </div>
+            <!-- Arrow on border -->
+            <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#1F2D2A] text-[#459B71] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >temp_preferences_custom</span
+              >
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">
+              Understand
+            </h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Turn activity into a clear buying narrative.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              04
+            </div>
+            <!-- Arrow on border -->
+            <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]">group</span>
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">
+              Personalize
+            </h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Create relevant messaging for each person.
+            </p>
+          </div>
+
+          <!-- Step 5 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              05
+            </div>
+            <!-- Arrow on border -->
+            <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#1F2D2A] text-[#459B71] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]">bolt</span>
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Engage</h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Activate coordinated plays across channels.
+            </p>
+          </div>
+
+          <!-- Step 6 -->
+          <div
+            data-animate="fade-up"
+            class="px-2 lg:px-6 relative last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+          >
+            <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">
+              06
+            </div>
+            <div
+              class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+            >
+              <span class="material-symbols-outlined text-[18px]">code</span>
+            </div>
+            <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Sync</h3>
+            <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+              Keep your systems and teams aligned.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FEATURE 2 & 3: DISCOVER, UNDERSTAND, ACT -->
+    <section class="py-[80px] bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4 flex flex-col gap-[100px]">
+        <!-- Discover -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 md:gap-[100px] items-center"
+        >
+          <div data-animate="fade-up">
+            <span
+              class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+              >DISCOVER</span
+            >
+            <h3 class="text-h2 text-[#171719] mb-[20px]">
+              See the market move in real time.
+            </h3>
+            <p
+              class="text-[16px] text-[#737278] font-[400] leading-[24px] mb-[30px]"
+            >
+              Track the signals that reveal active demand across every account
+              in your market—not just the companies already in your CRM.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+            >
+              Explore account discovery <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+          <div data-animate="fade-up" class="justify-self-end w-full">
+            <Image
+              src={imgDiscover}
+              alt="Discover Dashboard"
+              class="w-full h-auto rounded-[16px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
+              quality="max"
+            />
+          </div>
+        </div>
+
+        <!-- Understand -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-[100px] items-center"
+        >
+          <div data-animate="fade-up" class="w-full">
+            <Image
+              src={imgUnderstand}
+              alt="Understand Dashboard"
+              class="w-full h-auto rounded-[16px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
+              quality="max"
+            />
+          </div>
+          <div data-animate="fade-up">
+            <span
+              class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+              >UNDERSTAND</span
+            >
+            <h3 class="text-h2 text-[#171719] mb-[20px]">
+              Know the story behind every signal.
+            </h3>
+            <p
+              class="text-[16px] text-[#737278] font-[400] leading-[24px] mb-[30px]"
+            >
+              Vero AI connects people, events, and behavior into an account
+              narrative your team can trust—and act on immediately.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+            >
+              Explore account intelligence <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- Act -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 md:gap-[100px] items-center"
+        >
+          <div data-animate="fade-up">
+            <span
+              class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+              >ACT</span
+            >
+            <h3 class="text-h2 text-[#171719] mb-[20px]">
+              Move at the moment that matters.
+            </h3>
+            <p
+              class="text-[16px] text-[#737278] font-[400] leading-[24px] mb-[30px]"
+            >
+              Turn intelligence into coordinated action across your GTM stack,
+              with the right message, owner, and channel built into every play.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+            >
+              Explore activation <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+          <div data-animate="fade-up" class="justify-self-end w-full">
+            <Image
+              src={imgAct}
+              alt="Act Dashboard"
+              class="w-full h-auto rounded-[16px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
+              quality="max"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. AI AGENTS SECTION (DARK SECTION) -->
+    <section class="py-12 lg:py-24 bg-[#1D1D22] text-white">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-[50px] items-center mb-[75px]"
+        >
+          <div data-animate="fade-up">
+            <span
+              class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+              >03 / AI AGENTS</span
+            >
+            <h2 class="text-h2 text-white">
+              More intelligence.<br />Less manual work.
+            </h2>
+          </div>
+          <div data-animate="fade-up" class="lg:text-right">
+            <p
+              class="text-[16px] text-[#A09FA7] font-[400] leading-[24px] max-w-[565px] ml-auto"
+            >
+              Deploy purpose-built agents that research, reason, and
+              create—while your team stays in control.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[442px_1fr] gap-[75px] items-center"
+        >
+          <div
+            data-animate="fade-up"
+            class="flex flex-col gap-0"
+            id="agent-tabs-container"
+          >
+            <!-- Agent 1 -->
+            <button
+              class="agent-tab text-left py-6 border-t border-primary flex flex-col gap-4 w-full transition-colors duration-300 group"
+              data-index="0"
+            >
+              <div
+                class="tab-icon w-[30px] h-[30px] rounded-[8px] bg-[#36314C] flex items-center justify-center text-white font-mono text-xs font-bold shrink-0 transition-colors"
+              >
+                01
+              </div>
+              <div>
+                <h4
+                  class="tab-title text-[16px] font-[700] text-white mb-2 transition-colors"
+                >
+                  Intelligence with AI & automation
+                </h4>
+                <p
+                  class="tab-desc text-[#EEEEEE] text-[16px] font-[400] leading-relaxed transition-colors"
+                >
+                  AI resolves routine queries, augments agents in real time, and
+                  learns from every interaction - raising containment
+                </p>
+              </div>
+            </button>
+            <!-- Agent 2 -->
+            <button
+              class="agent-tab text-left py-6 border-t border-[#37363C] flex flex-col gap-4 w-full transition-colors duration-300 group"
+              data-index="1"
+            >
+              <div
+                class="tab-icon w-[30px] h-[30px] rounded-[8px] bg-[#28272D] flex items-center justify-center text-[#77767E] font-mono text-xs font-bold shrink-0 transition-colors"
+              >
+                02
+              </div>
+              <div>
+                <h4
+                  class="tab-title text-[16px] font-[700] text-[#77767E] mb-2 transition-colors"
+                >
+                  Contact center built on AI-human harmony
+                </h4>
+                <p
+                  class="tab-desc text-[#77767E] text-[16px] font-[400] leading-relaxed transition-colors"
+                >
+                  Context, AI, and reliability in every conversation, so agents
+                  respond smarter and customers feel understood.
+                </p>
+              </div>
+            </button>
+            <!-- Agent 3 -->
+            <button
+              class="agent-tab text-left py-6 border-t border-[#37363C] flex flex-col gap-4 w-full transition-colors duration-300 group"
+              data-index="2"
+            >
+              <div
+                class="tab-icon w-[30px] h-[30px] rounded-[8px] bg-[#28272D] flex items-center justify-center text-[#77767E] font-mono text-xs font-bold shrink-0 transition-colors"
+              >
+                03
+              </div>
+              <div>
+                <h4
+                  class="tab-title text-[16px] font-[700] text-[#77767E] mb-2 transition-colors"
+                >
+                  Unified Communication Stack
+                </h4>
+                <p
+                  class="tab-desc text-[#77767E] text-[16px] font-[400] leading-relaxed transition-colors"
+                >
+                  Experience high reliability with 99.99% uptime for
+                  uninterrupted messaging and voice communication at scale.
+                </p>
+              </div>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 grid-rows-1" data-animate="fade-up">
+            <!-- Panel 1 -->
+            <div
+              class="agent-panel col-start-1 row-start-1 transition-all duration-500 opacity-100 z-10 scale-100 bg-[#F9F9FA] rounded-[10px] shadow-[0px_25px_60px_rgba(0,0,0,0.27)] flex flex-col text-[#171719] overflow-hidden"
+              data-index="0"
+            >
+              <!-- Card Header -->
+              <div
+                class="px-5 py-4 bg-white border-b border-[#E5E4E7] flex justify-between items-center"
+              >
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-[6px] h-[6px] rounded-full bg-[#248361] shadow-[0_0_0_3px_#E5F4ED]"
+                  >
+                  </div>
+                  <span class="text-[10px] font-[700]">Research agent</span>
+                </div>
+                <span class="text-[10px] text-[#99989E]"
+                  >Completed in 48 seconds</span
+                >
+              </div>
+
+              <!-- Goal -->
+              <div class="p-5">
+                <div
+                  class="p-4 bg-white border border-[#E5E4E7] rounded-[7px] mb-5"
+                >
+                  <span
+                    class="text-[10px] font-[800] text-[#95949A] tracking-[0.06em] block mb-2"
+                    >GOAL</span
+                  >
+                  <p class="text-[14px] text-[#171719]">
+                    Research Acme’s GTM strategy and identify a compelling
+                    reason to engage this quarter.
+                  </p>
+                </div>
+
+                <!-- Steps -->
+                <div class="flex flex-col gap-4 mb-5">
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Company and market research</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">12 sources</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Strategic initiative analysis</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">8 sources</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Executive priority mapping</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">5 sources</span>
+                  </div>
+                </div>
+
+                <!-- Finding -->
+                <div
+                  class="p-4 bg-white border border-primary border-l-[3px] rounded-[7px]"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="material-symbols-outlined text-primary text-[14px]"
+                        >auto_awesome</span
+                      >
+                      <span
+                        class="text-[6px] font-[800] text-primary tracking-[0.1em]"
+                        >FINDING</span
+                      >
+                    </div>
+                    <span
+                      class="px-2 py-1 bg-[#E5F4ED] text-[#248361] rounded-full text-[6px]"
+                      >High confidence</span
+                    >
+                  </div>
+                  <h5 class="text-[11px] text-[#171719] font-[400] mb-2">
+                    Enterprise expansion is Acme’s top priority
+                  </h5>
+                  <p class="text-[8px] text-[#69686F] mb-3 leading-tight">
+                    Leadership commentary, hiring patterns, and product
+                    investments point to a new enterprise GTM motion launching
+                    this quarter.
+                  </p>
+                  <span class="text-[6px] text-[#99989E]"
+                    >Sources: Earnings call · 4 job posts · Executive interview
+                    · Technology data</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2 -->
+            <div
+              class="agent-panel col-start-1 row-start-1 transition-all duration-500 opacity-0 pointer-events-none scale-95 z-0 bg-[#F9F9FA] rounded-[10px] shadow-[0px_25px_60px_rgba(0,0,0,0.27)] flex flex-col text-[#171719] overflow-hidden"
+              data-index="1"
+            >
+              <!-- Card Header -->
+              <div
+                class="px-5 py-4 bg-white border-b border-[#E5E4E7] flex justify-between items-center"
+              >
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-[6px] h-[6px] rounded-full bg-primary shadow-[0_0_0_3px_var(--color-primary-soft)]"
+                  >
+                  </div>
+                  <span class="text-[10px] font-[700]">Resolution agent</span>
+                </div>
+                <span class="text-[10px] text-[#99989E]"
+                  >Completed in 12 seconds</span
+                >
+              </div>
+
+              <!-- Goal -->
+              <div class="p-5">
+                <div
+                  class="p-4 bg-white border border-[#E5E4E7] rounded-[7px] mb-5"
+                >
+                  <span
+                    class="text-[10px] font-[800] text-[#95949A] tracking-[0.06em] block mb-2"
+                    >GOAL</span
+                  >
+                  <p class="text-[14px] text-[#171719]">
+                    Identify customer intent and automate response for tier-1
+                    billing inquiries.
+                  </p>
+                </div>
+
+                <!-- Steps -->
+                <div class="flex flex-col gap-4 mb-5">
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Intent classification</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">CRM data</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Invoice retrieval</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">ERP system</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Draft automated response</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">LLM logic</span>
+                  </div>
+                </div>
+
+                <!-- Finding -->
+                <div
+                  class="p-4 bg-white border border-primary border-l-[3px] rounded-[7px]"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="material-symbols-outlined text-primary text-[14px]"
+                        >auto_awesome</span
+                      >
+                      <span
+                        class="text-[6px] font-[800] text-primary tracking-[0.1em]"
+                        >ACTION TAKEN</span
+                      >
+                    </div>
+                    <span
+                      class="px-2 py-1 bg-[#E5F4ED] text-[#248361] rounded-full text-[6px]"
+                      >Resolved</span
+                    >
+                  </div>
+                  <h5 class="text-[11px] text-[#171719] font-[400] mb-2">
+                    Automated response sent to customer
+                  </h5>
+                  <p class="text-[8px] text-[#69686F] mb-3 leading-tight">
+                    Customer was provided with a secure link to their latest
+                    invoice and a summary of charges.
+                  </p>
+                  <span class="text-[6px] text-[#99989E]"
+                    >System: Zendesk · Stripe</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3 -->
+            <div
+              class="agent-panel col-start-1 row-start-1 transition-all duration-500 opacity-0 pointer-events-none scale-95 z-0 bg-[#F9F9FA] rounded-[10px] shadow-[0px_25px_60px_rgba(0,0,0,0.27)] flex flex-col text-[#171719] overflow-hidden"
+              data-index="2"
+            >
+              <!-- Card Header -->
+              <div
+                class="px-5 py-4 bg-white border-b border-[#E5E4E7] flex justify-between items-center"
+              >
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-[6px] h-[6px] rounded-full bg-[#E58A1F] shadow-[0_0_0_3px_#FDF2E8]"
+                  >
+                  </div>
+                  <span class="text-[10px] font-[700]">Routing agent</span>
+                </div>
+                <span class="text-[10px] text-[#99989E]"
+                  >Completed in 3 seconds</span
+                >
+              </div>
+
+              <!-- Goal -->
+              <div class="p-5">
+                <div
+                  class="p-4 bg-white border border-[#E5E4E7] rounded-[7px] mb-5"
+                >
+                  <span
+                    class="text-[10px] font-[800] text-[#95949A] tracking-[0.06em] block mb-2"
+                    >GOAL</span
+                  >
+                  <p class="text-[14px] text-[#171719]">
+                    Analyze incoming call complexity and route to the best
+                    available agent.
+                  </p>
+                </div>
+
+                <!-- Steps -->
+                <div class="flex flex-col gap-4 mb-5">
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Voice transcription</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">Live audio</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Sentiment analysis</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">NLP engine</span>
+                  </div>
+                  <div
+                    class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="material-symbols-outlined text-[#171719] text-[16px]"
+                        >check_circle</span
+                      >
+                      <span class="text-[10px] text-[#171719]"
+                        >Skills-based matching</span
+                      >
+                    </div>
+                    <span class="text-[8px] text-[#99989E]">Routing logic</span>
+                  </div>
+                </div>
+
+                <!-- Finding -->
+                <div
+                  class="p-4 bg-white border border-primary border-l-[3px] rounded-[7px]"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="material-symbols-outlined text-primary text-[14px]"
+                        >auto_awesome</span
+                      >
+                      <span
+                        class="text-[6px] font-[800] text-primary tracking-[0.1em]"
+                        >ACTION TAKEN</span
+                      >
+                    </div>
+                    <span
+                      class="px-2 py-1 bg-[#E5F4ED] text-[#248361] rounded-full text-[6px]"
+                      >Routed</span
+                    >
+                  </div>
+                  <h5 class="text-[11px] text-[#171719] font-[400] mb-2">
+                    Call transferred to Enterprise Support
+                  </h5>
+                  <p class="text-[8px] text-[#69686F] mb-3 leading-tight">
+                    High priority detected. Call seamlessly routed to a senior
+                    agent with full context injected into their workspace.
+                  </p>
+                  <span class="text-[6px] text-[#99989E]"
+                    >System: Vero Communications</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CUSTOMER STORY -->
+    <section class="py-12 lg:py-24 bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4 flex flex-col gap-[80px]">
+        <div data-animate="fade-up" class="flex gap-4 items-center">
+          <span
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+            >CUSTOMER STORY</span
+          >
+          <div class="h-px bg-[#E3E2DD] flex-1"></div>
+        </div>
+        <div data-animate="fade-up" class="max-w-[800px] relative">
+          <div
+            class="grid grid-cols-1 grid-rows-1 w-full"
+            id="testimonial-slider"
+          >
+            <!-- Slide 1 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-100 z-10 translate-x-0"
+            >
+              <div class="flex items-center gap-3 mb-[40px]">
+                <!-- <div class="w-[20px] h-[20px] bg-[#171719] rounded-sm"></div> -->
+                <h4
+                  class="text-base font-[800] text-[#171719] tracking-[-0.03em] uppercase mb-0"
+                >
+                  NORTHSTAR LABS
+                </h4>
+              </div>
+              <h3
+                class="text-[32px] md:text-[42px] font-[400] text-[#171719] leading-[1.2] md:leading-[48px] tracking-[-0.04em] mb-[40px]"
+              >
+                “Vero gave our team a shared understanding of where demand was
+                forming—then helped us act before the market caught up.”
+              </h3>
+              <div class="flex items-center gap-4 mb-[40px]">
+                <div
+                  class="w-[42px] h-[42px] rounded-full bg-[#DDD0C5] flex items-center justify-center text-[#5B493E] font-[800] text-[12px]"
+                >
+                  RB
+                </div>
+                <div>
+                  <h4 class="font-[700] text-[#171719] text-[15px] mb-1">
+                    Rachel Bennett
+                  </h4>
+                  <p class="text-[14px] text-[#8D8C91]">
+                    VP of Revenue, Northstar Labs
+                  </p>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-primary font-[700] text-[15px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+              >
+                Read the customer story <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 z-0 translate-x-8 pointer-events-none"
+            >
+              <div class="flex items-center gap-3 mb-[40px]">
+                <!-- <div class="w-[20px] h-[20px] bg-primary rounded-sm"></div> -->
+                <h4
+                  class="text-base font-[800] text-[#171719] tracking-[-0.03em] uppercase mb-0"
+                >
+                  ACME CORP
+                </h4>
+              </div>
+              <h3
+                class="text-[32px] md:text-[42px] font-[400] text-[#171719] leading-[1.2] md:leading-[48px] tracking-[-0.04em] mb-[40px]"
+              >
+                “The level of intelligence we get from Vero is unmatched. It
+                has completely transformed how our sales team prioritizes
+                outreach.”
+              </h3>
+              <div class="flex items-center gap-4 mb-[40px]">
+                <div
+                  class="w-[42px] h-[42px] rounded-full bg-[#C5D0DD] flex items-center justify-center text-[#3E4D5B] font-[800] text-[12px]"
+                >
+                  DC
+                </div>
+                <div>
+                  <h4 class="font-[700] text-[#171719] text-[15px] mb-1">
+                    David Chen
+                  </h4>
+                  <p class="text-[14px] text-[#8D8C91]">
+                    Chief Sales Officer, Acme Corp
+                  </p>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-primary font-[700] text-[15px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+              >
+                Read the customer story <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 z-0 translate-x-8 pointer-events-none"
+            >
+              <div class="flex items-center gap-3 mb-[40px]">
+                <!-- <div class="w-[20px] h-[20px] bg-[#3E9F76] rounded-sm"></div> -->
+                <h4
+                  class="text-base font-[800] text-[#171719] tracking-[-0.03em] uppercase mb-0"
+                >
+                  GLOBEX INC
+                </h4>
+              </div>
+              <h3
+                class="text-[32px] md:text-[42px] font-[400] text-[#171719] leading-[1.2] md:leading-[48px] tracking-[-0.04em] mb-[40px]"
+              >
+                “We saw a 40% increase in meeting booking rates within the first
+                quarter. The signal accuracy is absolutely phenomenal.”
+              </h3>
+              <div class="flex items-center gap-4 mb-[40px]">
+                <div
+                  class="w-[42px] h-[42px] rounded-full bg-[#DDC5CA] flex items-center justify-center text-[#5B3E45] font-[800] text-[12px]"
+                >
+                  SJ
+                </div>
+                <div>
+                  <h4 class="font-[700] text-[#171719] text-[15px] mb-1">
+                    Sarah Jenkins
+                  </h4>
+                  <p class="text-[14px] text-[#8D8C91]">
+                    Director of Growth, Globex Inc
+                  </p>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-primary font-[700] text-[15px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+              >
+                Read the customer story <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div
+            class="flex items-center justify-between sm:justify-start gap-8 mt-6 relative z-20"
+          >
+            <div class="flex items-center gap-3" id="testimonial-dots">
+              <button
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#171719] transition-all duration-300"
+                data-index="0"
+                aria-label="Slide 1"></button>
+              <button
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#D4D3CD] hover:bg-[#A9A8A2] transition-all duration-300"
+                data-index="1"
+                aria-label="Slide 2"></button>
+              <button
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#D4D3CD] hover:bg-[#A9A8A2] transition-all duration-300"
+                data-index="2"
+                aria-label="Slide 3"></button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button
+                class="test-prev w-[40px] h-[40px] rounded-full border border-[#E3E2DD] flex items-center justify-center text-[#171719] hover:bg-[#171719] hover:text-white transition-colors cursor-pointer"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_back</span
+                >
+              </button>
+              <button
+                class="test-next w-[40px] h-[40px] rounded-full border border-[#E3E2DD] flex items-center justify-center text-[#171719] hover:bg-[#171719] hover:text-white transition-colors cursor-pointer"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. HOW TEAMS USE VERO -->
+    <section class="py-12 lg:py-24 bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div data-animate="fade-up" class="flex gap-4 items-center mb-[70px]">
+          <span
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+            >HOW TEAMS USE VERO</span
+          >
+          <div class="h-px bg-[#E3E2DD] flex-1"></div>
+        </div>
+
+        <div class="mb-[60px]">
+          <h2 data-animate="fade-up" class="text-h2 text-[#171719] mb-[16px]">
+            One platform. Every revenue team.
+          </h2>
+          <p
+            data-animate="fade-up"
+            class="text-[18px] text-[#69686E] font-[400] leading-[28px] max-w-[560px]"
+          >
+            Vero gives every function in your go-to-market motion the
+            intelligence they need to move faster and win more.
+          </p>
+        </div>
+
+        <!-- 3 Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+          <!-- Sales Card -->
+          <div
+            data-animate="fade-up"
+            class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <Image
+              src={imgSales}
+              alt="Sales"
+              class="w-full h-[220px] object-cover"
+            />
+            <div class="p-8 flex flex-col flex-1">
+              <div
+                class="inline-flex px-[10px] py-[4px] bg-primary-soft text-primary rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+              >
+                Sales
+              </div>
+              <h4
+                class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+              >
+                Find and close your best opportunities, faster.
+              </h4>
+              <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+                Vero surfaces the accounts showing real buying signals right
+                now, enriches every record automatically, and gives your reps a
+                clear reason to reach out—so they spend more time selling and
+                less time researching.
+              </p>
+              <a
+                href="#"
+                class="text-primary font-[700] text-[14px] flex items-center gap-2"
+                >Explore for sales teams <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                ></a
+              >
+            </div>
+          </div>
+          <!-- Marketing Card -->
+          <div
+            data-animate="fade-up"
+            class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <Image
+              src={imgMarketing}
+              alt="Marketing"
+              class="w-full h-[220px] object-cover"
+            />
+            <div class="p-8 flex flex-col flex-1">
+              <div
+                class="inline-flex px-[10px] py-[4px] bg-[#D7F8E8] text-[#248361] rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+              >
+                Marketing
+              </div>
+              <h4
+                class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+              >
+                Run campaigns that reach the market before it moves.
+              </h4>
+              <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+                Connect market signals to your campaigns so every impression
+                reaches an account that's already in motion. Vero tells you
+                which segments are heating up—so you invest in demand that's
+                real, not assumed.
+              </p>
+              <a
+                href="#"
+                class="text-primary font-[700] text-[14px] flex items-center gap-2"
+                >Explore for marketing teams <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                ></a
+              >
+            </div>
+          </div>
+          <!-- RevOps Card -->
+          <div
+            data-animate="fade-up"
+            class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <Image
+              src={imgRevops}
+              alt="Revenue Operations"
+              class="w-full h-[220px] object-cover"
+            />
+            <div class="p-8 flex flex-col flex-1">
+              <div
+                class="inline-flex px-[10px] py-[4px] bg-[#F0EFEC] text-[#77767C] rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+              >
+                Revenue Operations
+              </div>
+              <h4
+                class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+              >
+                Build the data foundation your GTM stack depends on.
+              </h4>
+              <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+                Vero keeps your CRM clean, your scoring accurate, and your
+                integrations in sync. Give every team a single source of truth
+                on account activity so nothing falls through the cracks between
+                systems.
+              </p>
+              <a
+                href="#"
+                class="text-primary font-[700] text-[14px] flex items-center gap-2"
+                >Explore for revenue operations <span
+                  class="material-symbols-outlined text-[16px]"
+                  >arrow_forward</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PIPELINE INTELLIGENCE -->
+    <section class="py-12 lg:py-24 bg-[#F0EFEC]">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div class="flex flex-col gap-[70px]">
+          <div class="flex flex-col lg:flex-row gap-5 lg:gap-10">
+            <div data-animate="fade-up" class="flex-1">
+              <span
+                class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+                >04 / PIPELINE INTELLIGENCE</span
+              >
+              <h2 class="text-h2 text-[#171719]">
+                See what’s creating pipeline—not just what happened.
+              </h2>
+            </div>
+            <div data-animate="fade-up" class="flex-1 flex items-end">
+              <p
+                class="text-[16px] text-[#69686E] font-[400] leading-[24px] max-w-[480px]"
+              >
+                Connect signals and actions to revenue so every team knows which
+                accounts, plays, and moments drive growth.
+              </p>
+            </div>
+          </div>
+          <div data-animate="fade-up" class="w-full">
+            <Image
+              src={imgBannerPipeline}
+              alt="Pipeline Intelligence"
+              class="w-full h-auto rounded-[16px] shadow-lg"
+              quality="max"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. INTEGRATIONS -->
+    <section class="py-[80px] bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[648px_432px] gap-[100px] items-center"
+        >
+          <div data-animate="fade-up" class="order-2 lg:order-1">
+            <Image
+              src={imgIntegrations}
+              alt="Integrations"
+              class="w-full h-auto rounded-[16px] shadow-md"
+              quality="max"
+            />
+          </div>
+          <div
+            data-animate="fade-up"
+            class="order-1 lg:order-2 flex flex-col items-start"
+          >
+            <span
+              class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+              >05 / INTEGRATIONS</span
+            >
+            <h3 class="text-h2 text-[#171719] mb-[20px]">
+              Built for the stack you already have.
+            </h3>
+            <p
+              class="text-[16px] text-[#69686E] font-[400] leading-[24px] mb-[24px]"
+            >
+              Vero connects to your systems of record and action, creating an
+              intelligence layer across your entire go-to-market motion.
+            </p>
+            <div class="flex flex-wrap gap-[7px] mb-[24px]">
+              <span
+                class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                >CRM</span
+              >
+              <span
+                class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                >Engagement</span
+              >
+              <span
+                class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                >Data</span
+              >
+              <span
+                class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                >Marketing</span
+              >
+              <span
+                class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                >Communication</span
+              >
+            </div>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+            >
+              Explore all integrations <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. STATISTICS -->
+    <section class="py-[80px] bg-white border-y border-[#E3E2DD]">
+      <div class="max-w-[1180px] mx-auto px-4 text-center">
+        <h3
+          data-animate="fade-up"
+          class="text-[24px] font-[400] text-[#171719] tracking-[-0.0219em] max-w-[500px] mx-auto mb-[50px]"
+        >
+          Revenue teams use Vero to turn fragmented activity into a repeatable
+          advantage.
+        </h3>
+
+        <div
+          class="grid grid-cols-2 lg:grid-cols-4 border-t border-[#E3E2DD] text-left"
+        >
+          <div
+            data-animate="fade-up"
+            class="p-[30px_20px_20px_0px] border-b lg:border-b-0 lg:border-r border-[#E3E2DD]"
+          >
+            <div
+              class="text-[42px] font-[700] text-[#171719] tracking-[-0.05em] leading-[63px]"
+            >
+              2.8×
+            </div>
+            <div class="text-[16px] text-[#69686E]">
+              faster opportunity creation
+            </div>
+          </div>
+          <div
+            data-animate="fade-up"
+            class="p-[30px_20px_20px_20px] border-b lg:border-b-0 lg:border-r border-[#E3E2DD]"
+          >
+            <div
+              class="text-[42px] font-[700] text-[#171719] tracking-[-0.05em] leading-[63px]"
+            >
+              37%
+            </div>
+            <div class="text-[16px] text-[#69686E]">
+              higher rep productivity
+            </div>
+          </div>
+          <div
+            data-animate="fade-up"
+            class="p-[30px_20px_20px_20px] border-b lg:border-b-0 lg:border-r border-[#E3E2DD]"
+          >
+            <div
+              class="text-[42px] font-[700] text-[#171719] tracking-[-0.05em] leading-[63px]"
+            >
+              +51%
+            </div>
+            <div class="text-[16px] text-[#69686E]">more pipeline coverage</div>
+          </div>
+          <div data-animate="fade-up" class="p-[30px_0px_20px_20px]">
+            <div
+              class="text-[42px] font-[700] text-[#171719] tracking-[-0.05em] leading-[63px]"
+            >
+              14 hrs
+            </div>
+            <div class="text-[16px] text-[#69686E]">
+              saved per rep, per month
+            </div>
+          </div>
+        </div>
+        <div
+          data-animate="fade-up"
+          class="mt-[27px] text-[#AAA9AD] text-[16px]"
+        >
+          Aggregate results across active Vero customers. Individual results
+          may vary.
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section class="py-12 lg:py-24 bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div class="mb-[60px]" data-animate="fade-up">
+          <span
+            class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+            >FREQUENTLY ASKED QUESTIONS</span
+          >
+          <h2 class="text-h2 text-[#171719]">Everything you need to know.</h2>
+        </div>
+
+        <div
+          data-animate="fade-up"
+          class="grid grid-cols-1 md:grid-cols-2 gap-x-[120px]"
+        >
+          <!-- Left Column -->
+          <div class="flex flex-col">
+            <!-- FAQ 1 (Expanded) -->
+            <div
+              class="faq-item is-open flex flex-col border-t border-b border-[#E3E2DD]"
+            >
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >What makes Vero different from intent data providers?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >−</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 1fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Vero does more than surface anonymous activity. It unifies
+                    first- and third-party signals, identifies the people behind
+                    them, explains why an account matters, and activates the
+                    next best action.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="faq-item flex flex-col border-b border-[#E3E2DD]">
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >Does Vero work with our existing GTM stack?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >+</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 0fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Yes, Vero integrates natively with Salesforce, HubSpot,
+                    Marketo, Outreach, Salesloft, and leading data warehouses
+                    like Snowflake and BigQuery.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 5 -->
+            <div class="faq-item flex flex-col border-b border-[#E3E2DD]">
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >Is Vero suitable for enterprise teams?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >+</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 0fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Absolutely. Vero is built with enterprise-grade security
+                    (SOC2 Type II), role-based access control, and scalable
+                    infrastructure designed to handle complex GTM motions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="flex flex-col">
+            <!-- FAQ 2 -->
+            <div
+              class="faq-item flex flex-col border-t border-b border-[#E3E2DD]"
+            >
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >How long does implementation take?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >+</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 0fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Implementation typically takes 2-4 weeks depending on your
+                    tech stack and data volume. Our onboarding team provides a
+                    dedicated Slack channel and guides you through the process.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="faq-item flex flex-col border-b border-[#E3E2DD]">
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >How does Vero identify buying signals?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >+</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 0fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Vero tracks first-party signals (website visits, content
+                    downloads, product usage) and third-party intent data across
+                    the B2B web to score account activity in real-time.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 6 -->
+            <div class="faq-item flex flex-col border-b border-[#E3E2DD]">
+              <button
+                class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full"
+              >
+                <span
+                  class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                  >Can we customize scoring for our business?</span
+                >
+                <span class="faq-icon text-[#85848D] text-[20px] font-light"
+                  >+</span
+                >
+              </button>
+              <div
+                class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                style="grid-template-rows: 0fr;"
+              >
+                <div class="overflow-hidden">
+                  <p
+                    class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                  >
+                    Yes, you can customize signal weighting, define your own
+                    ideal customer profile (ICP) criteria, and create specific
+                    scoring models for different product lines or regions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CTA -->
+    <section class="py-[80px] bg-[#FAFAF8]">
+      <div class="max-w-[1180px] mx-auto px-4">
+        <div
+          data-animate="fade-up"
+          class="bg-primary rounded-[14px] p-[80px_20px] text-center relative overflow-hidden flex flex-col items-center"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"
+          >
+          </div>
+          <div class="absolute inset-0 pointer-events-none">
+            <Image
+              src={ctaBg}
+              alt="CTA Background"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <div
+            class="w-[48px] h-[48px] rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-[22px] relative z-10 shadow-inner"
+          >
+            <span class="material-symbols-outlined text-white text-[24px]"
+              >rocket_launch</span
+            >
+          </div>
+
+          <h2 class="text-h2 text-white mb-[19px] relative z-10">
+            Build your next pipeline advantage.
+          </h2>
+          <p
+            class="text-[16px] text-[#D8D3F5] max-w-[570px] mx-auto mb-[27px] leading-[22.1px] relative z-10"
+          >
+            See how Vero can help your team find demand earlier, act faster,
+            and grow with greater precision.
+          </p>
+
+          <div
+            class="flex items-center justify-center gap-[15px] relative z-10"
+          >
+            <a
+              href="#"
+              class="px-[24px] py-[14px] bg-white text-[#2A2732] font-[700] text-[16px] rounded-[7px] shadow-[0px_6px_18px_rgba(22,22,26,0.12)] hover:-translate-y-0.5 hover:shadow-[0px_10px_20px_rgba(22,22,26,0.2)] transition-all flex items-center gap-2"
+            >
+              Get started
+              <span class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              href="#"
+              class="px-[24px] py-[14px] border border-white/30 text-white font-[700] text-[16px] rounded-[7px] hover:bg-white/10 transition-colors"
+            >
+              Book a demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+  /* Optional: Pause animation on hover */
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Hero Animations */
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+    }
+  }
+  @keyframes float-slower {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(20px) translateX(-15px);
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+  .animate-float-slower {
+    animation: float-slower 12s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  function initFAQs() {
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-button");
+      const icon = item.querySelector(".faq-icon");
+      const content = item.querySelector(".faq-content");
+
+      // clone to avoid double event listeners during HMR
+      const newButton = button.cloneNode(true);
+      button.parentNode.replaceChild(newButton, button);
+
+      newButton.addEventListener("click", () => {
+        const isOpen = item.classList.contains("is-open");
+        if (!isOpen) {
+          item.classList.add("is-open");
+          icon.textContent = "−";
+          content.style.gridTemplateRows = "1fr";
+        } else {
+          item.classList.remove("is-open");
+          icon.textContent = "+";
+          content.style.gridTemplateRows = "0fr";
+        }
+      });
+    });
+  }
+
+  function initAgentSlider() {
+    const tabs = document.querySelectorAll(".agent-tab");
+    const panels = document.querySelectorAll(".agent-panel");
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    if (!tabs.length || !panels.length) return;
+
+    function switchTab(index) {
+      // Update tabs
+      tabs.forEach((tab, i) => {
+        const icon = tab.querySelector(".tab-icon");
+        const title = tab.querySelector(".tab-title");
+        const desc = tab.querySelector(".tab-desc");
+
+        if (i === index) {
+          tab.classList.remove("border-[#37363C]");
+          tab.classList.add("border-primary");
+          icon.classList.remove("bg-[#28272D]", "text-[#77767E]");
+          icon.classList.add("bg-[#36314C]", "text-white");
+          title.classList.remove("text-[#77767E]");
+          title.classList.add("text-white");
+          desc.classList.remove("text-[#77767E]");
+          desc.classList.add("text-[#EEEEEE]");
+        } else {
+          tab.classList.remove("border-primary");
+          tab.classList.add("border-[#37363C]");
+          icon.classList.remove("bg-[#36314C]", "text-white");
+          icon.classList.add("bg-[#28272D]", "text-[#77767E]");
+          title.classList.remove("text-white");
+          title.classList.add("text-[#77767E]");
+          desc.classList.remove("text-[#EEEEEE]");
+          desc.classList.add("text-[#77767E]");
+        }
+      });
+
+      // Update panels
+      panels.forEach((panel, i) => {
+        if (i === index) {
+          panel.classList.remove(
+            "opacity-0",
+            "pointer-events-none",
+            "z-0",
+            "scale-95",
+          );
+          panel.classList.add("opacity-100", "z-10", "scale-100");
+        } else {
+          panel.classList.remove("opacity-100", "z-10", "scale-100");
+          panel.classList.add(
+            "opacity-0",
+            "pointer-events-none",
+            "z-0",
+            "scale-95",
+          );
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(() => {
+        let nextIndex = (currentIndex + 1) % tabs.length;
+        switchTab(nextIndex);
+      }, 5000); // 5 seconds
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+
+    // Attach events without cloning so tabs reference remains valid
+    tabs.forEach((tab, i) => {
+      tab.onclick = () => {
+        switchTab(i);
+        startAutoPlay(); // Restart timer on manual click
+      };
+    });
+
+    // Start
+    switchTab(0);
+    startAutoPlay();
+  }
+
+  function initTestimonialSlider() {
+    const slides = document.querySelectorAll(".testimonial-slide");
+    const dots = document.querySelectorAll(".test-dot");
+    const prevBtn = document.querySelector(".test-prev");
+    const nextBtn = document.querySelector(".test-next");
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoPlay;
+
+    function goToSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove(
+            "opacity-0",
+            "z-0",
+            "translate-x-8",
+            "-translate-x-8",
+            "pointer-events-none",
+          );
+          slide.classList.add("opacity-100", "z-10", "translate-x-0");
+        } else {
+          slide.classList.remove("opacity-100", "z-10", "translate-x-0");
+          slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+          if (i < index) {
+            slide.classList.add("-translate-x-8");
+            slide.classList.remove("translate-x-8");
+          } else {
+            slide.classList.add("translate-x-8");
+            slide.classList.remove("-translate-x-8");
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+          dot.classList.add("bg-[#171719]");
+        } else {
+          dot.classList.remove("bg-[#171719]");
+          dot.classList.add("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+      if (autoPlay) clearInterval(autoPlay);
+      autoPlay = setInterval(nextSlide, 6000);
+    }
+
+    if (prevBtn)
+      prevBtn.onclick = () => {
+        prevSlide();
+        startAutoPlay();
+      };
+    if (nextBtn)
+      nextBtn.onclick = () => {
+        nextSlide();
+        startAutoPlay();
+      };
+
+    dots.forEach((dot, i) => {
+      dot.onclick = () => {
+        goToSlide(i);
+        startAutoPlay();
+      };
+    });
+
+    goToSlide(0);
+    startAutoPlay();
+  }
+
+  // Support both standard DOM load and Astro's ViewTransitions page load
+  document.addEventListener("DOMContentLoaded", () => {
+    initFAQs();
+    initAgentSlider();
+    initTestimonialSlider();
+  });
+  document.addEventListener("astro:page-load", () => {
+    initFAQs();
+    initAgentSlider();
+    initTestimonialSlider();
+  });
+</script>

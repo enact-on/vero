@@ -1,0 +1,396 @@
+---
+---
+    <div
+      class="w-full max-w-6xl bg-white border border-gray-200/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.07)] overflow-hidden text-left"
+      id="canvas"
+    >
+      <!-- Canvas Chrome Topbar -->
+      <div
+        class="h-11 bg-[#fcfcfd] border-b border-gray-200 px-4 flex items-center justify-between text-xs text-gray-600"
+      >
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span
+              class="w-3 h-3 rounded-full bg-[#f87171] border border-red-300"
+            ></span>
+            <span
+              class="w-3 h-3 rounded-full bg-[#fbbf24] border border-amber-300"
+            ></span>
+            <span
+              class="w-3 h-3 rounded-full bg-[#34d399] border border-emerald-300"
+            ></span>
+          </div>
+          <span class="text-gray-300">|</span>
+          <div class="flex items-center gap-1 font-medium text-gray-800">
+            <span class="material-symbols-outlined text-[16px] text-primary"
+              >smart_toy</span
+            >
+            <span>GTM Intent Pipeline Orchestrator</span>
+          </div>
+          <span
+            class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-semibold border border-emerald-200"
+            >v2.4 Active</span
+          >
+        </div>
+        <div
+          class="hidden sm:flex items-center gap-3 font-code text-[11px] text-gray-500"
+        >
+          <span>Latency: <strong class="text-gray-700">0.42s</strong></span>
+          <span>Tokens: <strong class="text-gray-700">1,480</strong></span>
+          <button
+            class="px-3 py-1 bg-black text-white rounded font-sans text-xs font-medium hover:bg-neutral-800 transition-colors flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[14px]">play_arrow</span
+            > Run Flow
+          </button>
+        </div>
+      </div>
+      <!-- Studio Body: 3-column Layout (Sidebar + Infinite Flow Canvas + Properties Panel) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[520px] bg-[#fafafa]">
+        <!-- Mini Sidebar: Agents & Workflows -->
+        <div
+          class="lg:col-span-3 border-r border-gray-200 bg-white p-4 flex flex-col justify-between"
+        >
+          <div>
+            <div
+              class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-3"
+            >
+              Revenue Agents
+            </div>
+            <div class="space-y-1">
+              <div
+                class="p-2.5 rounded-lg bg-primary-soft border border-primary/20 flex items-center justify-between cursor-pointer"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-primary"></span>
+                  <span class="text-xs font-semibold text-gray-900"
+                    >Enterprise GTM Agent</span
+                  >
+                </div>
+                <span class="text-[10px] font-code text-primary font-medium"
+                  >RUNNING</span
+                >
+              </div>
+              <div
+                class="p-2.5 rounded-lg hover:bg-gray-50 border border-transparent flex items-center justify-between text-gray-600 cursor-pointer"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span class="text-xs font-medium">10-K Earnings Auditor</span>
+                </div>
+                <span class="text-[10px] font-code text-gray-400">IDLE</span>
+              </div>
+              <div
+                class="p-2.5 rounded-lg hover:bg-gray-50 border border-transparent flex items-center justify-between text-gray-600 cursor-pointer"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                  <span class="text-xs font-medium"
+                    >Waterfall Email Verifier</span
+                  >
+                </div>
+                <span class="text-[10px] font-code text-gray-400">SYNCED</span>
+              </div>
+              <div
+                class="p-2.5 rounded-lg hover:bg-gray-50 border border-transparent flex items-center justify-between text-gray-600 cursor-pointer"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                  <span class="text-xs font-medium">Slack Alert Dispatcher</span
+                  >
+                </div>
+                <span class="text-[10px] font-code text-gray-400">READY</span>
+              </div>
+            </div>
+            <!-- Mini metrics preview in sidebar -->
+            <div class="mt-6 pt-4 border-t border-gray-100">
+              <div
+                class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2"
+              >
+                Live Execution Stats
+              </div>
+              <div
+                class="bg-gray-50 p-2.5 rounded-lg border border-gray-200/70 space-y-2"
+              >
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">Outbound Velocity:</span>
+                  <span class="font-code font-bold text-gray-900">+340%</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">Enrichment Match:</span>
+                  <span class="font-code font-bold text-emerald-600">98.4%</span
+                  >
+                </div>
+                <div
+                  class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden"
+                >
+                  <div class="bg-primary h-full w-[84%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pt-4 border-t border-gray-100 text-xs text-gray-400 flex items-center justify-between"
+          >
+            <span>Workspace: Vero Pro</span>
+            <span class="material-symbols-outlined text-[16px] text-gray-400"
+              >tune</span
+            >
+          </div>
+        </div>
+        <!-- Main Interactive Canvas Area (Gumloop node connection graphic) -->
+        <div
+          class="lg:col-span-6 p-6 flex flex-col justify-center items-center relative overflow-hidden bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"
+        >
+          <div class="w-full max-w-md space-y-4 relative">
+            <!-- Node 1: Trigger -->
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3.5 shadow-sm relative group hover:border-indigo-400 transition-all"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-6 h-6 rounded-md bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs border border-amber-200"
+                  >
+                    <span class="material-symbols-outlined text-[15px]"
+                      >bolt</span
+                    >
+                  </div>
+                  <span class="text-xs font-semibold text-gray-900"
+                    >01. Intent Surge Detection</span
+                  >
+                </div>
+                <span
+                  class="px-2 py-0.5 rounded bg-amber-100/60 text-amber-800 text-[10px] font-code font-medium"
+                  >Trigger</span
+                >
+              </div>
+              <p class="text-xs text-gray-500 pl-8">
+                Cloudflare, Inc. surge: +140% research on RevOps tooling
+              </p>
+              <!-- Connector dot -->
+              <div
+                class="w-2.5 h-2.5 rounded-full bg-indigo-500 absolute -bottom-1.5 left-1/2 -translate-x-1/2 border-2 border-white"
+              >
+              </div>
+            </div>
+            <!-- Connector Line -->
+            <div class="flex justify-center -my-1">
+              <div
+                class="w-0.5 h-6 bg-gradient-to-b from-indigo-500 to-purple-500"
+              >
+              </div>
+            </div>
+            <!-- Node 2: Waterfall Enrichment -->
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3.5 shadow-sm relative group hover:border-indigo-400 transition-all"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-6 h-6 rounded-md bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs border border-purple-200"
+                  >
+                    <span class="material-symbols-outlined text-[15px]"
+                      >hub</span
+                    >
+                  </div>
+                  <span class="text-xs font-semibold text-gray-900"
+                    >02. Waterfall Multi-Vendor Enrichment</span
+                  >
+                </div>
+                <span
+                  class="px-2 py-0.5 rounded bg-purple-100/60 text-purple-800 text-[10px] font-code font-medium"
+                  >14 Providers</span
+                >
+              </div>
+              <div class="text-xs text-gray-600 pl-8 flex items-center gap-2">
+                <span class="font-medium text-gray-900">Elena Rostova</span>
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-500"
+                  >SVP Sales Operations (Verified Email + Dial)</span
+                >
+              </div>
+              <!-- Connector dot -->
+              <div
+                class="w-2.5 h-2.5 rounded-full bg-purple-500 absolute -bottom-1.5 left-1/2 -translate-x-1/2 border-2 border-white"
+              >
+              </div>
+            </div>
+            <!-- Connector Line -->
+            <div class="flex justify-center -my-1">
+              <div
+                class="w-0.5 h-6 bg-gradient-to-b from-purple-500 to-emerald-500"
+              >
+              </div>
+            </div>
+            <!-- Node 3: Agentic Reasoning -->
+            <div
+              class="bg-white border border-gray-200 rounded-xl p-3.5 shadow-sm relative group hover:border-indigo-400 transition-all"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-200"
+                  >
+                    <span class="material-symbols-outlined text-[15px]"
+                      >psychology</span
+                    >
+                  </div>
+                  <span class="text-xs font-semibold text-gray-900"
+                    >03. SEC 10-K &amp; Audio Synthesis</span
+                  >
+                </div>
+                <span
+                  class="px-2 py-0.5 rounded bg-emerald-100/60 text-emerald-800 text-[10px] font-code font-medium"
+                  >LLM Reasoning</span
+                >
+              </div>
+              <p class="text-xs text-gray-500 pl-8">
+                "Identified strategic priority: consolidate siloed CRM tech
+                before Q3."
+              </p>
+              <!-- Connector dot -->
+              <div
+                class="w-2.5 h-2.5 rounded-full bg-emerald-500 absolute -bottom-1.5 left-1/2 -translate-x-1/2 border-2 border-white"
+              >
+              </div>
+            </div>
+            <!-- Connector Line -->
+            <div class="flex justify-center -my-1">
+              <div
+                class="w-0.5 h-6 bg-gradient-to-b from-emerald-500 to-primary"
+              >
+              </div>
+            </div>
+            <!-- Node 4: Action Sequence -->
+            <div
+              class="bg-white border border-primary/30 rounded-xl p-3.5 shadow-md relative bg-gradient-to-r from-white via-primary-soft/30 to-white"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-6 h-6 rounded-md bg-primary text-white flex items-center justify-center font-bold text-xs"
+                  >
+                    <span class="material-symbols-outlined text-[15px]"
+                      >send</span
+                    >
+                  </div>
+                  <span class="text-xs font-semibold text-gray-900"
+                    >04. Deliver Outbound &amp; Sync CRM</span
+                  >
+                </div>
+                <span
+                  class="px-2 py-0.5 rounded bg-primary-soft text-primary text-[10px] font-code font-semibold"
+                  >Ready to Fire</span
+                >
+              </div>
+              <div class="text-xs text-gray-600 pl-8 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+                ></span>
+                <span
+                  >1-to-1 tailored draft queued in SDR mailbox + Salesforce task
+                  logged</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Properties Drawer (Gumloop style inspector & run logs) -->
+        <div
+          class="lg:col-span-3 border-l border-gray-200 bg-white p-4 flex flex-col justify-between"
+        >
+          <div>
+            <div
+              class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3"
+            >
+              <span class="text-xs font-semibold text-gray-900"
+                >Agent Configuration</span
+              >
+              <span class="text-[10px] font-code text-gray-400"
+                >ID: #ag-8821</span
+              >
+            </div>
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="block text-[11px] font-medium text-gray-500 mb-1"
+                  >AI Model Backbone</label
+                >
+                <div
+                  class="p-2 bg-gray-50 border border-gray-200 rounded-md font-code text-xs text-gray-800 flex items-center justify-between"
+                >
+                  <span>Claude 3.5 Sonnet</span>
+                  <span
+                    class="material-symbols-outlined text-[14px] text-gray-400"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-medium text-gray-500 mb-1"
+                  >Connected Integrations</label
+                >
+                <div class="grid grid-cols-2 gap-1.5">
+                  <div
+                    class="p-1.5 bg-gray-50 border border-gray-200 rounded text-[11px] flex items-center gap-1.5"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    ></span>
+                    <span>Salesforce</span>
+                  </div>
+                  <div
+                    class="p-1.5 bg-gray-50 border border-gray-200 rounded text-[11px] flex items-center gap-1.5"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    ></span>
+                    <span>Apollo API</span>
+                  </div>
+                  <div
+                    class="p-1.5 bg-gray-50 border border-gray-200 rounded text-[11px] flex items-center gap-1.5"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    ></span>
+                    <span>Slack Bot</span>
+                  </div>
+                  <div
+                    class="p-1.5 bg-gray-50 border border-gray-200 rounded text-[11px] flex items-center gap-1.5"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                    ></span>
+                    <span>Gmail SMTP</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-medium text-gray-500 mb-1"
+                  >Human-in-the-Loop Mode</label
+                >
+                <div
+                  class="flex items-center justify-between p-2 bg-gray-50 border border-gray-200 rounded-md"
+                >
+                  <span class="text-xs text-gray-700">Require Rep Approval</span
+                  >
+                  <span
+                    class="w-8 h-4 bg-primary rounded-full flex items-center p-0.5 justify-end"
+                  >
+                    <span class="w-3 h-3 bg-white rounded-full"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Mini Live Output Card -->
+          <div
+            class="mt-4 p-3 bg-primary-soft/60 border border-primary/20 rounded-lg"
+          >
+            <div class="text-[11px] font-semibold text-orange-950 mb-1">
+              Live Generated Snippet
+            </div>
+            <p class="text-[11px] text-gray-600 italic">
+              "Hi Elena, saw Cloudflare's Q3 focus on consolidating GTM
+              operations. Vero connects your 14 data sources into one..."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+

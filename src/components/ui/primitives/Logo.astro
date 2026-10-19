@@ -1,0 +1,17 @@
+---
+import { Image } from "astro:assets";
+import veroLogo from "@/assets/images/vero-logo.png";
+interface Props {
+  withText?: boolean;
+}
+
+const { withText = true } = Astro.props;
+---
+
+<a class="flex items-center gap-space-sm" data-path="home" href="/"
+  ><Image
+    alt="Vero Brand Logo"
+    class="h-8 w-auto object-contain"
+    src={veroLogo}
+  /></a
+>

@@ -1,0 +1,242 @@
+---
+import "../styles/global.css";
+import SEO from "../components/seo/SEO.astro";
+import Analytics from "../components/layout/Analytics.astro";
+import ConsentBanner from "../components/ui/overlay/ConsentBanner/ConsentBanner.astro";
+
+import HeaderV1 from "../components/layout/HeaderV1.astro";
+import HeaderV2 from "../components/layout/HeaderV2.astro";
+import HeaderV3 from "../components/layout/HeaderV3.astro";
+import HeaderEnterprise from "../components/layout/HeaderEnterprise.astro";
+
+import FooterV1 from "../components/layout/FooterV1.astro";
+import FooterV2 from "../components/layout/FooterV2.astro";
+import FooterV3 from "../components/layout/FooterV3.astro";
+import FooterEnterprise from "../components/layout/FooterEnterprise.astro";
+
+import AnnouncementBar from "../components/layout/AnnouncementBar.astro";
+import siteConfig from "../config/site.config";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  headerStyle?: "v1" | "v2" | "v3" | "none";
+  footerStyle?: "v1" | "v2" | "v3" | "none";
+  showAnnouncement?: boolean;
+}
+
+const {
+  title = `${siteConfig.name} — Build, Automate, & Control Revenue Agents`,
+  description = siteConfig.description,
+  image = "/og-image.png",
+  canonical,
+  headerStyle = "none",
+  footerStyle = "none",
+  showAnnouncement = false,
+} = Astro.props;
+
+const themeColors = siteConfig.branding.colors;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/svg+xml" href={siteConfig.branding.favicon.svg || "/favicon.svg"} />
+    <link rel="icon" type="image/png" sizes="32x32" href={siteConfig.branding.favicon.png || "/favicon-32x32.png"} />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href={siteConfig.branding.favicon.ico || "/favicon.ico"} />
+    <link rel="apple-touch-icon" sizes="180x180" href={siteConfig.branding.favicon.appleTouch || "/apple-touch-icon.png"} />
+    <meta name="theme-color" content={themeColors.themeColor} />
+
+    <!-- Dynamic Theme Colors Configured in site.config.ts -->
+    <style is:inline define:vars={{
+      themePrimary: themeColors.primary,
+      themePrimaryHover: themeColors.primaryHover,
+      themePrimaryActive: themeColors.primaryActive || '#9A3412',
+      themePrimarySoft: themeColors.primarySoft,
+      themePrimarySoftHover: themeColors.primarySoftHover || '#FFEDD5',
+      themePrimaryBorder: themeColors.primaryBorder || '#FED7AA',
+      themePrimaryGlow: themeColors.primaryGlow || 'rgba(234, 88, 12, 0.12)',
+      themeGradientStart: themeColors.gradientStart || themeColors.primary,
+      themeGradientMiddle: themeColors.gradientMiddle || '#F97316',
+      themeGradientEnd: themeColors.gradientEnd || '#FB923C',
+      themeBackground: themeColors.backgroundColor,
+      themeSurface: themeColors.surfaceColor || '#FFFFFF',
+      themeTextPrimary: themeColors.textPrimary || '#111111',
+      themeTextSecondary: themeColors.textSecondary || '#666666',
+      themeTextMuted: themeColors.textMuted || '#8A8A8A',
+      themeBorder: themeColors.borderColor || '#E8E8E5',
+      themeGray50: themeColors.gray50 || '#F8F7F4',
+    }}>
+      :root {
+        --color-primary: var(--themePrimary);
+        --color-primary-hover: var(--themePrimaryHover);
+        --color-primary-active: var(--themePrimaryActive);
+        --color-primary-soft: var(--themePrimarySoft);
+        --color-primary-soft-hover: var(--themePrimarySoftHover);
+        --color-primary-border: var(--themePrimaryBorder);
+        --color-primary-glow: var(--themePrimaryGlow);
+        --color-gradient-start: var(--themeGradientStart);
+        --color-gradient-middle: var(--themeGradientMiddle);
+        --color-gradient-end: var(--themeGradientEnd);
+        --color-background: var(--themeBackground);
+        --color-surface: var(--themeSurface);
+        --color-gray-50: var(--themeGray50);
+        --color-text-primary: var(--themeTextPrimary);
+        --color-text-secondary: var(--themeTextSecondary);
+        --color-text-muted: var(--themeTextMuted);
+        --color-border: var(--themeBorder);
+
+        /* V3 Theme compatibility aliases */
+        --color-primary-v3: var(--themePrimary);
+        --color-surface-tint: var(--themePrimary);
+        --color-secondary-container: var(--themePrimary);
+        --color-secondary: var(--themePrimaryHover);
+        --color-on-secondary-fixed-variant: var(--themePrimaryHover);
+        --color-on-primary-fixed-variant: var(--themePrimaryHover);
+        --color-inverse-primary: var(--themePrimaryBorder);
+        --color-secondary-fixed-dim: var(--themePrimaryBorder);
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+    />
+
+    <script is:inline>
+      // Global Interactivity & Animations
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Fade up animation via Intersection Observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("opacity-100", "translate-y-0");
+                entry.target.classList.remove(
+                  "opacity-0",
+                  "translate-y-10",
+                  "translate-y-4",
+                );
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        // Apply to elements marked with data-animate="fade-up" OR direct children of section in newer layouts
+        document
+          .querySelectorAll(
+            "[data-animate='fade-up'], .fade-up-sections section > div",
+          )
+          .forEach((el) => {
+            el.classList.add(
+              "transition-all",
+              "duration-700",
+              "opacity-0",
+              "translate-y-10",
+            );
+            observer.observe(el);
+          });
+
+        // 2. Counters (Find elements with .font-display-hero or .counter containing numbers)
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !entry.target.dataset.counted) {
+              entry.target.dataset.counted = true;
+              const text = entry.target.innerText;
+              const numMatch = text.match(/([\d\.]+)/);
+              if (numMatch) {
+                const targetStr = numMatch[1];
+                const isFloat = targetStr.includes(".");
+                const target = parseFloat(targetStr);
+                const prefix = text.substring(0, numMatch.index);
+                const suffix = text.substring(
+                  numMatch.index + targetStr.length,
+                );
+
+                let count = 0;
+                const duration = 1500; // ms
+                const startTime = performance.now();
+
+                const updateCounter = (currentTime) => {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const easeProgress = progress * (2 - progress); // Ease out quad
+                  const currentCount = target * easeProgress;
+
+                  if (progress < 1) {
+                    entry.target.innerText =
+                      prefix +
+                      (isFloat
+                        ? currentCount.toFixed(1)
+                        : Math.round(currentCount)) +
+                      suffix;
+                    requestAnimationFrame(updateCounter);
+                  } else {
+                    entry.target.innerText = prefix + targetStr + suffix;
+                  }
+                };
+                requestAnimationFrame(updateCounter);
+              }
+            }
+          });
+        });
+
+        document
+          .querySelectorAll(".font-display-hero, .counter")
+          .forEach((el) => {
+            if (/\d/.test(el.innerText)) {
+              counterObserver.observe(el);
+            }
+          });
+      });
+    </script>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col fade-up-sections"
+  >
+    {
+      showAnnouncement && (
+        <AnnouncementBar
+          text={`${siteConfig.name} 2.0 is here. Discover our new AI-powered workflow builder.`}
+          href="/product"
+          ctaText="See what's new"
+        />
+      )
+    }
+
+    {headerStyle === "v1" && <HeaderV1 />}
+    {headerStyle === "v2" && <HeaderV2 />}
+    {headerStyle === "v3" && <HeaderV3 />}
+
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    {footerStyle === "v1" && <FooterV1 />}
+    {footerStyle === "v2" && <FooterV2 />}
+    {footerStyle === "v3" && <FooterV3 />}
+
+    <Analytics />
+    <ConsentBanner />
+  </body>
+</html>

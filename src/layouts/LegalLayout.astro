@@ -1,0 +1,35 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import HeaderV1 from '../components/layout/HeaderV1.astro';
+import FooterV1 from '../components/layout/FooterV1.astro';
+import Container from '../components/ui/layout/Container.astro';
+import AnnouncementBar from '../components/layout/AnnouncementBar.astro';
+
+interface Props {
+  title: string;
+  lastUpdated: string;
+}
+
+const { title, lastUpdated } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <AnnouncementBar 
+    text="Vero 2.0 is here. Discover our new AI-powered workflow builder." 
+    href="/product" 
+    ctaText="See what's new" 
+  />
+  <HeaderV1 />
+  <main class="pt-20 pb-32 bg-surface">
+    <Container class="max-w-[800px] mx-auto">
+      <header class="mb-12 pb-8 border-b border-border">
+        <h1 class="text-h1">{title}</h1>
+        <p class="text-text-muted text-sm mt-2">Last Updated: {lastUpdated}</p>
+      </header>
+      <div class="text-body-large [&_h2]:text-2xl [&_h2]:mt-12 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-4 [&_p]:mb-6 [&_p]:text-text-secondary [&_ul]:mb-6 [&_ul]:pl-6 [&_ul]:text-text-secondary [&_li]:mb-2">
+        <slot />
+      </div>
+    </Container>
+  </main>
+  <FooterV1 />
+</BaseLayout>

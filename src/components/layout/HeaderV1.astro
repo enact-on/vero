@@ -1,0 +1,210 @@
+---
+import Container from "../ui/layout/Container.astro";
+import navigation from "../../config/navigation.json";
+import Logo from "../ui/primitives/Logo.astro";
+import Button from "../ui/primitives/Button.astro";
+---
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
+  <Container>
+    <nav class="flex items-center justify-between h-[72px]" aria-label="Main Navigation">
+      <div class="flex items-center z-[102]">
+        <Logo />
+      </div>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden lg:flex items-center gap-2 lg:gap-0 h-full" role="menubar">
+        {navigation.header.map((item: any) => (
+          <li class="flex items-center h-full relative group">
+            {item.hasDropdown ? (
+              <button
+                class="text-sm font-medium text-text-secondary transition-colors px-3 py-2 rounded-md flex items-center gap-1 cursor-pointer hover:text-text-primary hover:bg-gray-50 aria-expanded:text-text-primary aria-expanded:bg-gray-50 [&_svg]:transition-transform [&_svg]:duration-200 [&[aria-expanded=true]_svg]:rotate-180 dropdown-toggle"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                {item.label}
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              
+              <!-- Mega Menu -->
+              <div class="absolute top-full left-1/2 -translate-x-1/2 translate-y-2 bg-surface border border-border rounded-xl shadow-xl p-8 w-[600px] opacity-0 invisible transition-all duration-200 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto [&.show]:opacity-100 [&.show]:visible [&.show]:translate-y-0 [&.show]:pointer-events-auto mega-menu" role="menu">
+                <div class="grid grid-cols-2 gap-8">
+                  <div class="w-full col-span-2">
+                    <div class="grid grid-cols-2 gap-4">
+                      {item.dropdown.map((link: any) => (
+                        <a href={link.path} class="flex items-start gap-4 p-3 rounded-lg no-underline transition-colors -mx-3 hover:bg-gray-50">
+                          <div>
+                            <span class="block text-sm font-semibold text-text-primary mb-[2px]">{link.label}</span>
+                            {link.description && <span class="block text-[13px] text-text-secondary leading-snug">{link.description}</span>}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a href={item.path} class="text-sm font-medium text-text-secondary transition-colors px-4 py-2 rounded-md flex items-center gap-1 cursor-pointer hover:text-text-primary hover:bg-gray-50" role="menuitem">{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="/login" class="text-sm font-medium text-text-secondary transition-colors px-4 py-2 rounded-md hover:text-text-primary hover:bg-gray-50">Log in</a>
+        <Button href="/pricing" variant="primary" size="small">Get started</Button>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="lg:hidden bg-transparent border-none text-text-primary cursor-pointer p-2 z-[102]"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        id="mobileMenuBtn"
+      >
+        <svg
+          class="hamburger"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg
+          class="close-icon hidden"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </Container>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="fixed inset-0 w-full h-screen bg-white/95 backdrop-blur-xl z-[101] overflow-y-auto pt-[80px] hidden opacity-0 -translate-y-4 transition-all duration-300 ease-out" id="mobileNav">
+    <div class="p-6 flex flex-col min-h-[calc(100vh-80px)] max-w-md mx-auto w-full">
+      <ul class="list-none p-0 m-0 mb-8 flex flex-col gap-1">
+        {navigation.header.map((item: any) => (
+          <li class="border-b border-[#F0EFEC] last:border-0">
+            {item.hasDropdown ? (
+              <details class="group">
+                <summary class="flex items-center justify-between text-[18px] font-[600] text-[#171719] py-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  {item.label}
+                  <span class="material-symbols-outlined text-[#85848D] transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                </summary>
+                <div class="overflow-hidden transition-all duration-300 grid grid-rows-[0fr] group-open:grid-rows-[1fr]">
+                  <ul class="min-h-0 pl-4 mb-4 border-l-2 border-[#F0EFEC] list-none flex flex-col gap-4">
+                    {item.dropdown.map((link: any) => (
+                      <li>
+                        <a href={link.path} class="block text-[15px] font-[500] text-[#69686E] hover:text-primary transition-colors">{link.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            ) : (
+              <a href={item.path} class="block text-[18px] font-[600] text-[#171719] no-underline py-4">{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="mt-auto pb-8 flex flex-col gap-3">
+        <a href="/login" class="w-full px-6 py-3.5 bg-[#F4F4F5] text-[#171719] font-[600] text-[16px] rounded-[7px] text-center hover:bg-[#EAEAEA] transition-all">Log in</a>
+        <Button href="/pricing" variant="primary" class="w-full justify-center py-3.5 text-[16px]">Get started</Button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile Menu Logic
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileNav = document.getElementById("mobileNav");
+  const hamburger = mobileMenuBtn?.querySelector(".hamburger");
+  const closeIcon = mobileMenuBtn?.querySelector(".close-icon");
+
+  if (mobileMenuBtn && mobileNav && hamburger && closeIcon) {
+    mobileMenuBtn.addEventListener("click", () => {
+      const isExpanded = mobileMenuBtn.getAttribute("aria-expanded") === "true";
+      mobileMenuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      hamburger.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+      
+      if (!isExpanded) {
+        // Open
+        mobileNav.classList.remove("hidden");
+        // small delay to allow display:block to apply before transition
+        setTimeout(() => {
+          mobileNav.classList.remove("opacity-0", "-translate-y-4");
+          mobileNav.classList.add("opacity-100", "translate-y-0");
+        }, 10);
+        document.body.style.overflow = "hidden";
+      } else {
+        // Close
+        mobileNav.classList.remove("opacity-100", "translate-y-0");
+        mobileNav.classList.add("opacity-0", "-translate-y-4");
+        setTimeout(() => {
+          mobileNav.classList.add("hidden");
+        }, 300); // Wait for transition
+        document.body.style.overflow = "auto";
+      }
+    });
+  }
+
+  // Desktop Mega Menu Logic (Basic accessibility handling)
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", (e) => {
+      const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", (!isExpanded).toString());
+      const megaMenu = toggle.nextElementSibling;
+      if (megaMenu) {
+        if (!isExpanded) {
+          megaMenu.classList.add("show");
+        } else {
+          megaMenu.classList.remove("show");
+        }
+      }
+    });
+
+    // Handle mouseenter for desktop hover experience
+    const parentLi = toggle.parentElement;
+    if (parentLi) {
+      parentLi.addEventListener("mouseenter", () => {
+        if (window.innerWidth >= 1024) {
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
+      parentLi.addEventListener("mouseleave", () => {
+        if (window.innerWidth >= 1024) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+  });
+</script>

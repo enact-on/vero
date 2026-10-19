@@ -1,0 +1,1320 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/layout/Container.astro";
+import SectionHeading from "../components/ui/marketing/SectionHeading.astro";
+import Hero from "../components/sections/Hero.astro";
+import Button from "../components/ui/primitives/Button.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/vero-dashboard-hero.png";
+import visualImg1 from "../assets/images/visual-image-1.png";
+import visualImg2 from "../assets/images/visual-image-2.png";
+import visualImg3 from "../assets/images/visual-image-3.png";
+import visualImg4 from "../assets/images/visual-image-4.png";
+import visualImg5 from "../assets/images/visual-image-5.png";
+import visualImg6 from "../assets/images/visual-image-6.jpg";
+import visualImg7VerticalLight from "../assets/images/visual-image-7-vertical-light.jpg";
+import visualImg7VerticalDark from "../assets/images/visual-image-7-vertical-dark.jpg";
+import visualImg8 from "../assets/images/visual-image-8.jpg";
+import imgSales from "../assets/images/figma/card-sales.png";
+import imgMarketing from "../assets/images/figma/card-marketing.png";
+import imgRevops from "../assets/images/figma/card-revops.png";
+import customerStoryIsometric from "../assets/images/customer-story-isometric.jpg";
+
+// Product UI Components
+import AccountIntelligence from "../components/sections/AccountIntelligence.astro";
+import ProspectIntelligence from "../components/sections/ProspectIntelligence.astro";
+import AIResearch from "../components/sections/AIResearch.astro";
+import AIPersonalization from "../components/sections/AIPersonalization.astro";
+import WorkflowBuilder from "../components/sections/WorkflowBuilder.astro";
+import Pipeline from "../components/sections/Pipeline.astro";
+import Analytics from "../components/sections/Analytics.astro";
+import AIAgent from "../components/sections/AIAgent.astro";
+import IntegrationUI from "../components/sections/IntegrationUI.astro";
+---
+
+<BaseLayout
+  headerStyle="v1"
+  footerStyle="v1"
+  showAnnouncement={true}
+  title="Vero - AI-Powered GTM Intelligence"
+>
+  <Hero src={heroImage} alt="Vero Dashboard" />
+
+  <!-- Feature 1: Account Intelligence -->
+  <section class="section py-8 lg:py-16 bg-gray-50 overflow-hidden">
+    <Container>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center"
+      >
+        <div class="relative z-10">
+          <span class="text-eyebrow mb-4 block">ACCOUNT INTELLIGENCE</span>
+          <h2 class="text-h2 mb-6">Know exactly who is ready to buy.</h2>
+          <p class="text-body-large mb-8">
+            Stop guessing who to contact. Vero analyzes billions of data points
+            across the web to detect buying signals, intent changes, and key
+            personnel moves in real-time.
+          </p>
+          <ul class="list-none p-0 m-0 mb-8 space-y-3">
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Real-time intent scoring
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Funding & hiring signals
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Technographics tracking
+            </li>
+          </ul>
+        </div>
+        <div class="relative rounded-xl shadow-xl bg-surface">
+          <!-- <AccountIntelligence /> -->
+          <Image
+            src={visualImg1}
+            alt="Vero Dashboard"
+            class="w-full h-auto block"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Feature 2: AI Research (Reverse) -->
+  <section class="section py-8 lg:py-16 bg-white overflow-hidden">
+    <Container>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center"
+      >
+        <div class="relative z-10 lg:order-last">
+          <span class="text-eyebrow mb-4 block">AI RESEARCH</span>
+          <h2 class="text-h2 mb-6">Instant executive summaries.</h2>
+          <p class="text-body-large mb-8">
+            Vero's AI Agent automatically researches target accounts, analyzing
+            10Ks, earnings calls, and news to generate concise executive
+            summaries and tailored pitch recommendations before you ever reach
+            out.
+          </p>
+          <ul class="list-none p-0 m-0 mb-8 space-y-3">
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Automated account planning
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > 10K & earnings call analysis
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Trigger event monitoring
+            </li>
+          </ul>
+        </div>
+        <div
+          class="relative rounded-xl shadow-xl bg-surface transform scale-105 lg:order-first"
+        >
+          <Image
+            src={visualImg2}
+            alt="Vero Dashboard"
+            class="w-full h-auto block"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Feature 3: Prospect Intelligence -->
+  <section class="section py-8 lg:py-16 bg-gray-50 overflow-hidden">
+    <Container>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center"
+      >
+        <div class="relative z-10">
+          <span class="text-eyebrow mb-4 block">PROSPECT INTELLIGENCE</span>
+          <h2 class="text-h2 mb-6">Map the entire buying committee.</h2>
+          <p class="text-body-large mb-8">
+            Identify the decision makers, budget owners, and champions. Track
+            their cross-channel engagement—from email opens to website visits
+            and LinkedIn posts—all in one profile.
+          </p>
+          <ul class="list-none p-0 m-0 mb-8 space-y-3">
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Cross-channel engagement tracking
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Buying committee visualization
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Persona-based insights
+            </li>
+          </ul>
+        </div>
+        <div class="relative rounded-xl shadow-xl bg-surface">
+          <Image
+            src={visualImg3}
+            alt="Vero Dashboard"
+            class="w-full h-auto block"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Feature 4: AI Personalization (Reverse) -->
+  <section class="section py-8 lg:py-16 bg-white overflow-hidden">
+    <Container>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center"
+      >
+        <div class="relative z-10 lg:order-last">
+          <span class="text-eyebrow mb-4 block">AI PERSONALIZATION</span>
+          <h2 class="text-h2 mb-6">Hyper-personalized outreach at scale.</h2>
+          <p class="text-body-large mb-8">
+            Stop sending generic templates. Vero uses account insights and
+            prospect activity to draft highly relevant, context-aware emails
+            that get responses. Adjust tone and generate variations in one
+            click.
+          </p>
+          <ul class="list-none p-0 m-0 mb-8 space-y-3">
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Context-aware generation
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Tone and style controls
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Success probability scoring
+            </li>
+          </ul>
+        </div>
+        <div class="relative rounded-xl shadow-xl bg-surface lg:order-first">
+          <Image
+            src={visualImg4}
+            alt="Vero Dashboard"
+            class="w-full h-auto block"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Feature 5: Workflow Automation -->
+  <section class="section py-8 lg:py-16 bg-gray-50 overflow-hidden">
+    <Container>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center"
+      >
+        <div class="relative z-10">
+          <span class="text-eyebrow mb-4 block">WORKFLOW AUTOMATION</span>
+          <h2 class="text-h2 mb-6">
+            Automate the work between signal and sale.
+          </h2>
+          <p class="text-body-large mb-8">
+            Turn passive signals into active pipeline. Build visual, branching
+            workflows that automatically route accounts, find decision makers,
+            and trigger personalized sequences based on logic.
+          </p>
+          <ul class="list-none p-0 m-0 mb-8 space-y-3">
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Visual drag-and-drop builder
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Branching conditional logic
+            </li>
+            <li class="flex items-start gap-3 font-medium">
+              <svg
+                class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg
+              > Hands-free pipeline generation
+            </li>
+          </ul>
+        </div>
+        <div class="relative rounded-xl shadow-xl bg-surface">
+          <Image
+            src={visualImg5}
+            alt="Vero Dashboard"
+            class="w-full h-auto block"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. WORKFLOW GRID (DARK SECTION) -->
+  <section class="py-[80px] bg-[#1D1D22] text-white border-y border-[#37363C]">
+    <div class="max-w-[1180px] mx-auto px-4 text-left">
+      <div data-animate="fade-up" class="mb-14">
+        <span
+          class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+          >02 / ONE CONTINUOUS WORKFLOW</span
+        >
+        <h2 class="text-h2 text-white max-w-[600px]">
+          From market signal to meaningful conversation.
+        </h2>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-y-12 lg:gap-y-0"
+      >
+        <!-- Step 1 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">01</div>
+          <!-- Arrow on border -->
+          <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]">search</span>
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Discover</h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Find accounts showing real buying intent.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">02</div>
+          <!-- Arrow on border -->
+          <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >receipt_long</span
+            >
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Enrich</h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Complete every account and contact record.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">03</div>
+          <!-- Arrow on border -->
+          <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#1F2D2A] text-[#459B71] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >temp_preferences_custom</span
+            >
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Understand</h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Turn activity into a clear buying narrative.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">04</div>
+          <!-- Arrow on border -->
+          <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]">group</span>
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">
+            Personalize
+          </h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Create relevant messaging for each person.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative border-b lg:border-b-0 lg:border-r border-[#37363C] last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">05</div>
+          <!-- Arrow on border -->
+          <!-- <div class="absolute -right-[7px] top-[0px] text-[#4F4E54] text-[14px] bg-[#1D1D22] py-1 leading-none hidden lg:block">
+              &rarr;
+            </div> -->
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#1F2D2A] text-[#459B71] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]">bolt</span>
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Engage</h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Activate coordinated plays across channels.
+          </p>
+        </div>
+
+        <!-- Step 6 -->
+        <div
+          data-animate="fade-up"
+          class="px-2 lg:px-6 relative last:border-0 pb-8 lg:pb-0 first:pl-0 last:pr-0"
+        >
+          <div class="text-[#74737A] font-[400] text-[12px] mb-[40px]">06</div>
+          <div
+            class="w-[36px] h-[36px] rounded-[8px] bg-[#26243A] text-[#7465D4] flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-[18px]">code</span>
+          </div>
+          <h3 class="text-[16px] font-[500] text-[#EEEEEE] mb-2">Sync</h3>
+          <p class="text-[#85848D] text-[13px] leading-[20px] pr-2">
+            Keep your systems and teams aligned.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature 6: AI Agent (Centered Feature) -->
+  <section class="section py-12 lg:py-24 bg-white relative overflow-hidden">
+    <!-- Soft Ambient Warm Background Glow -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[450px] bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(234,88,12,0.06)_0%,transparent_70%)] pointer-events-none -z-10"
+    >
+    </div>
+
+    <Container>
+      <SectionHeading
+        eyebrow="MEET VERO AI"
+        title="Your dedicated revenue co-pilot."
+        description="Interact with your GTM data naturally. Ask Vero AI to research competitors, summarize pipeline risks, or identify new ICP matches."
+      />
+      <div
+        class="visual-centered mt-12 max-w-5xl mx-auto rounded-2xl border border-gray-200/90 shadow-[0_25px_60px_-15px_rgba(234,88,12,0.12),0_12px_28px_-6px_rgba(15,23,42,0.06)] overflow-hidden bg-white transition-all duration-300 hover:shadow-[0_30px_70px_-15px_rgba(234,88,12,0.18)]"
+      >
+        <Image
+          src={visualImg6}
+          alt="Vero AI Revenue Copilot Dashboard"
+          class="w-full h-auto block"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Feature 7: Integrations & Analytics Grid -->
+  <section class="section py-12 lg:py-24 bg-gray-50 overflow-hidden">
+    <Container>
+      <SectionHeading
+        eyebrow="CONNECTED & MEASURABLE"
+        title="Works with your stack. Proves your ROI."
+        description="Vero integrates bi-directionally with your CRM and provides deep analytics to measure what's working."
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mt-16">
+        <div
+          class="bg-white rounded-xl border border-border shadow-md overflow-hidden flex flex-col col-span-2"
+        >
+          <div class="p-8 flex flex-col h-full">
+            <h3 class="text-xl font-bold mb-2">Native Integrations</h3>
+            <p class="text-muted text-sm mb-6">
+              Sync accounts, contacts, and opportunities seamlessly.
+            </p>
+            <div
+              class="relative rounded-xl overflow-hidden border border-border mt-auto"
+            >
+              <Image
+                src={visualImg7VerticalLight}
+                alt="Native Integrations"
+                class="w-full h-auto block"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white rounded-xl border border-border shadow-md overflow-hidden flex flex-col col-span-3"
+        >
+          <div class="p-8 flex flex-col h-full">
+            <h3 class="text-xl font-bold mb-2">Revenue Analytics</h3>
+            <p class="text-muted text-sm mb-6">
+              Track pipeline created, win rates, and sales cycles in real-time.
+            </p>
+            <div
+              class="relative rounded-xl overflow-hidden border border-border mt-auto"
+            >
+              <Image
+                src={visualImg8}
+                alt="Revenue Analytics"
+                class="w-full h-auto block"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 7. CUSTOMER STORY -->
+  <section class="py-12 lg:py-24 bg-gray-50 overflow-hidden relative">
+    <div class="max-w-[1240px] mx-auto px-4 sm:px-6 flex flex-col gap-10 lg:gap-14">
+      <div data-animate="fade-up" class="flex gap-4 items-center">
+        <span
+          class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+          >CUSTOMER STORY</span
+        >
+        <div class="h-px bg-gray-200 flex-1"></div>
+      </div>
+
+      <div data-animate="fade-up" class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center">
+        <!-- LEFT COLUMN: Testimonial Quotes Slider (7 Cols) -->
+        <div class="lg:col-span-7 relative">
+          <div
+            class="grid grid-cols-1 grid-rows-1 w-full min-h-[340px] sm:min-h-[290px]"
+            id="testimonial-slider"
+          >
+            <!-- Slide 1 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-100 z-10 translate-x-0"
+            >
+              <div class="flex items-center gap-3 mb-6 sm:mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100/80 text-primary text-[11px] font-bold tracking-wide uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                  Northstar Labs
+                </span>
+                <span class="text-xs text-gray-400">· 1,400+ Enterprise SDRs</span>
+              </div>
+              <h3
+                class="text-2xl sm:text-3xl lg:text-[36px] font-medium text-gray-950 leading-[1.28] tracking-[-0.035em] mb-6 sm:mb-8"
+              >
+                “Vero gave our team a shared understanding of where demand was
+                forming—then helped us act before the market caught up.”
+              </h3>
+              <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                <div
+                  class="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-200 to-orange-200 text-[#5B493E] flex items-center justify-center font-extrabold text-sm shadow-2xs"
+                >
+                  RB
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 text-[15px] mb-0.5">
+                    Rachel Bennett
+                  </h4>
+                  <p class="text-xs sm:text-[13px] text-gray-500">
+                    VP of Revenue, Northstar Labs
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/customers"
+                class="inline-flex items-center gap-2 text-primary font-bold text-sm sm:text-[15px] group"
+              >
+                <span class="border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all">Read the customer story</span>
+                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 z-0 translate-x-8 pointer-events-none"
+            >
+              <div class="flex items-center gap-3 mb-6 sm:mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-700 text-[11px] font-bold tracking-wide uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Acme Corp
+                </span>
+                <span class="text-xs text-gray-400">· Global SaaS</span>
+              </div>
+              <h3
+                class="text-2xl sm:text-3xl lg:text-[36px] font-medium text-gray-950 leading-[1.28] tracking-[-0.035em] mb-6 sm:mb-8"
+              >
+                “The level of intelligence we get from Vero is unmatched. It has
+                completely transformed how our sales team prioritizes outreach.”
+              </h3>
+              <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                <div
+                  class="w-11 h-11 rounded-full bg-gradient-to-tr from-blue-200 to-indigo-200 text-[#3E4D5B] flex items-center justify-center font-extrabold text-sm shadow-2xs"
+                >
+                  DC
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 text-[15px] mb-0.5">
+                    David Chen
+                  </h4>
+                  <p class="text-xs sm:text-[13px] text-gray-500">
+                    Chief Sales Officer, Acme Corp
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/customers"
+                class="inline-flex items-center gap-2 text-primary font-bold text-sm sm:text-[15px] group"
+              >
+                <span class="border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all">Read the customer story</span>
+                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 z-0 translate-x-8 pointer-events-none"
+            >
+              <div class="flex items-center gap-3 mb-6 sm:mb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100/80 text-primary text-[11px] font-bold tracking-wide uppercase">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Globex Inc
+                </span>
+                <span class="text-xs text-gray-400">· 40% Booking Surge</span>
+              </div>
+              <h3
+                class="text-2xl sm:text-3xl lg:text-[36px] font-medium text-gray-950 leading-[1.28] tracking-[-0.035em] mb-6 sm:mb-8"
+              >
+                “We saw a 40% increase in meeting booking rates within the first
+                quarter. The signal accuracy is absolutely phenomenal.”
+              </h3>
+              <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                <div
+                  class="w-11 h-11 rounded-full bg-gradient-to-tr from-pink-200 to-rose-200 text-[#5B3E45] flex items-center justify-center font-extrabold text-sm shadow-2xs"
+                >
+                  SJ
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 text-[15px] mb-0.5">
+                    Sarah Jenkins
+                  </h4>
+                  <p class="text-xs sm:text-[13px] text-gray-500">
+                    Director of Growth, Globex Inc
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/customers"
+                class="inline-flex items-center gap-2 text-primary font-bold text-sm sm:text-[15px] group"
+              >
+                <span class="border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all">Read the customer story</span>
+                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div
+            class="flex items-center justify-between sm:justify-start gap-8 mt-6 relative z-20 pt-2"
+          >
+            <div class="flex items-center gap-3" id="testimonial-dots">
+              <button
+                type="button"
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#171719] transition-all duration-300 cursor-pointer"
+                data-index="0"
+                aria-label="Slide 1"></button>
+              <button
+                type="button"
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#D4D3CD] hover:bg-[#A9A8A2] transition-all duration-300 cursor-pointer"
+                data-index="1"
+                aria-label="Slide 2"></button>
+              <button
+                type="button"
+                class="test-dot w-[10px] h-[10px] rounded-full bg-[#D4D3CD] hover:bg-[#A9A8A2] transition-all duration-300 cursor-pointer"
+                data-index="2"
+                aria-label="Slide 3"></button>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <button
+                type="button"
+                class="test-prev w-10 h-10 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-xs active:scale-95"
+                aria-label="Previous testimonial"
+              >
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              </button>
+              <button
+                type="button"
+                class="test-next w-10 h-10 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-xs active:scale-95"
+                aria-label="Next testimonial"
+              >
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Customer Success Isometric Illustration (5 Cols) -->
+        <div class="lg:col-span-5 relative flex items-center justify-center">
+          <!-- Ambient soft glow behind visual -->
+          <div
+            class="absolute -inset-4 bg-gradient-to-tr from-orange-400/15 via-amber-300/10 to-transparent rounded-full blur-2xl -z-10"
+          >
+          </div>
+          <div
+            class="relative w-full max-w-[430px] rounded-3xl overflow-hidden border border-gray-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(234,88,12,0.14),0_8px_24px_-6px_rgba(0,0,0,0.06)] group transition-all duration-300 hover:shadow-[0_25px_65px_-12px_rgba(234,88,12,0.22)]"
+          >
+            <Image
+              src={customerStoryIsometric}
+              alt="Vero Customer Success and Revenue Acceleration"
+              class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-102"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proven Results -->
+  <section class="section py-12 lg:py-24 md:py-40 bg-white">
+    <Container>
+      <div class="max-w-4xl mb-24 md:mb-32">
+        <h2
+          class="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] font-medium tracking-tight text-gray-900"
+        >
+          <span class="text-primary">2,000</span> sales teams stopped manual prospecting.
+          Their Agents run outbound for them.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 max-w-6xl">
+        <div class="flex flex-col">
+          <span
+            class="text-6xl md:text-[80px] leading-none font-light text-gray-900 tracking-tight pb-8 border-b border-gray-200"
+            >2,000+</span
+          >
+          <span class="text-lg text-gray-800 pt-6 font-medium leading-snug pr-4"
+            >Customers booking meetings with their agent</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-6xl md:text-[80px] leading-none font-light text-gray-900 tracking-tight pb-8 border-b border-gray-200"
+            >3hrs</span
+          >
+          <span class="text-lg text-gray-800 pt-6 font-medium leading-snug pr-4"
+            >Saved per day on prospecting</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-6xl md:text-[80px] leading-none font-light text-gray-900 tracking-tight pb-8 border-b border-gray-200"
+            >5mins</span
+          >
+          <span class="text-lg text-gray-800 pt-6 font-medium leading-snug pr-4"
+            >From signup to agent running</span
+          >
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 8. HOW TEAMS USE VERO -->
+  <section class="py-12 lg:py-24 bg-[#FAFAF8]">
+    <div class="max-w-[1180px] mx-auto px-4">
+      <div data-animate="fade-up" class="flex gap-4 items-center mb-[70px]">
+        <span
+          class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+          >HOW TEAMS USE VERO</span
+        >
+        <div class="h-px bg-[#E3E2DD] flex-1"></div>
+      </div>
+
+      <div class="mb-[60px]">
+        <h2 data-animate="fade-up" class="text-h2 text-[#171719] mb-[16px]">
+          One platform. Every revenue team.
+        </h2>
+        <p
+          data-animate="fade-up"
+          class="text-[18px] text-[#69686E] font-[400] leading-[28px] max-w-[560px]"
+        >
+          Vero gives every function in your go-to-market motion the intelligence
+          they need to move faster and win more.
+        </p>
+      </div>
+
+      <!-- 3 Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+        <!-- Sales Card -->
+        <div
+          data-animate="fade-up"
+          class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+        >
+          <Image
+            src={imgSales}
+            alt="Sales"
+            class="w-full h-[220px] object-cover"
+          />
+          <div class="p-8 flex flex-col flex-1">
+            <div
+              class="inline-flex px-[10px] py-[4px] bg-primary-soft text-primary rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+            >
+              Sales
+            </div>
+            <h4
+              class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+            >
+              Find and close your best opportunities, faster.
+            </h4>
+            <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+              Vero surfaces the accounts showing real buying signals right now,
+              enriches every record automatically, and gives your reps a clear
+              reason to reach out—so they spend more time selling and less time
+              researching.
+            </p>
+            <a
+              href="#"
+              class="text-primary font-[700] text-[14px] flex items-center gap-2"
+              >Explore for sales teams <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              ></a
+            >
+          </div>
+        </div>
+        <!-- Marketing Card -->
+        <div
+          data-animate="fade-up"
+          class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+        >
+          <Image
+            src={imgMarketing}
+            alt="Marketing"
+            class="w-full h-[220px] object-cover"
+          />
+          <div class="p-8 flex flex-col flex-1">
+            <div
+              class="inline-flex px-[10px] py-[4px] bg-[#D7F8E8] text-[#248361] rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+            >
+              Marketing
+            </div>
+            <h4
+              class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+            >
+              Run campaigns that reach the market before it moves.
+            </h4>
+            <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+              Connect market signals to your campaigns so every impression
+              reaches an account that's already in motion. Vero tells you which
+              segments are heating up—so you invest in demand that's real, not
+              assumed.
+            </p>
+            <a
+              href="#"
+              class="text-primary font-[700] text-[14px] flex items-center gap-2"
+              >Explore for marketing teams <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              ></a
+            >
+          </div>
+        </div>
+        <!-- RevOps Card -->
+        <div
+          data-animate="fade-up"
+          class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+        >
+          <Image
+            src={imgRevops}
+            alt="Revenue Operations"
+            class="w-full h-[220px] object-cover"
+          />
+          <div class="p-8 flex flex-col flex-1">
+            <div
+              class="inline-flex px-[10px] py-[4px] bg-[#F0EFEC] text-[#77767C] rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase"
+            >
+              Revenue Operations
+            </div>
+            <h4
+              class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+            >
+              Build the data foundation your GTM stack depends on.
+            </h4>
+            <p class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1">
+              Vero keeps your CRM clean, your scoring accurate, and your
+              integrations in sync. Give every team a single source of truth on
+              account activity so nothing falls through the cracks between
+              systems.
+            </p>
+            <a
+              href="#"
+              class="text-primary font-[700] text-[14px] flex items-center gap-2"
+              >Explore for revenue operations <span
+                class="material-symbols-outlined text-[16px]"
+                >arrow_forward</span
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section py-12 lg:py-24 bg-gray-50">
+    <Container>
+      <SectionHeading
+        eyebrow="FAQ"
+        title="Frequently asked questions."
+        description="Everything you need to know about Vero and how it integrates with your existing workflow."
+      />
+
+      <div class="flex flex-col gap-4 mt-12 mx-auto max-w-3xl">
+        <details
+          class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+          name="faq"
+        >
+          <summary
+            class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden"
+          >
+            <span>What data sources does Vero integrate with?</span>
+            <span class="text-text-muted transition-transform duration-200">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><line x1="12" y1="5" x2="12" y2="19"></line><line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"></line></svg
+              >
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+            <p>
+              Vero natively integrates with your entire GTM stack, including
+              CRMs (Salesforce, HubSpot), data warehouses (Snowflake, BigQuery),
+              and engagement platforms (Outreach, Salesloft). Setup takes just a
+              few clicks with zero engineering required.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+          name="faq"
+        >
+          <summary
+            class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden"
+          >
+            <span>How does Vero's AI research work?</span>
+            <span class="text-text-muted transition-transform duration-200">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><line x1="12" y1="5" x2="12" y2="19"></line><line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"></line></svg
+              >
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+            <p>
+              Our proprietary AI engine continuously scans millions of data
+              points—including news articles, financial reports, hiring trends,
+              and social intent signals. It synthesizes this unstructured data
+              into actionable executive summaries tailored to your unique value
+              proposition.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+          name="faq"
+        >
+          <summary
+            class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden"
+          >
+            <span>Do I need technical skills to build workflows?</span>
+            <span class="text-text-muted transition-transform duration-200">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><line x1="12" y1="5" x2="12" y2="19"></line><line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"></line></svg
+              >
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+            <p>
+              Not at all. Vero features an intuitive visual workflow builder.
+              Revenue operators and marketers can drag and drop triggers,
+              conditions, and actions to automate complex plays without writing
+              a single line of code.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+          name="faq"
+        >
+          <summary
+            class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden"
+          >
+            <span>Is my company data secure?</span>
+            <span class="text-text-muted transition-transform duration-200">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><line x1="12" y1="5" x2="12" y2="19"></line><line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"></line></svg
+              >
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+            <p>
+              Security is our top priority. Vero is SOC2 Type II compliant, GDPR
+              ready, and employs enterprise-grade encryption both in transit and
+              at rest. We never use your proprietary data to train our
+              foundational models.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+          name="faq"
+        >
+          <summary
+            class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden"
+          >
+            <span>How long does it take to see results?</span>
+            <span class="text-text-muted transition-transform duration-200">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                ><line x1="12" y1="5" x2="12" y2="19"></line><line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"></line></svg
+              >
+            </span>
+          </summary>
+          <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+            <p>
+              Most customers achieve a full deployment within 2 weeks and begin
+              seeing measurable increases in outbound ROI and pipeline
+              generation within their first 30 days of active usage.
+            </p>
+          </div>
+        </details>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="section py-18 md:py-34 relative overflow-hidden bg-white">
+    <!-- Dot pattern background -->
+    <div
+      class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"
+    >
+    </div>
+
+    <Container class="relative z-10 text-center">
+      <h2
+        class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-gray-900 mb-6"
+      >
+        Build your next pipeline advantage.
+      </h2>
+      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+        Bring intelligence, automation, and execution together in one GTM
+        platform. Join the revenue teams already winning with Vero.
+      </p>
+
+      <div class="flex flex-wrap justify-center items-center gap-4">
+        <a
+          href="/pricing"
+          class="inline-flex justify-center items-center gap-2 px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20"
+        >
+          Get started
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+          >
+        </a>
+        <a
+          href="/company/contact"
+          class="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-colors shadow-sm"
+        >
+          Book a demo
+        </a>
+      </div>
+
+      <!-- <div
+        class="mt-10 flex flex-wrap justify-center items-center gap-6 md:gap-8 text-sm font-medium text-gray-500"
+      >
+        <div class="flex items-center gap-2">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#10b981"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="20 6 9 17 4 12"></polyline></svg
+          >
+          14-day free trial
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#10b981"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="20 6 9 17 4 12"></polyline></svg
+          >
+          No credit card required
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#10b981"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="20 6 9 17 4 12"></polyline></svg
+          >
+          Cancel anytime
+        </div>
+      </div> -->
+    </Container>
+  </section>
+
+  <script>
+    function initTestimonialSlider() {
+      const slider = document.getElementById("testimonial-slider");
+      if (!slider) return;
+
+      const slides = slider.querySelectorAll(".testimonial-slide");
+      const dots = document.querySelectorAll("#testimonial-dots .test-dot");
+      const prevBtn = document.querySelector(".test-prev");
+      const nextBtn = document.querySelector(".test-next");
+
+      if (!slides.length) return;
+
+      let currentIndex = 0;
+      let autoPlayTimer: any = null;
+
+      function goToSlide(index: number) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.classList.remove(
+              "opacity-0",
+              "z-0",
+              "translate-x-8",
+              "-translate-x-8",
+              "pointer-events-none"
+            );
+            slide.classList.add("opacity-100", "z-10", "translate-x-0");
+          } else {
+            slide.classList.remove("opacity-100", "z-10", "translate-x-0");
+            slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+            if (i < index) {
+              slide.classList.add("-translate-x-8");
+              slide.classList.remove("translate-x-8");
+            } else {
+              slide.classList.add("translate-x-8");
+              slide.classList.remove("-translate-x-8");
+            }
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.remove("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+            dot.classList.add("bg-[#171719]");
+          } else {
+            dot.classList.remove("bg-[#171719]");
+            dot.classList.add("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+          }
+        });
+
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      function resetAutoPlay() {
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+        autoPlayTimer = setInterval(nextSlide, 7000);
+      }
+
+      if (prevBtn) {
+        (prevBtn as HTMLElement).onclick = (e) => {
+          e.preventDefault();
+          prevSlide();
+          resetAutoPlay();
+        };
+      }
+
+      if (nextBtn) {
+        (nextBtn as HTMLElement).onclick = (e) => {
+          e.preventDefault();
+          nextSlide();
+          resetAutoPlay();
+        };
+      }
+
+      dots.forEach((dot, i) => {
+        (dot as HTMLElement).onclick = (e) => {
+          e.preventDefault();
+          goToSlide(i);
+          resetAutoPlay();
+        };
+      });
+
+      goToSlide(0);
+      resetAutoPlay();
+    }
+
+    // Run on standard load, page load transitions, and immediately if DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initTestimonialSlider);
+    } else {
+      initTestimonialSlider();
+    }
+    document.addEventListener("astro:page-load", initTestimonialSlider);
+  </script>
+</BaseLayout>

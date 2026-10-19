@@ -1,0 +1,121 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../../../lib/cn';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-full font-semibold transition hover:-translate-y-px',
+  {
+    variants: {
+      variant: {
+        brand: 'shadow-sm shadow-slate-900/5',
+        solid: 'shadow-sm shadow-slate-900/5',
+        outline: 'bg-transparent border',
+        ghost: 'bg-transparent',
+      },
+      colorTheme: {
+        brand: '',
+        primary: '',
+        cyan: '',
+        teal: '',
+        dark: '',
+      },
+      size: {
+        sm: 'px-5 py-2 text-xs',
+        md: 'px-6 py-3 text-sm',
+        lg: 'px-7 py-4 text-base',
+      },
+    },
+    compoundVariants: [
+      /* Solid/Brand Variants */
+      {
+        variant: ['brand', 'solid'],
+        colorTheme: 'brand',
+        class: 'bg-[var(--brand-500)] text-white border-transparent hover:bg-[var(--brand-600)]',
+      },
+      {
+        variant: ['brand', 'solid'],
+        colorTheme: 'primary',
+        class: 'bg-blue-600 text-white border border-transparent hover:bg-blue-700',
+      },
+      {
+        variant: ['brand', 'solid'],
+        colorTheme: 'cyan',
+        class: 'bg-cyan-500 text-white border border-transparent hover:bg-cyan-600',
+      },
+      {
+        variant: ['brand', 'solid'],
+        colorTheme: 'teal',
+        class: 'bg-teal-600 text-white border border-transparent hover:bg-teal-700',
+      },
+      {
+        variant: ['brand', 'solid'],
+        colorTheme: 'dark',
+        class:
+          'bg-slate-900 text-white border border-transparent hover:bg-slate-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200',
+      },
+
+      /* Outline Variants */
+      {
+        variant: 'outline',
+        colorTheme: 'brand',
+        class:
+          'text-foreground border-[#d8d3c7] hover:bg-[var(--swatch-ube-300)]/20 hover:text-foreground',
+      },
+      {
+        variant: 'outline',
+        colorTheme: 'primary',
+        class: 'border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20',
+      },
+      {
+        variant: 'outline',
+        colorTheme: 'cyan',
+        class:
+          'border-cyan-500 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-900/20',
+      },
+      {
+        variant: 'outline',
+        colorTheme: 'teal',
+        class:
+          'border-teal-600 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-900/20',
+      },
+      {
+        variant: 'outline',
+        colorTheme: 'dark',
+        class:
+          'border-slate-800 text-slate-800 hover:bg-slate-100 dark:border-zinc-300 dark:text-zinc-300 dark:hover:bg-zinc-800',
+      },
+    ],
+    defaultVariants: {
+      variant: 'brand',
+      colorTheme: 'brand',
+      size: 'lg',
+    },
+  }
+);
+
+interface Props
+  extends
+    HTMLAttributes<'a'>,
+    HTMLAttributes<'button'>,
+    Omit<VariantProps<typeof buttonVariants>, 'size' | 'variant'> {
+  href?: string;
+  variant?: 'brand' | 'solid' | 'outline' | 'ghost';
+  colorTheme?: 'brand' | 'primary' | 'cyan' | 'teal' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  href,
+  variant = 'brand',
+  colorTheme = 'brand',
+  size = 'lg',
+  class: className,
+  ...attrs
+} = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag href={href} class={cn(buttonVariants({ variant, colorTheme, size, className }))} {...attrs}>
+  <slot />
+</Tag>

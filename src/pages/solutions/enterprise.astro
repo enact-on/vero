@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+import AIResearch from '../../components/sections/AIResearch.astro';
+import { Image } from 'astro:assets';
+import pipelineMockup from '../../assets/images/pipeline-mockup.jpg';
+import Button from '../../components/ui/primitives/Button.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="Vero for Enterprise" description="Scale your enterprise GTM strategy securely.">
+  <section class="pt-32 pb-20 bg-gray-50 text-center">
+    <Container>
+      <span class="text-eyebrow mb-4 block">VERO FOR ENTERPRISE</span>
+      <h1 class="text-display mb-6 max-w-4xl mx-auto">Scale revenue with enterprise grade security.</h1>
+      <p class="text-body-large mb-10 max-w-2xl mx-auto">
+        Global teams use Vero to coordinate multi-touch account plays across hundreds of reps, all while maintaining strict compliance, SSO, and granular role-based access.
+      </p>
+      <Button href="/company/contact" variant="primary" size="large">Talk to Sales</Button>
+    </Container>
+  </section>
+
+  <section class="py-32 bg-white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-h2 mb-6">Automate deep account research.</h2>
+          <p class="text-body-large mb-8">
+            Enterprise sales cycles require immense research. Vero automatically parses 10Ks, earnings calls, and strategic initiatives to prep your reps before their first discovery call.
+          </p>
+        </div>
+        <div>
+          <AIResearch />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-32 bg-gray-50">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="order-1 lg:order-2">
+          <h2 class="text-h2 mb-6">Pipeline visibility at a global scale.</h2>
+          <p class="text-body-large mb-8">
+            Give regional VPs and global CROs a unified view of pipeline health. See exactly how intent signals are converting into active opportunities.
+          </p>
+        </div>
+        <div class="order-2 lg:order-1">
+          <Image 
+            src={pipelineMockup} 
+            alt="Vero Pipeline Intelligence Dashboard Mockup" 
+            width={1200} 
+            height={675}
+            class="w-full h-auto rounded-xl shadow-2xl border border-border"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

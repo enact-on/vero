@@ -1,0 +1,85 @@
+---
+interface Props {
+  title?: string;
+  activeSidebarItem?: string;
+  class?: string;
+}
+import { Image } from 'astro:assets';
+
+const { title = "Dashboard", activeSidebarItem = "overview", class: className = "" } = Astro.props;
+
+const sidebarItems = [
+  { id: 'overview', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', label: 'Overview' },
+  { id: 'accounts', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', label: 'Accounts' },
+  { id: 'prospects', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75', label: 'Prospects' },
+  { id: 'workflows', icon: 'M22 12h-4l-3 9L9 3l-3 9H2', label: 'Workflows' },
+  { id: 'pipeline', icon: 'M12 2v20 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', label: 'Pipeline' },
+  { id: 'analytics', icon: 'M18 20V10 M12 20V4 M6 20v-6', label: 'Analytics' },
+];
+---
+
+<div class={`bg-surface border border-border rounded-xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col h-full min-h-[400px] font-sans ${className}`}>
+  <!-- App Window Header (macOS style dots) -->
+  <div class="h-10 bg-gray-50 border-b border-border flex items-center justify-between px-4">
+    <div class="flex gap-1.5 w-[60px]">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></span>
+    </div>
+    <div class="text-xs font-medium text-text-secondary tracking-[0.02em]">{title} - Vero</div>
+    <div class="w-[60px] flex justify-end text-text-muted">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </div>
+  </div>
+
+  <div class="flex flex-1 overflow-hidden bg-gray-100">
+    <!-- Sidebar -->
+    <aside class="w-16 bg-surface border-r border-border flex flex-col items-center py-4 z-10">
+      <div class="mb-8">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary to-orange-400 rounded-md flex items-center justify-center shadow-[0_4px_6px_-1px_var(--color-primary-glow)]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
+        </div>
+      </div>
+      
+      <nav class="flex flex-col gap-2 flex-1">
+        {sidebarItems.map(item => (
+          <div class={`w-10 h-10 flex items-center justify-center rounded-md cursor-pointer transition-colors duration-200 ${activeSidebarItem === item.id ? 'text-primary bg-primary-soft' : 'text-text-muted hover:text-text-primary hover:bg-gray-50'}`}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d={item.icon}></path>
+            </svg>
+            <span class="sr-only">{item.label}</span>
+          </div>
+        ))}
+      </nav>
+
+      <div class="mt-auto">
+        <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-border">
+          <Image src="https://i.pravatar.cc/100?img=33" alt="User" width={100} height={100} />
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+      <div class="h-14 bg-surface border-b border-border flex items-center justify-between px-6">
+        <div class="flex items-center gap-2 text-[13px] text-text-muted font-medium">
+          <span>{sidebarItems.find(i => i.id === activeSidebarItem)?.label || 'Dashboard'}</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <span class="text-text-primary">{title}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="bg-transparent border border-border rounded-md h-8 px-3 flex items-center gap-2 text-xs font-semibold text-text-secondary cursor-pointer hover:bg-gray-50">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          </button>
+          <button class="bg-primary text-white border-transparent rounded-md h-8 px-3 flex items-center gap-2 text-xs font-semibold cursor-pointer hover:bg-primary-hover">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            New
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 overflow-auto p-6 bg-gray-50">
+        <slot />
+      </div>
+    </main>
+  </div>
+</div>

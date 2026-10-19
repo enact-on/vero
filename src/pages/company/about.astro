@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+import SectionHeading from '../../components/ui/marketing/SectionHeading.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="About Us" description="Our mission to fix B2B outbound.">
+  <section class="pt-32 pb-20 bg-gray-50 text-center">
+    <Container>
+      <span class="text-eyebrow mb-4 block">ABOUT VERO</span>
+      <h1 class="text-display mb-6 max-w-4xl mx-auto">We believe outbound shouldn't feel like spam.</h1>
+      <p class="text-body-large mb-10 max-w-2xl mx-auto">
+        Vero was founded to solve a simple problem: B2B buyers are overwhelmed by irrelevant outreach, while sellers spend hours researching the wrong accounts. We're building the intelligence layer to fix it.
+      </p>
+    </Container>
+  </section>
+
+  <section class="py-32 bg-white">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-h2 mb-6">Our Story</h2>
+          <p class="text-body-large mb-6">
+            In 2024, our founders looked at the state of sales technology and realized something was broken. We had better CRMs, faster dialers, and infinite sequences—but the fundamental problem of <em>who</em> to contact and <em>when</em> was still solved by gut feeling and manual research.
+          </p>
+          <p class="text-body-large">
+            Vero was built to turn the infinite noise of the internet into actionable buying signals. Today, we process billions of data points to help modern revenue teams focus exclusively on accounts that are ready to buy.
+          </p>
+        </div>
+        <div class="bg-gray-100 rounded-xl min-h-[400px] flex items-center justify-center">
+          <span class="text-text-muted">Office Placeholder</span>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-32 bg-gray-900 text-white">
+    <Container>
+      <SectionHeading 
+        title="Our Values" 
+        description="The principles that guide how we build product and treat our customers." 
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <div class="p-8 border border-white/10 rounded-lg bg-white/2">
+          <h3 class="text-xl font-semibold mb-4 text-white">Signal over noise</h3>
+          <p class="text-gray-400 leading-relaxed m-0">We exist to eliminate busywork. If a feature doesn't directly help our customers find truth in data faster, we don't build it.</p>
+        </div>
+        <div class="p-8 border border-white/10 rounded-lg bg-white/2">
+          <h3 class="text-xl font-semibold mb-4 text-white">Default to transparency</h3>
+          <p class="text-gray-400 leading-relaxed m-0">We are honest about our capabilities, transparent with our pricing, and direct in our communication.</p>
+        </div>
+        <div class="p-8 border border-white/10 rounded-lg bg-white/2">
+          <h3 class="text-xl font-semibold mb-4 text-white">Design for the end user</h3>
+          <p class="text-gray-400 leading-relaxed m-0">Enterprise software doesn't have to be painful. We build tools that reps actually want to use every day.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

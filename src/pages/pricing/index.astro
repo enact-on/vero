@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+import Button from '../../components/ui/primitives/Button.astro';
+import SectionHeading from '../../components/ui/marketing/SectionHeading.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="Pricing" description="Simple, transparent pricing for modern revenue teams.">
+  <section class="pt-32 pb-20 bg-gray-50">
+    <Container>
+      <div class="text-center">
+        <h1 class="text-display mb-6">Simple pricing, built for growth.</h1>
+        <p class="text-body-large mb-12 max-w-2xl mx-auto">
+          Start for free, upgrade when you need more intelligence and automation power.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1200px] mx-auto items-center">
+        <!-- Starter Plan -->
+        <div class="bg-white border border-border rounded-2xl p-8 relative shadow-sm flex flex-col">
+          <h3 class="text-xl font-semibold mb-4">Starter</h3>
+          <div class="flex items-baseline mb-4">
+            <span class="text-2xl font-semibold text-text-secondary">$</span>
+            <span class="text-[3.5rem] font-bold leading-none text-text-primary -tracking-[0.02em]">0</span>
+            <span class="text-base text-text-secondary ml-1">/mo</span>
+          </div>
+          <p class="text-sm text-text-secondary mb-8 min-h-[3rem]">For small teams getting started with intent signals.</p>
+          <Button href="/signup" variant="outline" class="w-full flex justify-center mb-8">Get started free</Button>
+          
+          <ul class="list-none p-0 m-0 flex flex-col gap-4">
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 50 intent signals/month</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Basic company enrichment</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 1 active workflow</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Slack integration</li>
+          </ul>
+        </div>
+
+        <!-- Growth Plan -->
+        <div class="bg-white border border-primary rounded-2xl p-8 relative shadow-lg flex flex-col transform md:scale-105 z-10">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white py-1 px-3 rounded-full text-xs font-semibold uppercase tracking-wider">Most Popular</div>
+          <h3 class="text-xl font-semibold mb-4">Growth</h3>
+          <div class="flex items-baseline mb-4">
+            <span class="text-2xl font-semibold text-text-secondary">$</span>
+            <span class="text-[3.5rem] font-bold leading-none text-text-primary -tracking-[0.02em]">499</span>
+            <span class="text-base text-text-secondary ml-1">/mo</span>
+          </div>
+          <p class="text-sm text-text-secondary mb-8 min-h-[3rem]">For growing revenue teams that need to scale outbound.</p>
+          <Button href="/signup" variant="primary" class="w-full flex justify-center mb-8">Start 14-day trial</Button>
+          
+          <ul class="list-none p-0 m-0 flex flex-col gap-4">
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 1,000 intent signals/month</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Advanced personnel enrichment</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 10 active workflows</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> CRM integration (Salesforce/HubSpot)</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> AI personalization engine</li>
+          </ul>
+        </div>
+
+        <!-- Scale Plan -->
+        <div class="bg-white border border-border rounded-2xl p-8 relative shadow-sm flex flex-col">
+          <h3 class="text-xl font-semibold mb-4">Scale</h3>
+          <div class="flex items-baseline mb-4">
+            <span class="text-2xl font-semibold text-text-secondary">$</span>
+            <span class="text-[3.5rem] font-bold leading-none text-text-primary -tracking-[0.02em]">1,299</span>
+            <span class="text-base text-text-secondary ml-1">/mo</span>
+          </div>
+          <p class="text-sm text-text-secondary mb-8 min-h-[3rem]">For enterprise teams requiring advanced automation and API access.</p>
+          <Button href="/company/contact" variant="outline" class="w-full flex justify-center mb-8">Contact Sales</Button>
+          
+          <ul class="list-none p-0 m-0 flex flex-col gap-4">
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Unlimited intent signals</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Custom intent models</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Unlimited workflows</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Dedicated CSM</li>
+            <li class="flex items-start gap-3 text-sm text-text-secondary"><svg class="w-5 h-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> SSO & Advanced Security</li>
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+  
+  <section class="py-32 bg-white">
+    <Container>
+      <SectionHeading 
+        title="Frequently Asked Questions"
+        description="Everything you need to know about the product and billing."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="mb-4">
+          <h4 class="text-lg font-semibold mb-2">Can I change my plan later?</h4>
+          <p class="text-text-secondary text-sm leading-relaxed m-0">Absolutely. You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing accordingly.</p>
+        </div>
+        <div class="mb-4">
+          <h4 class="text-lg font-semibold mb-2">What counts as an "intent signal"?</h4>
+          <p class="text-text-secondary text-sm leading-relaxed m-0">An intent signal is any tracked activity (website visit, G2 research, job posting, funding round) matched to an account in your CRM or target list.</p>
+        </div>
+        <div class="mb-4">
+          <h4 class="text-lg font-semibold mb-2">Do I need a credit card for the free trial?</h4>
+          <p class="text-text-secondary text-sm leading-relaxed m-0">No, you can start using Vero for free without entering credit card details. We only require payment information when you decide to upgrade to a paid plan.</p>
+        </div>
+        <div class="mb-4">
+          <h4 class="text-lg font-semibold mb-2">Is the CRM integration two-way?</h4>
+          <p class="text-text-secondary text-sm leading-relaxed m-0">Yes. Vero reads accounts and contacts from your CRM to prioritize them, and pushes new intelligence, signals, and discovered contacts back in real-time.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,88 @@
+---
+import ProductShell from './ProductShell.astro';
+---
+
+<ProductShell title="AI Research" activeSidebarItem="accounts" class="w-full">
+  <div class="flex justify-between items-start mb-6 pb-4 border-b border-border">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 bg-black text-white text-2xl font-bold flex items-center justify-center rounded-md">S</div>
+      <div>
+        <h3 class="m-0 mb-0.5 text-xl">Stark Industries</h3>
+        <a href="/" class="text-sm text-primary no-underline">starkindustries.com</a>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex items-center gap-1.5 text-xs text-text-secondary bg-white py-1 px-2.5 rounded-full border border-border">
+        <svg class="animate-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.44l5.66-5.66"></path></svg>
+        Syncing data...
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-6">
+    <!-- Left Column: Key Info -->
+    <div class="flex flex-col">
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+        <h4 class="m-0 mb-5 text-[15px] text-gray-900 font-semibold">Company Overview</h4>
+        <div class="flex flex-col gap-0">
+          <div class="flex justify-between text-sm border-b border-gray-100 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
+            <span class="text-gray-500">Industry</span>
+            <span class="font-semibold text-gray-900 text-right">Defense & Tech</span>
+          </div>
+          <div class="flex justify-between text-sm border-b border-gray-100 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
+            <span class="text-gray-500">Employees</span>
+            <span class="font-semibold text-gray-900 text-right">10,000+</span>
+          </div>
+          <div class="flex justify-between text-sm border-b border-gray-100 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
+            <span class="text-gray-500">Revenue</span>
+            <span class="font-semibold text-gray-900 text-right">$1B+</span>
+          </div>
+          <div class="flex justify-between text-sm border-b border-gray-100 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
+            <span class="text-gray-500">Location</span>
+            <span class="font-semibold text-gray-900 text-right">New York, NY</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] mt-6">
+        <h4 class="m-0 mb-5 text-[15px] text-gray-900 font-semibold">Technology Stack</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary-soft text-primary text-xs font-medium py-1 px-3 rounded-full">Salesforce</span>
+          <span class="bg-primary-soft text-primary text-xs font-medium py-1 px-3 rounded-full">Marketo</span>
+          <span class="bg-primary-soft text-primary text-xs font-medium py-1 px-3 rounded-full">Snowflake</span>
+          <span class="bg-primary-soft text-primary text-xs font-medium py-1 px-3 rounded-full">AWS</span>
+          <span class="bg-primary-soft text-primary text-xs font-medium py-1 px-3 rounded-full">Datadog</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: AI Insights -->
+    <div class="flex flex-col">
+      <div class="bg-gradient-to-br from-primary-soft to-orange-100/50 border border-primary/20 rounded-2xl p-6 shadow-[0_4px_20px_var(--color-primary-glow)]">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-[0_2px_10px_var(--color-primary-glow)]">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h4 class="m-0 text-[17px] text-primary font-semibold">Executive Summary</h4>
+        </div>
+        <p class="text-[15px] leading-relaxed text-gray-700 mb-4 last:mb-0">Stark Industries is currently undergoing a massive digital transformation, moving legacy on-prem data to Snowflake. Their VP of RevOps recently mentioned challenges with unifying revenue data across Salesforce and Marketo.</p>
+        <p class="text-[15px] leading-relaxed text-gray-700 mb-4 last:mb-0"><strong class="text-gray-900">Recommendation:</strong> Pitch Vero's automated data orchestration capabilities. Highlight our native Snowflake and Salesforce integrations.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] mt-6">
+        <h4 class="m-0 mb-5 text-[15px] text-gray-900 font-semibold">Recent News & Triggers</h4>
+        <div class="flex flex-col gap-0">
+          <div class="flex flex-col gap-1.5 pb-4 mb-4 border-b border-gray-100 last:border-none last:pb-0 last:mb-0">
+            <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">2 days ago</span>
+            <span class="text-[15px] text-gray-900 font-medium leading-snug">Stark Industries announces Q3 earnings, beating expectations by 15%</span>
+          </div>
+          <div class="flex flex-col gap-1.5 pb-4 mb-4 border-b border-gray-100 last:border-none last:pb-0 last:mb-0">
+            <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">1 week ago</span>
+            <span class="text-[15px] text-gray-900 font-medium leading-snug">Hired new Chief Revenue Officer, Jane Smith</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ProductShell>

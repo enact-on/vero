@@ -1,0 +1,87 @@
+/* typography.css */
+
+@layer base {
+  body {
+    font-family: var(--font-family-sans);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .text-display {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .text-h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .text-h2 {
+    font-size: clamp(2.25rem, 4vw, 2.625rem);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: -0.04em;
+  }
+
+  .text-h3 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+
+  .text-h4 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  .text-body-large {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .text-body-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .text-caption {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .text-eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+}

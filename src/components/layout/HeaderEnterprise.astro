@@ -1,0 +1,187 @@
+import Logo from "../ui/primitives/Logo.astro";
+import navigation from "../../config/navigation.json";
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+>
+  <div
+    class="h-16 max-w-7xl mx-auto px-margin flex items-center justify-between"
+  >
+    <div class="flex items-center gap-space-xl">
+      <Logo />
+      <!-- Desktop Navigation -->
+      <nav
+        class="hidden xl:flex items-center gap-space-md relative"
+        data-active-classes="text-primary font-bold"
+      >
+        {
+          navigation.header.map((item) => (
+            <div class="group/nav-item relative h-16 flex items-center">
+              <a
+                class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors inline-flex items-center gap-0.5 cursor-pointer"
+                data-path={item.path}
+                href={item.path}
+              >
+                {item.label}
+                {item.hasDropdown && (
+                  <span class="material-symbols-outlined text-[16px] group-hover/nav-item:rotate-180 transition-transform duration-200">
+                    expand_more
+                  </span>
+                )}
+              </a>
+
+              {item.hasDropdown && item.dropdown && (
+                <div class="absolute top-16 left-1/2 -translate-x-1/2 w-[280px] opacity-0 invisible group-hover/nav-item:opacity-100 group-hover/nav-item:visible transition-all duration-300 translate-y-2 group-hover/nav-item:translate-y-0 z-50 pointer-events-none group-hover/nav-item:pointer-events-auto">
+                  <div class="bg-surface-container-lowest/95 backdrop-blur-xl rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-outline-variant/30 p-2 flex flex-col gap-1 backdrop-blur-md">
+                    {item.dropdown.map((link: any) => (
+                      <a
+                        href={link.path}
+                        class="flex flex-col p-3 rounded-xl hover:bg-surface-container-low transition-colors group/link"
+                      >
+                        <div class="flex items-center justify-between">
+                          <span class="font-label-md text-label-md text-on-surface font-semibold group-hover/link:text-primary transition-colors">
+                            {link.label}
+                          </span>
+                          <span class="material-symbols-outlined text-[14px] text-primary opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200">
+                            arrow_forward
+                          </span>
+                        </div>
+                        {link.description && (
+                          <span class="font-body-sm text-[12px] text-on-surface-variant mt-1">
+                            {link.description}
+                          </span>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </nav>
+    </div><div class="flex items-center gap-space-md">
+      <div class="hidden sm:flex items-center gap-space-md">
+        <a
+          class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+          data-path="login"
+          href="#">Log in</a
+        ><a
+          class="inline-flex items-center justify-center px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-all shadow-[0_1px_2px_rgba(17,17,17,0.05)] active:scale-[0.98]"
+          data-path="signup"
+          href="#">Get started</a
+        ><div
+          class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-on-primary text-[18px]"
+            >person</span
+          >
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn-enterprise"
+        class="xl:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl bg-surface-container border border-outline-variant/50 text-on-surface focus:outline-none"
+      >
+        <span
+          class="block w-5 h-[2px] bg-current rounded-full transition-transform duration-300 origin-center -translate-y-[4px]"
+        ></span>
+        <span
+          class="block w-5 h-[2px] bg-current rounded-full transition-opacity duration-300"
+        ></span>
+        <span
+          class="block w-5 h-[2px] bg-current rounded-full transition-transform duration-300 origin-center translate-y-[4px]"
+        ></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div
+    id="mobile-drawer-enterprise"
+    class="fixed inset-0 top-[65px] bg-surface-container-lowest/98 backdrop-blur-xl z-40 flex flex-col pt-6 pb-20 px-margin-mobile opacity-0 invisible translate-x-full transition-all duration-300 ease-in-out xl:hidden h-[calc(100vh-65px)] overflow-y-auto"
+  >
+    <nav class="flex flex-col space-y-6 mb-8">
+      {
+        navigation.header.map((item: any) => (
+          <div class="border-b border-outline-variant/30 pb-4">
+            <a
+              href={item.path}
+              class="font-headline-sm text-headline-sm text-on-surface flex justify-between items-center mb-2"
+            >
+              {item.label}
+              {item.hasDropdown && (
+                <span class="material-symbols-outlined text-on-surface-variant">
+                  expand_more
+                </span>
+              )}
+            </a>
+            {item.hasDropdown && item.dropdown && (
+              <div class="flex flex-col gap-3 pl-4 border-l-2 border-outline-variant/30 ml-1 mt-4">
+                {item.dropdown.map((link: any) => (
+                  <a
+                    href={link.path}
+                    class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </nav>
+    <div class="mt-auto flex flex-col gap-3">
+      <a
+        class="w-full text-center inline-flex items-center justify-center px-space-md py-4 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg shadow-sm"
+        href="#">Get started</a
+      >
+      <a
+        class="w-full text-center font-label-lg text-label-lg text-on-surface-variant py-3"
+        href="#">Log in</a
+      >
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("mobile-menu-btn-enterprise");
+      const drawer = document.getElementById("mobile-drawer-enterprise");
+      const spans = btn?.querySelectorAll("span");
+
+      let isOpen = false;
+
+      btn?.addEventListener("click", () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+          drawer?.classList.remove(
+            "opacity-0",
+            "invisible",
+            "translate-x-full",
+          );
+          drawer?.classList.add("opacity-100", "visible", "translate-x-0");
+          document.body.style.overflow = "hidden";
+
+          if (spans) {
+            spans[0].style.transform = "translateY(2px) rotate(45deg)";
+            spans[1].style.opacity = "0";
+            spans[2].style.transform = "translateY(-2px) rotate(-45deg)";
+          }
+        } else {
+          drawer?.classList.add("opacity-0", "invisible", "translate-x-full");
+          drawer?.classList.remove("opacity-100", "visible", "translate-x-0");
+          document.body.style.overflow = "";
+
+          if (spans) {
+            spans[0].style.transform = "translateY(-4px) rotate(0)";
+            spans[1].style.opacity = "1";
+            spans[2].style.transform = "translateY(4px) rotate(0)";
+          }
+        }
+      });
+    });
+  </script>
+</header>

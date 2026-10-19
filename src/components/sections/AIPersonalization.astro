@@ -1,0 +1,58 @@
+---
+import ProductShell from './ProductShell.astro';
+---
+
+<ProductShell title="AI Email Drafter" activeSidebarItem="prospects" class="w-full">
+  <div class="flex flex-col md:flex-row h-full gap-6">
+    <!-- Left Panel: Context -->
+    <div class="w-full md:w-[300px] bg-white rounded-lg border border-border flex flex-col shrink-0">
+      <div class="p-4 border-b border-border">
+        <h4 class="m-0 text-sm">Vero AI Context</h4>
+      </div>
+      <div class="p-4 flex flex-col gap-4">
+        <div class="bg-primary-soft p-3 rounded-md">
+          <div class="flex items-center gap-1.5 text-primary text-xs font-semibold mb-1 uppercase">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            <span>Company Trigger</span>
+          </div>
+          <p class="m-0 text-[13px] text-text-primary leading-relaxed">Globex Inc. just announced a $50M Series B funding round to expand their RevOps team.</p>
+        </div>
+        
+        <div class="bg-primary-soft p-3 rounded-md">
+          <div class="flex items-center gap-1.5 text-primary text-xs font-semibold mb-1 uppercase">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <span>Persona Insight</span>
+          </div>
+          <p class="m-0 text-[13px] text-text-primary leading-relaxed">Sarah (VP RevOps) posted about "scaling data infrastructure without adding headcount" 2 days ago.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Panel: Editor -->
+    <div class="flex-1 bg-white rounded-lg border border-border flex flex-col">
+      <div class="border-b border-border">
+        <div class="flex items-center py-3 px-4 border-b border-gray-50">
+          <span class="w-[60px] text-text-muted text-sm shrink-0">To:</span>
+          <span class="text-sm font-medium">Sarah Jenkins &lt;sarah@globex.inc&gt;</span>
+        </div>
+        <div class="flex items-center py-3 px-4">
+          <span class="w-[60px] text-text-muted text-sm shrink-0">Subject:</span>
+          <input type="text" class="flex-1 border-none text-sm font-semibold outline-none text-text-primary" value="Scaling Globex's RevOps infrastructure post-Series B" />
+        </div>
+      </div>
+      <div class="flex-1 p-6 text-[15px] leading-relaxed text-text-primary outline-none" contenteditable="true">
+        <p>Hi Sarah,</p>
+        <p>Huge congrats on the $50M Series B! I saw your recent post about the challenges of scaling data infrastructure without necessarily adding headcount—a problem we see often at this growth stage.</p>
+        <p>Are you open to a brief chat next Tuesday to see how we're helping teams like Acme Corp do this?</p>
+        <p>Best,<br/>Alex</p>
+      </div>
+      <div class="flex items-center justify-between p-4 border-t border-border bg-gray-50">
+        <div class="flex items-center gap-2 text-[13px] font-medium text-text-secondary">
+          <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+          <span>High Probability (92%)</span>
+        </div>
+        <button class="bg-primary text-white border-none py-2 px-4 rounded-md text-sm font-semibold cursor-pointer">Send Email</button>
+      </div>
+    </div>
+  </div>
+</ProductShell>

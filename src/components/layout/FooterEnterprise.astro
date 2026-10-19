@@ -1,0 +1,133 @@
+---
+import Logo from "../ui/primitives/Logo.astro";
+import navigation from "../../config/navigation.json";
+import siteConfig from "../../config/site.config";
+---
+
+<footer
+    class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+>
+    <div class="max-w-7xl mx-auto px-margin py-space-xl">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-12 md:gap-16 mb-24">
+            <div class="col-span-2">
+                <div
+                    class="flex items-center gap-space-xs mb-space-sm text-on-surface"
+                >
+                    <div
+                        class="w-6 h-6 rounded-xl bg-primary flex items-center justify-center"
+                    >
+                        <span
+                            class="material-symbols-outlined text-on-primary text-[16px]"
+                            >all_inclusive</span>
+                    </div><span
+                        class="font-headline-sm text-headline-sm tracking-tight"
+                        >{siteConfig.name}</span>
+                </div><p
+                    class="text-base font-medium opacity-80 text-on-surface-variant max-w-sm mb-6"
+                >
+                    Autonomous GTM intelligence and real-time revenue signal
+                    automation engineered for modern high-velocity sales
+                    organizations.
+                </p><div class="flex items-center gap-space-xs">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span><span
+                        class="font-code-tabular text-code-tabular text-on-surface-variant"
+                        >All systems operational</span>
+                </div>
+            </div><div>
+                <p
+                    class="text-sm uppercase tracking-wider text-on-surface mb-6"
+                >
+                    Product
+                </p><ul class="flex flex-col gap-space-sm">
+                    <li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="product" href="#">Signal Engine</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="product" href="#">Account Scoring</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="product" href="#">Workflow Canvas</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="pricing" href="#">Integrations</a>
+                    </li>
+                </ul>
+            </div><div>
+                <p
+                    class="text-sm uppercase tracking-wider text-on-surface mb-6"
+                >
+                    Solutions
+                </p><ul class="flex flex-col gap-space-sm">
+                    <li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="solutions" href="#">Enterprise Revenue</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="solutions" href="#">GTM Strategists</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="solutions" href="#">RevOps Leaders</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="solutions" href="#">Inbound Automation</a>
+                    </li>
+                </ul>
+            </div><div>
+                <p
+                    class="text-sm uppercase tracking-wider text-on-surface mb-6"
+                >
+                    Resources
+                </p><ul class="flex flex-col gap-space-sm">
+                    <li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="resources" href="#"
+                            >Intelligence Briefings</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="resources" href="#">Playbooks</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="resources" href="#">API Documentation</a>
+                    </li><li
+                        class="text-base font-medium opacity-80 text-on-surface-variant hover:text-on-surface transition-colors"
+                    >
+                        <a data-path="resources" href="#">Signal Benchmark</a>
+                    </li>
+                </ul>
+            </div>
+        </div><div
+            class="flex flex-col md:flex-row items-center justify-between pt-12 bg-surface-container-high/40 rounded-xl px-space-md"
+        >
+            <div
+                class="font-code-tabular text-code-tabular text-on-surface-variant mb-space-sm md:mb-0"
+            >
+                © {new Date().getFullYear()} {siteConfig.name} Intelligence, Inc. All rights reserved.
+            </div><div class="flex items-center gap-space-md text-sm">
+                <a
+                    class="text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="privacy-policy"
+                    href="#">Privacy Policy</a
+                ><a
+                    class="text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="terms-of-service"
+                    href="#">Terms of Service</a
+                ><a
+                    class="text-on-surface-variant hover:text-on-surface transition-colors"
+                    data-path="security"
+                    href="#">Security Trust Center</a>
+            </div>
+        </div>
+    </div>
+</footer>

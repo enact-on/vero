@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+import Button from '../../components/ui/primitives/Button.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="Solutions - Vero" description="Discover how Vero powers different teams.">
+  <section class="pt-32 pb-20 bg-gray-50 text-center min-h-[70vh] flex flex-col justify-center">
+    <Container>
+      <span class="text-eyebrow mb-4 block">SOLUTIONS</span>
+      <h1 class="text-display mb-6 max-w-4xl mx-auto">Built for the entire revenue engine.</h1>
+      
+      <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-12">
+        <Button href="/solutions/sales" variant="outline" size="large">For Sales</Button>
+        <Button href="/solutions/marketing" variant="outline" size="large">For Marketing</Button>
+        <Button href="/solutions/operations" variant="outline" size="large">For RevOps</Button>
+        <Button href="/solutions/enterprise" variant="outline" size="large">For Enterprise</Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

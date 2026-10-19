@@ -1,0 +1,123 @@
+{
+  "header": [
+    {
+      "label": "Product",
+      "path": "/product",
+      "hasDropdown": true,
+      "dropdown": [
+        { "label": "Account Intelligence", "path": "/product/account-intelligence", "description": "Identify intent signals in real time." },
+        { "label": "Intent Signals", "path": "/product/intent-signals", "description": "Track high-intent buying signals." },
+        { "label": "Lead Enrichment", "path": "/product/lead-enrichment", "description": "Automatically enrich B2B data." },
+        { "label": "Workflow Automation", "path": "/product/workflow-automation", "description": "Connect your CRM and tools." },
+        { "label": "AI Prospecting", "path": "/product/ai-prospecting", "description": "Automate personalized outreach." }
+      ]
+    },
+    {
+      "label": "Solutions",
+      "path": "/solutions",
+      "hasDropdown": true,
+      "dropdown": [
+        { "label": "Sales", "path": "/solutions/sales", "description": "Close more deals faster." },
+        { "label": "Marketing", "path": "/solutions/marketing", "description": "Align campaigns with sales." },
+        { "label": "RevOps", "path": "/solutions/revops", "description": "Optimize your revenue engine." },
+        { "label": "Enterprise", "path": "/solutions/enterprise", "description": "Scale your operations securely." }
+      ]
+    },
+    {
+      "label": "Industries",
+      "path": "/industries",
+      "hasDropdown": true,
+      "dropdown": [
+        { "label": "SaaS", "path": "/industries/saas" },
+        { "label": "FinTech", "path": "/industries/fintech" },
+        { "label": "Healthcare", "path": "/industries/healthcare" },
+        { "label": "E-commerce", "path": "/industries/ecommerce" }
+      ]
+    },
+    { "label": "Customers", "path": "/customers", "hasDropdown": false },
+    {
+      "label": "Resources",
+      "path": "/resources",
+      "hasDropdown": true,
+      "dropdown": [
+        { "label": "Blog", "path": "/resources/blog", "description": "Latest news and insights." },
+        { "label": "Guides", "path": "/resources/guides", "description": "In-depth guides and tutorials." },
+        { "label": "Documentation", "path": "/docs", "description": "Technical documentation." },
+        { "label": "API Reference", "path": "/docs/api", "description": "Developer API docs." },
+        { "label": "System Status", "path": "/status", "description": "Real-time system health." }
+      ]
+    },
+    { "label": "Pricing", "path": "/pricing", "hasDropdown": false },
+    {
+      "label": "Company",
+      "path": "/company",
+      "hasDropdown": true,
+      "dropdown": [
+        { "label": "About", "path": "/company/about" },
+        { "label": "Careers", "path": "/company/careers" },
+        { "label": "Contact", "path": "/company/contact" },
+        { "label": "Press", "path": "/company/press" },
+        { "label": "Security", "path": "/company/security" }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "title": "Product",
+      "links": [
+        { "label": "Account Intelligence", "path": "/product/account-intelligence" },
+        { "label": "Intent Signals", "path": "/product/intent-signals" },
+        { "label": "Lead Enrichment", "path": "/product/lead-enrichment" },
+        { "label": "Workflow Automation", "path": "/product/workflow-automation" },
+        { "label": "AI Prospecting", "path": "/product/ai-prospecting" }
+      ]
+    },
+    {
+      "title": "Solutions",
+      "links": [
+        { "label": "Sales", "path": "/solutions/sales" },
+        { "label": "Marketing", "path": "/solutions/marketing" },
+        { "label": "RevOps", "path": "/solutions/revops" },
+        { "label": "Enterprise", "path": "/solutions/enterprise" }
+      ]
+    },
+    {
+      "title": "Industries",
+      "links": [
+        { "label": "SaaS", "path": "/industries/saas" },
+        { "label": "FinTech", "path": "/industries/fintech" },
+        { "label": "Healthcare", "path": "/industries/healthcare" },
+        { "label": "E-commerce", "path": "/industries/ecommerce" }
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        { "label": "Blog", "path": "/resources/blog" },
+        { "label": "Guides", "path": "/resources/guides" },
+        { "label": "Documentation", "path": "/docs" },
+        { "label": "API Reference", "path": "/docs/api" },
+        { "label": "System Status", "path": "/status" }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        { "label": "About", "path": "/company/about" },
+        { "label": "Careers", "path": "/company/careers" },
+        { "label": "Contact", "path": "/company/contact" },
+        { "label": "Press", "path": "/company/press" },
+        { "label": "Security", "path": "/company/security" }
+      ]
+    },
+    {
+      "title": "Legal",
+      "links": [
+        { "label": "Privacy", "path": "/legal/privacy" },
+        { "label": "Terms", "path": "/legal/terms" },
+        { "label": "Cookie Settings", "path": "/legal/cookies" },
+        { "label": "DPA", "path": "/legal/dpa" }
+      ]
+    }
+  ]
+}

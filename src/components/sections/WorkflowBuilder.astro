@@ -1,0 +1,67 @@
+---
+import ProductShell from './ProductShell.astro';
+---
+
+<ProductShell title="Workflow Builder" activeSidebarItem="workflows" class="w-full">
+  <div class="flex flex-col items-center p-8 overflow-x-auto">
+    <!-- Trigger Node -->
+    <div class="bg-white border border-border rounded-lg p-4 flex items-center gap-4 w-[320px] shadow-sm relative z-10">
+      <div class="w-10 h-10 rounded-md flex items-center justify-center shrink-0 bg-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <div>
+        <h4 class="m-0 mb-1 text-sm font-semibold">High Intent Signal</h4>
+        <p class="m-0 text-xs text-text-secondary">Account reaches score 90+</p>
+      </div>
+    </div>
+    
+    <div class="w-[2px] h-10 bg-border"></div>
+    
+    <!-- Action Node 1 -->
+    <div class="bg-white border border-border rounded-lg p-4 flex items-center gap-4 w-[320px] shadow-sm relative z-10">
+      <div class="w-10 h-10 rounded-md flex items-center justify-center shrink-0 bg-blue-500">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+      </div>
+      <div>
+        <h4 class="m-0 mb-1 text-sm font-semibold">Find Buying Committee</h4>
+        <p class="m-0 text-xs text-text-secondary">Enrich via Vero Data</p>
+      </div>
+    </div>
+
+    <div class="w-[2px] h-10 bg-border"></div>
+    
+    <div class="flex gap-12 relative pt-5">
+      <div class="absolute top-0 left-[20%] right-[20%] h-[2px] bg-border"></div>
+      
+      <!-- Path A -->
+      <div class="flex flex-col items-center">
+        <div class="absolute top-0 w-[2px] h-[20px] bg-border"></div>
+        <div class="bg-white border border-border py-0.5 px-2 rounded-full text-xs text-text-secondary -mt-2.5 mb-5 relative z-10">Has Champion</div>
+        <div class="bg-white border border-border rounded-lg p-4 flex items-center gap-4 w-[280px] shadow-sm relative z-10">
+          <div class="w-10 h-10 rounded-md flex items-center justify-center shrink-0 bg-emerald-500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div>
+            <h4 class="m-0 mb-1 text-sm font-semibold">Send Warm Intro</h4>
+            <p class="m-0 text-xs text-text-secondary">Personalized email sequence</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Path B -->
+      <div class="flex flex-col items-center">
+        <div class="absolute top-0 w-[2px] h-[20px] bg-border"></div>
+        <div class="bg-white border border-border py-0.5 px-2 rounded-full text-xs text-text-secondary -mt-2.5 mb-5 relative z-10">No Champion</div>
+        <div class="bg-white border border-border rounded-lg p-4 flex items-center gap-4 w-[280px] shadow-sm relative z-10">
+          <div class="w-10 h-10 rounded-md flex items-center justify-center shrink-0 bg-amber-500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+          </div>
+          <div>
+            <h4 class="m-0 mb-1 text-sm font-semibold">Multi-threading</h4>
+            <p class="m-0 text-xs text-text-secondary">Add to LinkedIn campaign</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ProductShell>

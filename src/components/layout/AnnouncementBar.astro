@@ -1,0 +1,25 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  ctaText?: string;
+}
+
+const { text, href, ctaText } = Astro.props;
+---
+
+<div class="bg-primary text-white py-2 px-4 text-sm text-center relative z-[101]">
+  <div class="flex items-center justify-center gap-3 flex-wrap">
+    <span class="bg-white/20 py-[2px] px-2 rounded-full text-xs font-semibold uppercase tracking-wider">New</span>
+    <span class="font-medium">{text}</span>
+    {href && ctaText && (
+      <a href={href} class="inline-flex items-center gap-1 text-white font-semibold no-underline hover:underline">
+        {ctaText}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    )}
+  </div>
+</div>

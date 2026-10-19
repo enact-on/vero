@@ -1,0 +1,72 @@
+---
+// FooterV3.astro
+import Logo from "../ui/primitives/Logo.astro";
+import navigation from "../../config/navigation.json";
+import siteConfig from "../../config/site.config";
+---
+
+<footer class="w-full bg-surface-container-low">
+  <div
+    class="max-w-7xl mx-auto px-margin-mobile lg:px-margin pt-space-xl pb-space-lg"
+  >
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-lg mb-space-xl"
+    >
+      {
+        navigation.footer.map((section) => (
+          <div>
+            <h4 class="font-label-sm text-label-sm uppercase text-on-surface font-semibold mb-space-md tracking-wider">
+              {section.title}
+            </h4>
+            <ul class="space-y-space-sm">
+              {section.links.map((link) => (
+                <li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface">
+                  <a data-path={link.path} href={link.path}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div><div
+      class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"
+    >
+      <div class="flex items-center gap-space-md">
+        <span class="font-body-sm text-body-sm text-on-surface-variant"
+          >© {new Date().getFullYear()}
+          {siteConfig.name} Inc. All rights reserved.</span
+        ><div
+          class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"
+          ></span><span
+            class="font-code-tabular text-code-tabular text-on-surface-variant"
+            >All systems operational</span
+          >
+        </div>
+      </div><div class="flex items-center gap-space-md">
+        <a
+          aria-label="Documentation portal"
+          class="text-on-surface-variant hover:text-primary transition-colors"
+          href="#"
+          ><span class="material-symbols-outlined text-[18px]">hub</span></a
+        ><a
+          aria-label="Developer API"
+          class="text-on-surface-variant hover:text-primary transition-colors"
+          href="#"
+          ><span class="material-symbols-outlined text-[18px]">terminal</span
+          ></a
+        ><a
+          aria-label="Security Center"
+          class="text-on-surface-variant hover:text-primary transition-colors"
+          href="#"
+          ><span class="material-symbols-outlined text-[18px]"
+            >verified_user</span
+          ></a
+        >
+      </div>
+    </div>
+  </div>
+</footer>

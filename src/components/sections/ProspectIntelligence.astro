@@ -1,0 +1,73 @@
+---
+import ProductShell from './ProductShell.astro';
+import { Image } from 'astro:assets';
+---
+
+<ProductShell title="Prospect Intelligence" activeSidebarItem="prospects" class="w-full">
+  <div class="flex flex-wrap items-center gap-6 bg-white p-6 rounded-lg border border-border mb-6">
+    <div class="w-20 h-20 rounded-full overflow-hidden border-[3px] border-white shadow-sm shrink-0">
+      <Image src="https://i.pravatar.cc/150?img=68" alt="Sarah Jenkins" width={150} height={150} class="w-full h-full object-cover" />
+    </div>
+    <div class="flex-1 min-w-[200px]">
+      <div class="flex items-center gap-3 mb-1 flex-wrap">
+        <h3 class="m-0 text-xl font-semibold">Sarah Jenkins</h3>
+        <span class="text-xs bg-emerald-50 text-emerald-800 py-0.5 px-2 rounded-full font-medium">✅ Active</span>
+      </div>
+      <p class="text-text-secondary text-sm mb-3">VP of Revenue Operations @ Globex Inc.</p>
+      <div class="flex gap-2 flex-wrap">
+        <span class="text-xs bg-gray-50 border border-border py-0.5 px-2 rounded-md text-text-muted">Decision Maker</span>
+        <span class="text-xs bg-gray-50 border border-border py-0.5 px-2 rounded-md text-text-muted">Budget Owner</span>
+      </div>
+    </div>
+    <div class="flex gap-3 w-full sm:w-auto mt-4 sm:mt-0">
+      <button class="flex-1 sm:flex-none py-2 px-4 rounded-md text-sm font-medium cursor-pointer text-center bg-white border border-border text-text-secondary transition-colors hover:bg-gray-50">Save Contact</button>
+      <button class="flex-1 sm:flex-none py-2 px-4 rounded-md text-sm font-medium cursor-pointer text-center bg-primary text-white border-none transition-colors hover:bg-primary/90">Draft Email</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-6">
+    <div class="bg-white rounded-lg border border-border p-5">
+      <h4 class="m-0 mb-4 text-sm font-semibold text-text-primary">Recent Engagement Signals</h4>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 bg-blue-500">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div class="text-sm text-text-secondary leading-relaxed">Opened "Q3 Pipeline Review" email (2 hrs ago)</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 bg-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
+          <div class="text-sm text-text-secondary leading-relaxed">Visited Enterprise Pricing page (1 day ago)</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 bg-[#0077B5]">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </div>
+          <div class="text-sm text-text-secondary leading-relaxed">Posted about RevOps challenges (3 days ago)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white rounded-lg border border-border p-5">
+      <h4 class="m-0 mb-4 text-sm font-semibold text-text-primary">Buying Committee</h4>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+          <Image src="https://i.pravatar.cc/100?img=11" alt="John" class="w-10 h-10 rounded-full object-cover shrink-0" width={100} height={100} />
+          <div class="flex flex-col">
+            <span class="text-sm font-medium">John Doe</span>
+            <span class="text-xs text-text-muted">CRO</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <Image src="https://i.pravatar.cc/100?img=47" alt="Alice" class="w-10 h-10 rounded-full object-cover shrink-0" width={100} height={100} />
+          <div class="flex flex-col">
+            <span class="text-sm font-medium">Alice Smith</span>
+            <span class="text-xs text-text-muted">Director of Sales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ProductShell>

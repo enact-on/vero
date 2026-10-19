@@ -1,0 +1,90 @@
+---
+import ProductShell from './ProductShell.astro';
+---
+
+<ProductShell title="Analytics Dashboard" activeSidebarItem="analytics" class="w-full">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+    <div class="bg-white rounded-lg p-4 border border-border">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm color-text-secondary font-medium">Pipeline Created</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary"><path d="M12 2v20 M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      </div>
+      <div class="text-[1.75rem] font-bold text-text-primary mb-2">$2.4M</div>
+      <div class="flex items-center gap-1 text-xs font-medium text-emerald-500">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        +14.5% vs last month
+      </div>
+    </div>
+    
+    <div class="bg-white rounded-lg p-4 border border-border">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm color-text-secondary font-medium">Win Rate</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <div class="text-[1.75rem] font-bold text-text-primary mb-2">32.8%</div>
+      <div class="flex items-center gap-1 text-xs font-medium text-emerald-500">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        +2.1% vs last month
+      </div>
+    </div>
+    
+    <div class="bg-white rounded-lg p-4 border border-border">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm color-text-secondary font-medium">Sales Cycle</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      </div>
+      <div class="text-[1.75rem] font-bold text-text-primary mb-2">42 Days</div>
+      <div class="flex items-center gap-1 text-xs font-medium text-emerald-500">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+        -5 Days vs last month
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg p-6 border border-border h-[200px] flex flex-col">
+    <div class="flex justify-between items-center mb-6">
+      <h4 class="m-0 text-base font-semibold">Revenue Forecast</h4>
+      <div class="flex gap-4">
+        <span class="flex items-center gap-1.5 text-xs text-text-secondary"><span class="w-2 h-2 rounded-full bg-primary"></span>Actual</span>
+        <span class="flex items-center gap-1.5 text-xs text-text-secondary"><span class="w-2 h-2 rounded-full bg-orange-200"></span>Forecast</span>
+      </div>
+    </div>
+    
+    <div class="flex-1 relative">
+      <!-- Simulated Bar Chart -->
+      <div class="flex justify-around items-end h-full pb-6 border-b border-border relative">
+        <div class="absolute top-0 left-0 right-0 border-t border-dashed border-border"></div>
+        <div class="absolute top-1/2 left-0 right-0 border-t border-dashed border-border"></div>
+
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-primary to-orange-400" style="height: 40%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Jan</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-primary to-orange-400" style="height: 55%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Feb</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-primary to-orange-400" style="height: 50%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Mar</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-primary to-orange-400" style="height: 70%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Apr</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-primary to-orange-400" style="height: 85%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">May</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-orange-200 to-primary-soft border border-dashed border-primary border-b-0" style="height: 60%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Jun</div>
+        </div>
+        <div class="flex flex-col items-center h-full justify-end w-10 z-10 relative">
+          <div class="w-full rounded-t-md transition-all duration-500 bg-gradient-to-t from-orange-200 to-primary-soft border border-dashed border-primary border-b-0" style="height: 95%"></div>
+          <div class="absolute -bottom-6 text-xs text-text-muted">Jul</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ProductShell>

@@ -1,0 +1,96 @@
+---
+import ProductShell from './ProductShell.astro';
+import { Image } from 'astro:assets';
+---
+
+<ProductShell title="Pipeline Management" activeSidebarItem="pipeline" class="w-full">
+  <div class="flex gap-4 h-full overflow-x-auto">
+    <!-- Column 1 -->
+    <div class="flex-1 min-w-[280px] bg-gray-100 rounded-lg p-3 flex flex-col">
+      <div class="flex justify-between items-center mb-1">
+        <h4 class="m-0 text-sm text-text-primary">Discover</h4>
+        <span class="bg-gray-200 text-text-secondary text-xs py-0.5 px-2 rounded-full font-semibold">24</span>
+      </div>
+      <div class="text-[13px] text-text-muted font-medium mb-4">$340k</div>
+      
+      <div class="flex flex-col gap-3">
+        <div class="bg-white rounded-md p-4 border border-border shadow-sm cursor-grab">
+          <div class="text-sm font-semibold mb-0.5">Globex Expansion</div>
+          <div class="text-xs text-text-muted mb-3">Globex Inc.</div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold text-text-primary">$45,000</span>
+            <span class="w-6 h-6 rounded-full overflow-hidden shrink-0">
+              <Image src="https://i.pravatar.cc/100?img=33" alt="Alex" width={100} height={100} class="w-full h-full object-cover" />
+            </span>
+          </div>
+          <div class="h-1 bg-gray-100 rounded-sm mt-3 overflow-hidden">
+            <div class="h-full bg-emerald-500" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Column 2 -->
+    <div class="flex-1 min-w-[280px] bg-gray-100 rounded-lg p-3 flex flex-col">
+      <div class="flex justify-between items-center mb-1">
+        <h4 class="m-0 text-sm text-text-primary">Engage</h4>
+        <span class="bg-gray-200 text-text-secondary text-xs py-0.5 px-2 rounded-full font-semibold">12</span>
+      </div>
+      <div class="text-[13px] text-text-muted font-medium mb-4">$185k</div>
+      
+      <div class="flex flex-col gap-3">
+        <div class="bg-white rounded-md p-4 border border-border shadow-sm cursor-grab">
+          <div class="text-sm font-semibold mb-0.5">Acme Q4 Platform</div>
+          <div class="text-xs text-text-muted mb-3">Acme Corp</div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold text-text-primary">$120,000</span>
+            <span class="w-6 h-6 rounded-full overflow-hidden shrink-0">
+              <Image src="https://i.pravatar.cc/100?img=47" alt="Sarah" width={100} height={100} class="w-full h-full object-cover" />
+            </span>
+          </div>
+          <div class="flex items-center gap-1 text-xs font-medium mt-3 py-1 px-2 rounded-sm bg-red-50 text-red-500">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            Needs follow-up
+          </div>
+        </div>
+
+        <div class="bg-white rounded-md p-4 border border-border shadow-sm cursor-grab">
+          <div class="text-sm font-semibold mb-0.5">Soylent Pilot</div>
+          <div class="text-xs text-text-muted mb-3">Soylent Corp</div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold text-text-primary">$15,000</span>
+            <span class="w-6 h-6 rounded-full overflow-hidden shrink-0">
+              <Image src="https://i.pravatar.cc/100?img=11" alt="John" width={100} height={100} class="w-full h-full object-cover" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Column 3 -->
+    <div class="flex-1 min-w-[280px] bg-gray-100 rounded-lg p-3 flex flex-col">
+      <div class="flex justify-between items-center mb-1">
+        <h4 class="m-0 text-sm text-text-primary">Validate</h4>
+        <span class="bg-gray-200 text-text-secondary text-xs py-0.5 px-2 rounded-full font-semibold">5</span>
+      </div>
+      <div class="text-[13px] text-text-muted font-medium mb-4">$210k</div>
+      
+      <div class="flex flex-col gap-3">
+        <div class="bg-white rounded-md p-4 border border-primary shadow-[0_0_0_1px_var(--color-primary)] cursor-grab">
+          <div class="text-sm font-semibold mb-0.5">Initech Enterprise</div>
+          <div class="text-xs text-text-muted mb-3">Initech</div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm font-bold text-text-primary">$150,000</span>
+            <span class="w-6 h-6 rounded-full overflow-hidden shrink-0">
+              <Image src="https://i.pravatar.cc/100?img=33" alt="Alex" width={100} height={100} class="w-full h-full object-cover" />
+            </span>
+          </div>
+          <div class="flex items-center gap-1 text-xs font-medium mt-3 py-1 px-2 rounded-sm bg-emerald-50 text-emerald-500">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Meeting booked
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ProductShell>

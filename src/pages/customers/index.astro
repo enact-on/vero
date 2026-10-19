@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+import Button from '../../components/ui/primitives/Button.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="Customers" description="See how modern revenue teams use Vero.">
+  <section class="pt-32 pb-20 bg-gray-50 text-center">
+    <Container>
+      <h1 class="text-display mb-6">Built for the best revenue teams.</h1>
+      <p class="text-body-large mb-10 max-w-2xl mx-auto">
+        Join 1,200+ companies that have abandoned the spray-and-pray approach for intent-driven outbound.
+      </p>
+    </Container>
+  </section>
+
+  <section class="py-20 bg-white">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Featured Customer -->
+        <a href="/customers/northstar-labs" class="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-2 bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg no-underline text-inherit group">
+          <div class="p-8 flex flex-col justify-center h-full">
+            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Northstar Labs</h3>
+            <p class="text-xl leading-relaxed text-text-secondary italic mb-8">"Vero completely changed our GTM motion. We're now generating 42% more pipeline with a smaller team, purely by focusing on accounts showing active intent."</p>
+            <div class="flex gap-8 mb-8">
+              <div>
+                <span class="block text-3xl font-bold text-primary">+42%</span>
+                <span class="text-sm text-text-muted uppercase tracking-[0.05em]">Pipeline</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-bold text-primary">3.4x</span>
+                <span class="text-sm text-text-muted uppercase tracking-[0.05em]">ROI</span>
+              </div>
+            </div>
+            <span class="font-semibold text-primary mt-auto">Read customer story →</span>
+          </div>
+          <div class="min-h-[300px] flex items-center justify-center bg-primary-soft">
+            <div class="w-full h-full bg-gradient-to-tr from-[#EEF2FF] to-[#E0E7FF]"></div>
+          </div>
+        </a>
+
+        <!-- Standard Customers -->
+        <a href="#" class="flex flex-col bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg no-underline text-inherit group">
+          <div class="p-8 flex flex-col h-full">
+            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Acme Corp</h3>
+            <p class="text-text-secondary mb-6 flex-1">How Acme scaled enterprise sales with automated intent workflows.</p>
+            <span class="font-semibold text-primary mt-auto">Read story →</span>
+          </div>
+        </a>
+        
+        <a href="#" class="flex flex-col bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg no-underline text-inherit group">
+          <div class="p-8 flex flex-col h-full">
+            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Globex</h3>
+            <p class="text-text-secondary mb-6 flex-1">Why Globex replaced their legacy data providers with Vero's real-time signals.</p>
+            <span class="font-semibold text-primary mt-auto">Read story →</span>
+          </div>
+        </a>
+        
+        <a href="#" class="flex flex-col bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg no-underline text-inherit group">
+          <div class="p-8 flex flex-col h-full">
+            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Initech</h3>
+            <p class="text-text-secondary mb-6 flex-1">Increasing meeting hold rates by 60% through AI personalization.</p>
+            <span class="font-semibold text-primary mt-auto">Read story →</span>
+          </div>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-32 bg-primary-soft text-center">
+    <Container>
+      <h2 class="text-h2 mb-6">Ready to join them?</h2>
+      <Button href="/pricing" variant="primary" size="large">Start your free trial</Button>
+    </Container>
+  </section>
+</BaseLayout>

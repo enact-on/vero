@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/layout/Container.astro';
+---
+
+<BaseLayout headerStyle="v1" footerStyle="v1" showAnnouncement={true} title="Vero Blog" description="Insights on modern GTM strategy, outbound sales, and revenue operations.">
+  <section class="pt-32 pb-20 bg-gray-50 text-center">
+    <Container>
+      <span class="text-eyebrow mb-4 block">BLOG</span>
+      <h1 class="text-display mb-6 max-w-4xl mx-auto">Insights for modern revenue teams.</h1>
+      <p class="text-body-large mb-10 max-w-2xl mx-auto">
+        Tactics, strategy, and trends in B2B outbound sales and revenue operations.
+      </p>
+    </Container>
+  </section>
+
+  <section class="py-20 bg-white">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Placeholder for Blog Posts -->
+        <article class="bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="h-[200px] border-b border-border bg-gradient-to-br from-[#E5E7EB] to-[#F3F4F6]"></div>
+          <div class="p-6 flex flex-col h-full">
+            <span class="text-eyebrow mb-2 block">SALES STRATEGY</span>
+            <h3 class="text-xl font-bold mb-3 text-text-primary leading-tight">Why the traditional SDR model is broken in 2024</h3>
+            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-1">Buyers are overwhelmed. Here is how top performing teams are using intent signals to book meetings.</p>
+            <a href="/" class="text-sm font-semibold text-primary no-underline hover:underline mt-auto">Read article &rarr;</a>
+          </div>
+        </article>
+        
+        <article class="bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="h-[200px] border-b border-border bg-gradient-to-br from-[#E5E7EB] to-[#F3F4F6]"></div>
+          <div class="p-6 flex flex-col h-full">
+            <span class="text-eyebrow mb-2 block">PRODUCT UPDATE</span>
+            <h3 class="text-xl font-bold mb-3 text-text-primary leading-tight">Introducing Vero AI Researcher</h3>
+            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-1">Generate deep account plans and executive summaries in seconds using our newest AI feature.</p>
+            <a href="/" class="text-sm font-semibold text-primary no-underline hover:underline mt-auto">Read article &rarr;</a>
+          </div>
+        </article>
+
+        <article class="bg-white border border-border rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="h-[200px] border-b border-border bg-gradient-to-br from-[#E5E7EB] to-[#F3F4F6]"></div>
+          <div class="p-6 flex flex-col h-full">
+            <span class="text-eyebrow mb-2 block">GTM TACTICS</span>
+            <h3 class="text-xl font-bold mb-3 text-text-primary leading-tight">How to measure outbound ROI accurately</h3>
+            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-1">Stop tracking vanity metrics. Focus on pipeline influenced and win rates with this attribution model.</p>
+            <a href="/" class="text-sm font-semibold text-primary no-underline hover:underline mt-auto">Read article &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
