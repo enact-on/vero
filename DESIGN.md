@@ -1,7 +1,7 @@
-# Orbit Design System
+# Vero Design System
 
 ## Brand
-Orbit is a fictional B2B SaaS platform focused on AI-powered GTM intelligence, sales intelligence, prospecting, automation, and revenue operations. The brand feels intelligent, precise, fast, data-driven, trustworthy, and enterprise-ready.
+Vero is a fictional B2B SaaS platform focused on AI-powered GTM intelligence, sales intelligence, prospecting, automation, and revenue operations. The brand feels intelligent, precise, fast, data-driven, trustworthy, and enterprise-ready.
 
 ## Design Principles
 1. **Data Density with Clarity:** Interfaces must present dense B2B data (like account intelligence) without feeling cluttered.
