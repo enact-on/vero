@@ -1,0 +1,143 @@
+---
+/**
+ * Two-column feature block: eyebrow, heading, copy, buttons and an icon
+ * bullet grid on the left; a large product image on the right.
+ *
+ * Frontmatter:
+ *   - type: feature-checklist
+ *     id: features
+ *     eyebrow: Build &amp; Deploy
+ *     title: Let your revenue experts build the agents.
+ *     description: Understanding your buying persona ...
+ *     buttons:
+ *       - { label: Explore Agent Templates, href: "#", variant: primary }   # primary | secondary
+ *       - { label: Read documentation, href: "#", variant: secondary }
+ *     features:
+ *       - icon: bolt            # Material Symbols name
+ *         tone: primary         # primary | emerald | purple | pink | blue | amber
+ *         label: CRM &amp; Webhook Triggers
+ *     image: /src/assets/images/figma/feature-1.png
+ *     imageAlt: Feature
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "primary" | "emerald" | "purple" | "pink" | "blue" | "amber";
+
+interface Button {
+  label: string;
+  href: string;
+  variant?: "primary" | "secondary";
+}
+
+interface Feature {
+  icon: string;
+  tone?: Tone;
+  label: string;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  buttons?: Button[];
+  features?: Feature[];
+  image: string;
+  imageAlt?: string;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  buttons = [],
+  features = [],
+  image,
+  imageAlt,
+} = Astro.props;
+
+const tones: Record<Tone, string> = {
+  primary: "text-primary",
+  emerald: "text-emerald-600",
+  purple: "text-purple-600",
+  pink: "text-pink-600",
+  blue: "text-blue-600",
+  amber: "text-amber-600",
+};
+
+const buttonClasses = {
+  primary:
+    "px-4 py-2 rounded-lg bg-black text-white text-xs font-medium hover:bg-neutral-800 transition-colors",
+  secondary:
+    "px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-800 text-xs font-medium hover:bg-gray-50 transition-colors",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", Astro.props)}
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-5">
+      {
+        eyebrow && (
+          <div
+            data-animate="fade-up"
+            class="text-eyebrow text-primary mb-3"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2
+        data-animate="fade-up"
+        class="text-h2 text-gray-950 mb-5 leading-tight"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-base text-gray-600 mb-8 leading-relaxed"
+            set:html={description}
+          />
+        )
+      }
+      {
+        buttons.length > 0 && (
+          <div class="flex items-center gap-3 mb-8">
+            {buttons.map((button) => (
+              <a
+                class={buttonClasses[button.variant ?? "primary"]}
+                href={button.href}
+                set:html={button.label}
+              />
+            ))}
+          </div>
+        )
+      }
+      {
+        features.length > 0 && (
+          <div class="grid grid-cols-2 gap-4 text-xs text-gray-700 font-medium">
+            {features.map((feature) => (
+              <div class="flex items-center gap-2">
+                <span
+                  class={`material-symbols-outlined text-[18px] ${tones[feature.tone ?? "primary"]}`}
+                >
+                  {feature.icon}
+                </span>
+                <span set:html={feature.label} />
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+    <div class="lg:col-span-7" data-animate="fade-up">
+      <Media
+        src={image}
+        alt={imageAlt}
+        class="w-full h-auto drop-shadow-2xl rounded-2xl border border-gray-200/50"
+      />
+    </div>
+  </div>
+</section>

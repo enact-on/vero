@@ -1,0 +1,128 @@
+---
+/**
+ * Changelog: heading with a "see all" link, then a 4-column grid of dated
+ * release cards with a colour accent on hover.
+ *
+ * Frontmatter:
+ *   - type: changelog-cards
+ *     id: changelog
+ *     eyebrow: Continuous Innovation
+ *     title: Recently shipped.
+ *     link: { label: See all updates, href: "#" }
+ *     entries:
+ *       - date: OCT 14, 2024
+ *         tone: primary           # primary | emerald | amber | pink
+ *         title: 16 New GTM Connectors
+ *         description: Connect live accounts with ...
+ *         cta: View docs          # footer label
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "primary" | "emerald" | "amber" | "pink";
+
+interface Entry {
+  date: string;
+  tone?: Tone;
+  title: string;
+  description?: string;
+  cta?: string;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  link?: { label: string; href: string };
+  entries: Entry[];
+}
+
+const { id, eyebrow, title, link, entries = [] } = Astro.props;
+
+const tones: Record<Tone, { bar: string; text: string }> = {
+  primary: {
+    bar: "from-[var(--color-primary)] to-[var(--color-primary-border)]",
+    text: "group-hover:text-[var(--color-primary)]",
+  },
+  emerald: { bar: "from-[#10B981] to-[#34D399]", text: "group-hover:text-[#10B981]" },
+  amber: { bar: "from-[#F59E0B] to-[#FBBF24]", text: "group-hover:text-[#F59E0B]" },
+  pink: { bar: "from-[#EC4899] to-[#F472B6]", text: "group-hover:text-[#EC4899]" },
+};
+---
+
+<section id={id} class={sectionClass("py-32 bg-[#F4F4F6]", Astro.props)}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="flex flex-col sm:flex-row items-start justify-between mb-16 gap-6"
+    >
+      <div>
+        {
+          eyebrow && (
+            <div
+              data-animate="fade-up"
+              class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase mb-4"
+              set:html={eyebrow}
+            />
+          )
+        }
+        <h2 data-animate="fade-up" class="text-h2 text-[#171719]" set:html={title} />
+      </div>
+      {
+        link && (
+          <a
+            data-animate="fade-up"
+            class="inline-flex items-center gap-2 text-[14px] font-[600] text-[#171719] hover:text-[var(--color-primary)] transition-colors group"
+            href={link.href}
+          >
+            <Fragment set:html={link.label} />
+            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
+              arrow_forward
+            </span>
+          </a>
+        )
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {
+        entries.map((entry) => {
+          const tone = tones[entry.tone ?? "primary"];
+          return (
+            <div
+              data-animate="fade-up"
+              class="bg-white rounded-[16px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] p-8 flex flex-col group hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+            >
+              <div
+                class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tone.bar} opacity-0 group-hover:opacity-100 transition-opacity`}
+              />
+              <div class="flex-1">
+                <div
+                  class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4F4F6] text-[#69686E] text-[11px] font-[600] tracking-wider mb-6"
+                  set:html={entry.date}
+                />
+                <h4
+                  class={`text-[20px] font-[600] text-[#171719] mb-3 leading-tight ${tone.text} transition-colors`}
+                  set:html={entry.title}
+                />
+                {entry.description && (
+                  <p
+                    class="text-[14px] text-[#69686E] leading-[1.6]"
+                    set:html={entry.description}
+                  />
+                )}
+              </div>
+              {entry.cta && (
+                <div class="mt-8 pt-6 border-t border-[#E3E2DD] flex items-center justify-between text-[13px] text-[#171719] font-[600]">
+                  <span class={`${tone.text} transition-colors`} set:html={entry.cta} />
+                  <span
+                    class={`material-symbols-outlined text-[16px] text-[#AAA9AD] ${tone.text} group-hover:translate-x-1 transition-all`}
+                  >
+                    arrow_forward
+                  </span>
+                </div>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

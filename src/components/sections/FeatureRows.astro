@@ -1,0 +1,95 @@
+---
+/**
+ * Stacked alternating feature rows: text column (eyebrow, heading,
+ * description, link) next to a product image.
+ *
+ * Frontmatter:
+ *   - type: feature-rows
+ *     rows:
+ *       - eyebrow: DISCOVER
+ *         title: See the market move in real time.
+ *         description: Track the signals that reveal active demand ...
+ *         link: { label: Explore account discovery, href: "#" }
+ *         image: /src/assets/images/figma/image-4.png
+ *         imageAlt: Discover Dashboard
+ *         imagePosition: right          # right (default) | left
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Row {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  link?: { label: string; href: string };
+  image: string;
+  imageAlt?: string;
+  imagePosition?: "left" | "right";
+}
+
+interface Props extends BaseSectionProps {
+  rows: Row[];
+}
+
+const { id, rows = [] } = Astro.props;
+---
+
+<section id={id} class={sectionClass("py-[80px] bg-[#FAFAF8]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4 flex flex-col gap-[100px]">
+    {
+      rows.map((row) => {
+        const imageLeft = row.imagePosition === "left";
+        const text = (
+          <div data-animate="fade-up">
+            {row.eyebrow && (
+              <span
+                class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+                set:html={row.eyebrow}
+              />
+            )}
+            <h3 class="text-h2 text-[#171719] mb-[20px]" set:html={row.title} />
+            {row.description && (
+              <p
+                class="text-[16px] text-[#737278] font-[400] leading-[24px] mb-[30px]"
+                set:html={row.description}
+              />
+            )}
+            {row.link && (
+              <a
+                href={row.link.href}
+                class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+              >
+                <Fragment set:html={row.link.label} />
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            )}
+          </div>
+        );
+        const media = (
+          <div
+            data-animate="fade-up"
+            class={imageLeft ? "w-full" : "justify-self-end w-full"}
+          >
+            <Media
+              src={row.image}
+              alt={row.imageAlt ?? ""}
+              class="w-full h-auto rounded-[16px] shadow-lg hover:scale-[1.02] transition-transform duration-500"
+              quality="max"
+            />
+          </div>
+        );
+        return imageLeft ? (
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-[100px] items-center">
+            {media}
+            {text}
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-10 md:gap-[100px] items-center">
+            {text}
+            {media}
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

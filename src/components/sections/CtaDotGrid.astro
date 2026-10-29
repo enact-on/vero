@@ -1,0 +1,88 @@
+---
+/**
+ * Centered closing call-to-action over a faded dot-pattern background.
+ *
+ * Frontmatter:
+ *   - type: cta-dot-grid
+ *     title: Build your next pipeline advantage.
+ *     description: Bring intelligence, automation, and execution together...
+ *     primaryCta: { label: Get started, href: /pricing }       # dark pill with arrow
+ *     secondaryCta: { label: Book a demo, href: /company/contact }
+ */
+import Container from "../ui/layout/Container.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Props extends BaseSectionProps {
+  title: string;
+  description?: string;
+  primaryCta?: Link;
+  secondaryCta?: Link;
+}
+
+const { id, title, description, primaryCta, secondaryCta } = Astro.props;
+---
+
+<section
+  id={id}
+  class={sectionClass("section py-18 md:py-34 relative overflow-hidden bg-white", Astro.props)}
+>
+  <div
+    class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"
+  >
+  </div>
+
+  <Container class="relative z-10 text-center">
+    <h2
+      class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-gray-900 mb-6"
+      set:html={title}
+    />
+    {
+      description && (
+        <p
+          class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto"
+          set:html={description}
+        />
+      )
+    }
+
+    {
+      (primaryCta || secondaryCta) && (
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          {primaryCta && (
+            <a
+              href={primaryCta.href}
+              class="inline-flex justify-center items-center gap-2 px-8 py-4 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20"
+            >
+              <Fragment set:html={primaryCta.label} />
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+          )}
+          {secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-colors shadow-sm"
+              set:html={secondaryCta.label}
+            />
+          )}
+        </div>
+      )
+    }
+  </Container>
+</section>

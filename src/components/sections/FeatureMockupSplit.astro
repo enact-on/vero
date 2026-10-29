@@ -1,0 +1,99 @@
+---
+/**
+ * Two-column feature block: large product mockup image on the left, copy and
+ * a check-mark list on the right.
+ *
+ * Frontmatter:
+ *   - type: feature-mockup-split
+ *     image: /src/assets/images/figma/integrations.png
+ *     imageAlt: Integrations
+ *     eyebrow: Collaboration
+ *     title: Meet your team where they actually work.
+ *     description: Vero doesn't force your reps ...
+ *     checklist:
+ *       - label: Slack &amp; Microsoft Teams instant alert feeds
+ *         tone: emerald         # emerald | primary | purple
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "emerald" | "primary" | "purple";
+
+interface Item {
+  label: string;
+  tone?: Tone;
+}
+
+interface Props extends BaseSectionProps {
+  image: string;
+  imageAlt?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  checklist?: Item[];
+}
+
+const { id, image, imageAlt, eyebrow, title, description, checklist = [] } =
+  Astro.props;
+
+const tones: Record<Tone, string> = {
+  emerald: "bg-emerald-100 text-emerald-600",
+  primary: "bg-primary-soft text-primary",
+  purple: "bg-purple-100 text-purple-600",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", Astro.props)}
+>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7" data-animate="fade-up">
+      <Media
+        src={image}
+        alt={imageAlt}
+        class="w-full h-auto drop-shadow-2xl rounded-2xl border border-gray-200/50"
+      />
+    </div>
+    <div class="lg:col-span-5">
+      {
+        eyebrow && (
+          <div
+            data-animate="fade-up"
+            class="text-eyebrow text-primary mb-3"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2
+        data-animate="fade-up"
+        class="text-h2 text-gray-950 mb-5 leading-tight"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-base text-gray-600 mb-6 leading-relaxed"
+            set:html={description}
+          />
+        )
+      }
+      {
+        checklist.length > 0 && (
+          <div class="space-y-3 text-sm text-gray-700 font-medium">
+            {checklist.map((item) => (
+              <div class="flex items-center gap-3">
+                <span
+                  class={`w-6 h-6 rounded-full ${tones[item.tone ?? "emerald"]} flex items-center justify-center text-xs`}
+                >
+                  ✓
+                </span>
+                <span set:html={item.label} />
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+/**
+ * Centered heading over a single-open accordion of native <details> cards.
+ *
+ * Frontmatter:
+ *   - type: faq-details
+ *     eyebrow: FAQ
+ *     title: Frequently asked questions.
+ *     description: Everything you need to know about Vero...
+ *     items:
+ *       - question: What data sources does Vero integrate with?
+ *         answer: Vero natively integrates with your entire GTM stack...
+ */
+import Container from "../ui/layout/Container.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: { question: string; answer: string }[];
+}
+
+const { id, eyebrow, title, description, items = [] } = Astro.props;
+---
+
+<section id={id} class={sectionClass("section py-12 lg:py-24 bg-gray-50", Astro.props)}>
+  <Container>
+    <div class="flex flex-col mb-12 items-center text-center">
+      {
+        eyebrow && (
+          <span
+            class="text-eyebrow text-primary font-semibold text-sm tracking-wider uppercase mb-3"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 class="text-h2 mb-4" set:html={title} />
+      {
+        description && (
+          <p
+            class="text-body-large max-w-[700px] m-0 text-text-secondary"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+
+    <div class="flex flex-col gap-4 mt-12 mx-auto max-w-3xl">
+      {
+        items.map((item) => (
+          <details
+            class="bg-white rounded-xl border border-border shadow-sm overflow-hidden group [&[open]_svg]:rotate-180"
+            name="faq"
+          >
+            <summary class="flex justify-between items-center w-full p-6 text-left cursor-pointer font-semibold text-text-primary focus:outline-none list-none [&::-webkit-details-marker]:hidden">
+              <span set:html={item.question} />
+              <span class="text-text-muted transition-transform duration-200">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </span>
+            </summary>
+            <div class="p-6 pt-0 text-text-secondary leading-relaxed">
+              <p set:html={item.answer} />
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </Container>
+</section>

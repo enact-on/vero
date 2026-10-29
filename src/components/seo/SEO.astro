@@ -6,13 +6,15 @@ interface Props {
   description?: string;
   image?: string;
   canonical?: string;
+  robots?: string;
 }
 
 const {
   title,
   description = siteConfig.description,
   image = siteConfig.ogImage,
-  canonical
+  canonical,
+  robots
 } = Astro.props;
 
 const siteUrl = Astro.site || siteConfig.url;
@@ -25,6 +27,7 @@ const fullTitle = `${title} | ${siteConfig.name} SaaS Theme`;
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+{robots && <meta name="robots" content={robots} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

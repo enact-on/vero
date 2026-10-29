@@ -1,0 +1,147 @@
+---
+/**
+ * Two-card "old way vs. new way" comparison with a price per side and a
+ * crossed-out / checked list of items.
+ *
+ * Frontmatter:
+ *   - type: comparison-table
+ *     title: One Agent. Replaces your fragmented outreach stack.
+ *     description: Stop paying for 5 disconnected SaaS subscriptions ...
+ *     columns:
+ *       - variant: old                # old (muted, ✕ icons) | new (highlighted, ✓ icons)
+ *         label: The Old Way
+ *         title: Disconnected Tool Chain
+ *         price: $920+
+ *         priceNote: per rep / month
+ *         items: [Account Scraper subscription ($180/mo), ...]
+ *       - variant: new
+ *         badge: All-In-One Intelligence   # optional ribbon
+ *         label: The Vero Way
+ *         title: 1 Autonomous Sales Agent
+ *         price: $99
+ *         priceNote: per month total
+ *         items: [...]
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Column {
+  variant?: "old" | "new";
+  badge?: string;
+  label?: string;
+  title: string;
+  price?: string;
+  priceNote?: string;
+  items: string[];
+}
+
+interface Props extends BaseSectionProps {
+  title: string;
+  description?: string;
+  columns: Column[];
+}
+
+const { id, title, description, columns = [] } = Astro.props;
+
+const variants = {
+  old: {
+    card: "p-8 md:p-12 rounded-2xl bg-surface-container-low shadow-md",
+    label: "text-error",
+    price: "text-on-surface",
+    list: "text-on-surface-variant",
+    icon: "close",
+    iconTone: "text-error",
+  },
+  new: {
+    card: "p-8 md:p-12 rounded-2xl bg-white border border-gray-100 shadow-2xl ring-4 ring-primary/20 relative",
+    label: "text-primary font-semibold",
+    price: "text-primary",
+    list: "text-on-surface",
+    icon: "check_circle",
+    iconTone: "text-primary",
+  },
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass("w-full py-32 bg-surface", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-margin">
+    <div class="text-center max-w-3xl mx-auto mb-24">
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-on-surface"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-xl leading-relaxed text-on-surface-variant mt-2"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-8 md:p-12 max-w-4xl mx-auto"
+    >
+      {
+        columns.map((column) => {
+          const v = variants[column.variant ?? "old"];
+          return (
+            <div class={v.card}>
+              {column.badge && (
+                <div
+                  class="absolute -top-3 right-6 px-3 py-0.5 bg-primary text-on-primary font-label-sm text-[11px] rounded-full uppercase tracking-wider font-semibold"
+                  set:html={column.badge}
+                />
+              )}
+              <div class="flex items-center justify-between pb-4 mb-8">
+                <div>
+                  {column.label && (
+                    <span
+                      class={`text-sm font-semibold tracking-wider uppercase tracking-wider ${v.label}`}
+                      set:html={column.label}
+                    />
+                  )}
+                  <h3
+                    class="text-2xl md:text-3xl font-bold tracking-tight text-on-surface"
+                    set:html={column.title}
+                  />
+                </div>
+                {(column.price || column.priceNote) && (
+                  <div class="text-right">
+                    {column.price && (
+                      <div
+                        class={`text-2xl md:text-3xl font-bold tracking-tight ${v.price} font-bold`}
+                        set:html={column.price}
+                      />
+                    )}
+                    {column.priceNote && (
+                      <div
+                        class="text-[11px] text-on-surface-variant"
+                        set:html={column.priceNote}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+              <ul class={`space-y-4 text-body-sm ${v.list}`}>
+                {column.items.map((item) => (
+                  <li class="flex items-start gap-2">
+                    <span
+                      class={`material-symbols-outlined ${v.iconTone} text-[18px] shrink-0`}
+                    >
+                      {v.icon}
+                    </span>
+                    <span set:html={item} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

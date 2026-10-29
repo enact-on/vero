@@ -1,0 +1,88 @@
+---
+/**
+ * Infinite scrolling strip of text wordmarks ("Trusted by ...").
+ * List each logo once; the component repeats the list to fill the loop.
+ *
+ * Frontmatter:
+ *   - type: logo-marquee
+ *     label: Trusted by modern revenue teams at
+ *     logos:
+ *       - name: VERTEX
+ *       - name: arcwise
+ *         italic: true
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Logo {
+  name: string;
+  italic?: boolean;
+}
+
+interface Props extends BaseSectionProps {
+  label?: string;
+  logos: Logo[];
+}
+
+const { id, label, logos = [] } = Astro.props;
+
+// Each track holds the list twice so it is wide enough; two tracks loop seamlessly.
+const trackLogos = [...logos, ...logos];
+const tracks = [false, true];
+---
+
+<section
+  id={id}
+  class={sectionClass(
+    "border-y border-[#E3E2DD] bg-white pt-[40px] pb-[50px] overflow-hidden",
+    Astro.props,
+  )}
+>
+  {
+    label && (
+      <div class="text-center mb-8 px-4">
+        <p
+          class="text-[12px] font-[800] tracking-[0.1em] text-[#99989D] uppercase"
+          set:html={label}
+        />
+      </div>
+    )
+  }
+  <div class="flex w-full overflow-hidden relative group">
+    {
+      tracks.map((hidden) => (
+        <div
+          class="flex shrink-0 gap-[100px] px-[50px] animate-marquee opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500"
+          aria-hidden={hidden ? "true" : undefined}
+        >
+          {trackLogos.map((logo) => (
+            <span
+              class:list={[
+                "text-[28px] font-[800] tracking-[-0.04em] text-[#454449]",
+                { italic: logo.italic },
+              ]}
+              set:html={logo.name}
+            />
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style is:global>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+  /* Pause animation on hover */
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+/**
+ * Heading row (eyebrow + title left, description bottom-right) above a
+ * full-width banner image, on a tinted background.
+ *
+ * Frontmatter:
+ *   - type: image-banner
+ *     eyebrow: 04 / PIPELINE INTELLIGENCE
+ *     title: See what’s creating pipeline—not just what happened.
+ *     description: Connect signals and actions to revenue ...
+ *     image: /src/assets/images/figma/banner-pipeline.png
+ *     imageAlt: Pipeline Intelligence
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+}
+
+const { id, eyebrow, title, description, image, imageAlt } = Astro.props;
+---
+
+<section id={id} class={sectionClass("py-12 lg:py-24 bg-[#F0EFEC]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4">
+    <div class="flex flex-col gap-[70px]">
+      <div class="flex flex-col lg:flex-row gap-5 lg:gap-10">
+        <div data-animate="fade-up" class="flex-1">
+          {
+            eyebrow && (
+              <span
+                class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+                set:html={eyebrow}
+              />
+            )
+          }
+          <h2 class="text-h2 text-[#171719]" set:html={title} />
+        </div>
+        <div data-animate="fade-up" class="flex-1 flex items-end">
+          {
+            description && (
+              <p
+                class="text-[16px] text-[#69686E] font-[400] leading-[24px] max-w-[480px]"
+                set:html={description}
+              />
+            )
+          }
+        </div>
+      </div>
+      <div data-animate="fade-up" class="w-full">
+        <Media
+          src={image}
+          alt={imageAlt ?? ""}
+          class="w-full h-auto rounded-[16px] shadow-lg"
+          quality="max"
+        />
+      </div>
+    </div>
+  </div>
+</section>

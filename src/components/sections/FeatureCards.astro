@@ -1,0 +1,123 @@
+---
+/**
+ * Centered heading followed by a 3-column grid of cards, each with an icon,
+ * a tag, title, copy and a screenshot at the bottom.
+ *
+ * Frontmatter:
+ *   - type: feature-cards
+ *     eyebrow: Omniscient Context
+ *     title: Complete context on your company &amp; deals.
+ *     description: Your CRM notes, sales collateral ...
+ *     cards:
+ *       - icon: schema          # Material Symbols name
+ *         tone: primary         # primary | emerald | purple
+ *         tag: Dynamic Graph
+ *         title: Company Knowledge Graph
+ *         description: Agents read and cite ...
+ *         image: /src/assets/images/figma/image-4.png
+ *         imageAlt: Graph
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "primary" | "emerald" | "purple";
+
+interface Card {
+  icon: string;
+  tone?: Tone;
+  tag?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  cards: Card[];
+}
+
+const { id, eyebrow, title, description, cards = [] } = Astro.props;
+
+const tones: Record<Tone, { icon: string; tag: string }> = {
+  primary: {
+    icon: "bg-primary-soft text-primary",
+    tag: "bg-primary-soft text-primary border-primary/20",
+  },
+  emerald: {
+    icon: "bg-emerald-100 text-emerald-600",
+    tag: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  },
+  purple: {
+    icon: "bg-purple-100 text-purple-600",
+    tag: "bg-purple-50 text-purple-700 border-purple-200",
+  },
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("py-20 bg-white border-y border-gray-200", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      {
+        eyebrow && (
+          <div
+            data-animate="fade-up"
+            class="text-eyebrow text-primary mb-2"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 data-animate="fade-up" class="text-h2 text-gray-950 mb-4" set:html={title} />
+      {description && <p class="text-base text-gray-600" set:html={description} />}
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        cards.map((card) => {
+          const tone = tones[card.tone ?? "primary"];
+          return (
+            <div class="bg-gray-50 border border-gray-200/80 rounded-xl p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class={`w-8 h-8 rounded-lg ${tone.icon} flex items-center justify-center font-bold`}
+                  >
+                    <span class="material-symbols-outlined text-[18px]">{card.icon}</span>
+                  </span>
+                  {card.tag && (
+                    <span
+                      class={`text-[10px] font-code ${tone.tag} px-2 py-0.5 rounded border`}
+                      set:html={card.tag}
+                    />
+                  )}
+                </div>
+                <h3
+                  data-animate="fade-up"
+                  class="font-[600] text-gray-900 text-[20px] mb-2"
+                  set:html={card.title}
+                />
+                {card.description && (
+                  <p
+                    class="text-xs text-gray-600 leading-relaxed mb-4"
+                    set:html={card.description}
+                  />
+                )}
+              </div>
+              {card.image && (
+                <Media
+                  src={card.image}
+                  alt={card.imageAlt}
+                  class="w-full h-auto mt-4 rounded-lg shadow-sm border border-gray-200/50"
+                />
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

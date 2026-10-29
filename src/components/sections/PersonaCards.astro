@@ -1,0 +1,123 @@
+---
+/**
+ * Three image cards, one per team / persona ("How teams use Vero").
+ *
+ * Frontmatter:
+ *   - type: persona-cards
+ *     eyebrow: HOW TEAMS USE VERO
+ *     title: One platform. Every revenue team.
+ *     description: Vero gives every function ...
+ *     cards:
+ *       - image: /src/assets/images/figma/card-sales.png
+ *         imageAlt: Sales
+ *         badge: Sales
+ *         badgeTone: primary     # primary | green | gray
+ *         title: Find and close your best opportunities, faster.
+ *         description: Vero surfaces the accounts ...
+ *         link: { label: Explore for sales teams, href: "#" }
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Card {
+  image: string;
+  imageAlt?: string;
+  badge?: string;
+  badgeTone?: "primary" | "green" | "gray";
+  title: string;
+  description: string;
+  link?: { label: string; href: string };
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  cards: Card[];
+}
+
+const { id, eyebrow, title, description, cards = [] } = Astro.props;
+
+const badgeTones = {
+  primary: "bg-primary-soft text-primary",
+  green: "bg-[#D7F8E8] text-[#248361]",
+  gray: "bg-[#F0EFEC] text-[#77767C]",
+};
+---
+
+<section id={id} class={sectionClass("py-12 lg:py-24 bg-[#FAFAF8]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4">
+    {
+      eyebrow && (
+        <div data-animate="fade-up" class="flex gap-4 items-center mb-[70px]">
+          <span
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+            set:html={eyebrow}
+          />
+          <div class="h-px bg-[#E3E2DD] flex-1" />
+        </div>
+      )
+    }
+
+    <div class="mb-[60px]">
+      <h2
+        data-animate="fade-up"
+        class="text-h2 text-[#171719] mb-[16px]"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            data-animate="fade-up"
+            class="text-[18px] text-[#69686E] font-[400] leading-[28px] max-w-[560px]"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+      {
+        cards.map((card) => (
+          <div
+            data-animate="fade-up"
+            class="bg-white rounded-[12px] shadow-[0px_4px_12px_rgba(22,22,26,0.06)] border border-[#E3E2DD] overflow-hidden flex flex-col group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+          >
+            <Media
+              src={card.image}
+              alt={card.imageAlt ?? ""}
+              class="w-full h-[220px] object-cover"
+            />
+            <div class="p-8 flex flex-col flex-1">
+              {card.badge && (
+                <div
+                  class={`inline-flex px-[10px] py-[4px] ${badgeTones[card.badgeTone ?? "primary"]} rounded-[4px] text-[10px] font-[800] tracking-[0.06em] self-start mb-6 uppercase`}
+                  set:html={card.badge}
+                />
+              )}
+              <h4
+                class="text-[22px] font-[700] text-[#171719] tracking-[-0.03em] leading-[28.6px] mb-4"
+                set:html={card.title}
+              />
+              <p
+                class="text-[15px] text-[#69686E] leading-[24px] mb-8 flex-1"
+                set:html={card.description}
+              />
+              {card.link && (
+                <a
+                  href={card.link.href}
+                  class="text-primary font-[700] text-[14px] flex items-center gap-2"
+                >
+                  <Fragment set:html={card.link.label} />{" "}
+                  <span class="material-symbols-outlined text-[16px]">
+                    arrow_forward
+                  </span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

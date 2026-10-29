@@ -1,0 +1,94 @@
+---
+/**
+ * Centered heading over a 5-column bento grid of image cards
+ * (each card spans 2 or 3 columns on desktop).
+ *
+ * Frontmatter:
+ *   - type: feature-bento
+ *     eyebrow: CONNECTED & MEASURABLE
+ *     title: Works with your stack. Proves your ROI.
+ *     description: Vero integrates bi-directionally with your CRM...
+ *     cards:
+ *       - title: Native Integrations
+ *         description: Sync accounts, contacts, and opportunities seamlessly.
+ *         image: /src/assets/images/visual-image-7-vertical-light.jpg
+ *         imageAlt: Native Integrations
+ *         span: 2              # 2 | 3 columns (of 5)
+ */
+import Container from "../ui/layout/Container.astro";
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Card {
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+  span?: 2 | 3;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  cards: Card[];
+}
+
+const { id, eyebrow, title, description, cards = [] } = Astro.props;
+
+const spans = {
+  2: "col-span-2",
+  3: "col-span-3",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("section py-12 lg:py-24 bg-gray-50 overflow-hidden", Astro.props)}
+>
+  <Container>
+    <div class="flex flex-col mb-12 items-center text-center">
+      {
+        eyebrow && (
+          <span
+            class="text-eyebrow text-primary font-semibold text-sm tracking-wider uppercase mb-3"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 class="text-h2 mb-4" set:html={title} />
+      {
+        description && (
+          <p
+            class="text-body-large max-w-[700px] m-0 text-text-secondary"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mt-16">
+      {
+        cards.map((card) => (
+          <div
+            class={`bg-white rounded-xl border border-border shadow-md overflow-hidden flex flex-col ${spans[card.span ?? 2]}`}
+          >
+            <div class="p-8 flex flex-col h-full">
+              <h3 class="text-xl font-bold mb-2" set:html={card.title} />
+              {card.description && (
+                <p class="text-muted text-sm mb-6" set:html={card.description} />
+              )}
+              <div class="relative rounded-xl overflow-hidden border border-border mt-auto">
+                <Media
+                  src={card.image}
+                  alt={card.imageAlt ?? ""}
+                  class="w-full h-auto block"
+                />
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

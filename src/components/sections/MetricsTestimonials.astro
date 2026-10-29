@@ -1,0 +1,118 @@
+---
+/**
+ * Three big-number metric cards above a 2-column grid of testimonial cards.
+ *
+ * Frontmatter:
+ *   - type: metrics-testimonials
+ *     metrics:
+ *       - value: 3.4x
+ *         tone: primary               # primary | default | secondary
+ *         title: Higher Reply Rate
+ *         description: compared to static sales template sequencers
+ *     testimonials:
+ *       - quote: "“Vero identified 34 enterprise companies ...”"
+ *         initials: SL
+ *         tone: primary               # primary | secondary
+ *         name: Sarah Lin
+ *         role: Head of Sales Operations, CloudScale
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Metric {
+  value: string;
+  tone?: "primary" | "default" | "secondary";
+  title: string;
+  description?: string;
+}
+
+interface Testimonial {
+  quote: string;
+  initials: string;
+  tone?: "primary" | "secondary";
+  name: string;
+  role?: string;
+}
+
+interface Props extends BaseSectionProps {
+  metrics?: Metric[];
+  testimonials?: Testimonial[];
+}
+
+const { id, metrics = [], testimonials = [] } = Astro.props;
+
+const metricTones = {
+  primary: "text-primary",
+  default: "text-on-surface",
+  secondary: "text-secondary",
+};
+const avatarTones = {
+  primary: "bg-primary-fixed text-on-primary-fixed",
+  secondary: "bg-secondary-fixed text-on-secondary-fixed",
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass("w-full py-32 bg-surface-container-low", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-margin">
+    {
+      metrics.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:p-12 mb-24">
+          {metrics.map((metric) => (
+            <div class="p-8 md:p-12 rounded-2xl bg-white border border-gray-100 shadow-lg text-center">
+              <div
+                class={`text-6xl md:text-7xl font-extrabold tracking-tighter ${metricTones[metric.tone ?? "default"]} drop-shadow-sm mb-4`}
+                set:html={metric.value}
+              />
+              <p
+                class="text-xl md:text-2xl font-bold tracking-tight text-on-surface mt-1"
+                set:html={metric.title}
+              />
+              {metric.description && (
+                <p
+                  class="text-base md:text-lg opacity-80 leading-relaxed text-on-surface-variant mt-2"
+                  set:html={metric.description}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      testimonials.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:p-12">
+          {testimonials.map((item) => (
+            <div class="p-8 md:p-12 rounded-2xl bg-white border border-gray-100 shadow-lg flex flex-col justify-between">
+              <p
+                class="text-xl leading-relaxed text-on-surface italic mb-8"
+                set:html={item.quote}
+              />
+              <div class="flex items-center gap-4">
+                <div
+                  class={`w-10 h-10 rounded-full ${avatarTones[item.tone ?? "primary"]} flex items-center justify-center font-bold`}
+                >
+                  {item.initials}
+                </div>
+                <div>
+                  <h4
+                    class="text-xl md:text-2xl font-bold tracking-tight text-on-surface"
+                    set:html={item.name}
+                  />
+                  {item.role && (
+                    <p
+                      class="text-base md:text-lg opacity-80 leading-relaxed text-on-surface-variant"
+                      set:html={item.role}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

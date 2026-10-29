@@ -1,0 +1,192 @@
+---
+/**
+ * Centered heading + 2-column grid of large testimonial cards, each with a
+ * company wordmark, case-study link, quote, headline metric and author.
+ *
+ * Frontmatter:
+ *   - type: testimonial-bento
+ *     id: customers
+ *     eyebrow: Social Proof
+ *     title: In agents, revenue teams trust.
+ *     description: Hear from sales leaders ...
+ *     testimonials:
+ *       - tone: primary               # primary | emerald (link, metric and hover colours)
+ *         company:
+ *           name: gusto
+ *           mark: g                   # letter shown in the coloured badge
+ *           markColor: red            # red | orange
+ *           markShape: square         # square | circle
+ *         link: { label: Read case study, href: "#" }
+ *         quote: '"Vero powers AI prospecting agents ..."'
+ *         stat: $1.5M+
+ *         statLabel: Additional ARR unlocked in 90 days
+ *         author:
+ *           name: Ryan Schwartz
+ *           role: VP Marketing Systems & Intelligence
+ *           avatar: https://i.pravatar.cc/150?u=ryan
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "primary" | "emerald";
+
+interface Testimonial {
+  tone?: Tone;
+  company: {
+    name: string;
+    mark?: string;
+    markColor?: "red" | "orange";
+    markShape?: "square" | "circle";
+  };
+  link?: { label: string; href: string };
+  quote: string;
+  stat?: string;
+  statLabel?: string;
+  author: { name: string; role?: string; avatar?: string };
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  testimonials: Testimonial[];
+}
+
+const { id, eyebrow, title, description, testimonials = [] } = Astro.props;
+
+const tones: Record<Tone, { quote: string; link: string; stat: string }> = {
+  primary: {
+    quote: "group-hover:text-indigo-50/50",
+    link: "text-primary hover:text-primary",
+    stat: "from-gray-900 to-gray-600",
+  },
+  emerald: {
+    quote: "group-hover:text-emerald-50/50",
+    link: "text-emerald-600 hover:text-emerald-700",
+    stat: "from-emerald-600 to-teal-500",
+  },
+};
+const markColors = { red: "bg-red-500", orange: "bg-orange-500" };
+const markShapes = { square: "rounded", circle: "rounded-full" };
+---
+
+<section
+  id={id}
+  class={sectionClass(
+    "py-32 bg-gradient-to-b from-white to-[#F8F9FA] relative overflow-hidden",
+    Astro.props,
+  )}
+>
+  <div
+    class="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] bg-primary-soft/50 rounded-full blur-[100px] pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-3xl mx-auto text-center mb-20">
+      {
+        eyebrow && (
+          <div
+            data-animate="fade-up"
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase mb-4"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 data-animate="fade-up" class="text-h2 text-gray-950 mb-6" set:html={title} />
+      {
+        description && (
+          <p
+            class="text-[18px] text-gray-600 font-[400] leading-[28px]"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      {
+        testimonials.map((item) => {
+          const tone = tones[item.tone ?? "primary"];
+          return (
+            <div
+              data-animate="fade-up"
+              class="group relative bg-white rounded-[24px] p-10 border border-gray-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 overflow-hidden flex flex-col justify-between"
+            >
+              <div
+                class={`absolute -top-6 -left-2 text-[180px] font-serif text-gray-50 leading-none select-none pointer-events-none ${tone.quote} transition-colors duration-500`}
+              >
+                "
+              </div>
+
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-8">
+                  <span class="font-[800] text-[24px] tracking-tight text-gray-900 flex items-center gap-2">
+                    {item.company.mark && (
+                      <div
+                        class={`w-6 h-6 ${markColors[item.company.markColor ?? "red"]} text-white flex items-center justify-center ${markShapes[item.company.markShape ?? "square"]} text-[14px] font-bold`}
+                        set:html={item.company.mark}
+                      />
+                    )}
+                    <Fragment set:html={item.company.name} />
+                  </span>
+                  {item.link && (
+                    <a
+                      href={item.link.href}
+                      class={`inline-flex items-center gap-1.5 text-[13px] font-[600] ${tone.link} transition-colors`}
+                    >
+                      <Fragment set:html={item.link.label} />
+                      <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                        arrow_forward
+                      </span>
+                    </a>
+                  )}
+                </div>
+                <p
+                  class="text-[17px] text-gray-700 leading-[1.7] mb-10 font-[400]"
+                  set:html={item.quote}
+                />
+              </div>
+
+              <div class="relative z-10">
+                {item.stat && (
+                  <div
+                    class={`text-[56px] font-[700] tracking-tight text-transparent bg-clip-text bg-gradient-to-r ${tone.stat} mb-2`}
+                    set:html={item.stat}
+                  />
+                )}
+                {item.statLabel && (
+                  <div
+                    class="text-[14px] text-gray-500 font-[500] mb-8"
+                    set:html={item.statLabel}
+                  />
+                )}
+
+                <div class="pt-6 border-t border-gray-100 flex items-center gap-4">
+                  {item.author.avatar && (
+                    <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+                      <Media
+                        src={item.author.avatar}
+                        alt={item.author.name}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <div
+                      class="text-[15px] text-gray-900 font-[600]"
+                      set:html={item.author.name}
+                    />
+                    {item.author.role && (
+                      <div class="text-[13px] text-gray-500" set:html={item.author.role} />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

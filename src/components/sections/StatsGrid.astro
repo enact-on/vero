@@ -1,0 +1,56 @@
+---
+/**
+ * Large statement headline followed by a row of big numbers with labels.
+ *
+ * Frontmatter:
+ *   - type: stats-grid
+ *     title: '<span class="text-primary">2,000</span> sales teams stopped manual prospecting.'
+ *     stats:
+ *       - value: 2,000+
+ *         label: Customers booking meetings with their agent
+ */
+import Container from "../ui/layout/Container.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  title?: string;
+  stats: { value: string; label: string }[];
+}
+
+const { id, title, stats = [] } = Astro.props;
+---
+
+<section
+  id={id}
+  class={sectionClass("section py-12 lg:py-24 md:py-40 bg-white", Astro.props)}
+>
+  <Container>
+    {
+      title && (
+        <div class="max-w-4xl mb-24 md:mb-32">
+          <h2
+            class="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] font-medium tracking-tight text-gray-900"
+            set:html={title}
+          />
+        </div>
+      )
+    }
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 max-w-6xl">
+      {
+        stats.map((stat) => (
+          <div class="flex flex-col">
+            <span
+              class="text-6xl md:text-[80px] leading-none font-light text-gray-900 tracking-tight pb-8 border-b border-gray-200"
+              set:html={stat.value}
+            />
+            <span
+              class="text-lg text-gray-800 pt-6 font-medium leading-snug pr-4"
+              set:html={stat.label}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,324 @@
+---
+/**
+ * Auto-playing testimonial slider (dots + prev/next) next to an illustration.
+ * One per page: the slider script targets fixed ids.
+ *
+ * Frontmatter:
+ *   - type: testimonial-slider
+ *     eyebrow: CUSTOMER STORY
+ *     image: /src/assets/images/customer-story-isometric.jpg
+ *     imageAlt: Vero Customer Success and Revenue Acceleration
+ *     testimonials:
+ *       - company: Northstar Labs
+ *         tone: primary          # primary | green (company badge colour)
+ *         pulse: true            # animated badge dot
+ *         meta: 1,400+ Enterprise SDRs
+ *         quote: "“Vero gave our team a shared understanding...”"
+ *         initials: RB
+ *         avatarTone: orange     # orange | blue | pink
+ *         name: Rachel Bennett
+ *         role: VP of Revenue, Northstar Labs
+ *         link: { label: Read the customer story, href: /customers }
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Testimonial {
+  company?: string;
+  tone?: "primary" | "green";
+  pulse?: boolean;
+  meta?: string;
+  quote: string;
+  initials?: string;
+  avatarTone?: "orange" | "blue" | "pink";
+  name: string;
+  role?: string;
+  link?: { label: string; href: string };
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  testimonials: Testimonial[];
+  image?: string;
+  imageAlt?: string;
+}
+
+const { id, eyebrow, testimonials = [], image, imageAlt } = Astro.props;
+
+const badgeTones = {
+  primary: { badge: "bg-orange-100/80 text-primary", dot: "bg-primary" },
+  green: { badge: "bg-emerald-100/80 text-emerald-700", dot: "bg-emerald-500" },
+};
+
+const avatarTones = {
+  orange: "from-amber-200 to-orange-200 text-[#5B493E]",
+  blue: "from-blue-200 to-indigo-200 text-[#3E4D5B]",
+  pink: "from-pink-200 to-rose-200 text-[#5B3E45]",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("py-12 lg:py-24 bg-gray-50 overflow-hidden relative", Astro.props)}
+>
+  <div class="max-w-[1240px] mx-auto px-4 sm:px-6 flex flex-col gap-10 lg:gap-14">
+    {
+      eyebrow && (
+        <div data-animate="fade-up" class="flex gap-4 items-center">
+          <span
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+            set:html={eyebrow}
+          />
+          <div class="h-px bg-gray-200 flex-1" />
+        </div>
+      )
+    }
+
+    <div
+      data-animate="fade-up"
+      class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center"
+    >
+      <div class="lg:col-span-7 relative">
+        <div
+          class="grid grid-cols-1 grid-rows-1 w-full min-h-[340px] sm:min-h-[290px]"
+          id="testimonial-slider"
+        >
+          {
+            testimonials.map((item, index) => {
+              const tone = badgeTones[item.tone ?? "primary"];
+              return (
+                <div
+                  class:list={[
+                    "testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    index === 0
+                      ? "opacity-100 z-10 translate-x-0"
+                      : "opacity-0 z-0 translate-x-8 pointer-events-none",
+                  ]}
+                >
+                  {(item.company || item.meta) && (
+                    <div class="flex items-center gap-3 mb-6 sm:mb-8">
+                      {item.company && (
+                        <span
+                          class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${tone.badge} text-[11px] font-bold tracking-wide uppercase`}
+                        >
+                          <span
+                            class:list={[
+                              "w-1.5 h-1.5 rounded-full",
+                              tone.dot,
+                              item.pulse && "animate-pulse",
+                            ]}
+                          />
+                          <Fragment set:html={item.company} />
+                        </span>
+                      )}
+                      {item.meta && (
+                        <span class="text-xs text-gray-400">
+                          · <Fragment set:html={item.meta} />
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <h3
+                    class="text-2xl sm:text-3xl lg:text-[36px] font-medium text-gray-950 leading-[1.28] tracking-[-0.035em] mb-6 sm:mb-8"
+                    set:html={item.quote}
+                  />
+                  <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                    {item.initials && (
+                      <div
+                        class={`w-11 h-11 rounded-full bg-gradient-to-tr ${avatarTones[item.avatarTone ?? "orange"]} flex items-center justify-center font-extrabold text-sm shadow-2xs`}
+                        set:html={item.initials}
+                      />
+                    )}
+                    <div>
+                      <h4
+                        class="font-bold text-gray-900 text-[15px] mb-0.5"
+                        set:html={item.name}
+                      />
+                      {item.role && (
+                        <p
+                          class="text-xs sm:text-[13px] text-gray-500"
+                          set:html={item.role}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  {item.link && (
+                    <a
+                      href={item.link.href}
+                      class="inline-flex items-center gap-2 text-primary font-bold text-sm sm:text-[15px] group"
+                    >
+                      <span
+                        class="border-b border-primary/30 pb-0.5 group-hover:border-primary transition-all"
+                        set:html={item.link.label}
+                      />
+                      <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                        arrow_forward
+                      </span>
+                    </a>
+                  )}
+                </div>
+              );
+            })
+          }
+        </div>
+
+        <div
+          class="flex items-center justify-between sm:justify-start gap-8 mt-6 relative z-20 pt-2"
+        >
+          <div class="flex items-center gap-3" id="testimonial-dots">
+            {
+              testimonials.map((_, index) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "test-dot w-[10px] h-[10px] rounded-full transition-all duration-300 cursor-pointer",
+                    index === 0 ? "bg-[#171719]" : "bg-[#D4D3CD] hover:bg-[#A9A8A2]",
+                  ]}
+                  data-index={index}
+                  aria-label={`Slide ${index + 1}`}
+                />
+              ))
+            }
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <button
+              type="button"
+              class="test-prev w-10 h-10 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-xs active:scale-95"
+              aria-label="Previous testimonial"
+            >
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            </button>
+            <button
+              type="button"
+              class="test-next w-10 h-10 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-xs active:scale-95"
+              aria-label="Next testimonial"
+            >
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {
+        image && (
+          <div class="lg:col-span-5 relative flex items-center justify-center">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-orange-400/15 via-amber-300/10 to-transparent rounded-full blur-2xl -z-10" />
+            <div class="relative w-full max-w-[430px] rounded-3xl overflow-hidden border border-gray-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(234,88,12,0.14),0_8px_24px_-6px_rgba(0,0,0,0.06)] group transition-all duration-300 hover:shadow-[0_25px_65px_-12px_rgba(234,88,12,0.22)]">
+              <Media
+                src={image}
+                alt={imageAlt ?? ""}
+                class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-102"
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTestimonialSlider() {
+    const slider = document.getElementById("testimonial-slider");
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll(".testimonial-slide");
+    const dots = document.querySelectorAll("#testimonial-dots .test-dot");
+    const prevBtn = document.querySelector(".test-prev");
+    const nextBtn = document.querySelector(".test-next");
+
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer: any = null;
+
+    function goToSlide(index: number) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove(
+            "opacity-0",
+            "z-0",
+            "translate-x-8",
+            "-translate-x-8",
+            "pointer-events-none"
+          );
+          slide.classList.add("opacity-100", "z-10", "translate-x-0");
+        } else {
+          slide.classList.remove("opacity-100", "z-10", "translate-x-0");
+          slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+          if (i < index) {
+            slide.classList.add("-translate-x-8");
+            slide.classList.remove("translate-x-8");
+          } else {
+            slide.classList.add("translate-x-8");
+            slide.classList.remove("-translate-x-8");
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+          dot.classList.add("bg-[#171719]");
+        } else {
+          dot.classList.remove("bg-[#171719]");
+          dot.classList.add("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function resetAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(nextSlide, 7000);
+    }
+
+    if (prevBtn) {
+      (prevBtn as HTMLElement).onclick = (e) => {
+        e.preventDefault();
+        prevSlide();
+        resetAutoPlay();
+      };
+    }
+
+    if (nextBtn) {
+      (nextBtn as HTMLElement).onclick = (e) => {
+        e.preventDefault();
+        nextSlide();
+        resetAutoPlay();
+      };
+    }
+
+    dots.forEach((dot, i) => {
+      (dot as HTMLElement).onclick = (e) => {
+        e.preventDefault();
+        goToSlide(i);
+        resetAutoPlay();
+      };
+    });
+
+    goToSlide(0);
+    resetAutoPlay();
+  }
+
+  // Run on standard load, page load transitions, and immediately if DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTestimonialSlider);
+  } else {
+    initTestimonialSlider();
+  }
+  document.addEventListener("astro:page-load", initTestimonialSlider);
+</script>

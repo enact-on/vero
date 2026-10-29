@@ -1,0 +1,250 @@
+---
+/**
+ * Centered hero with a "enter your website" input widget, an avatar + star
+ * rating + quote bar and a framed product image.
+ *
+ * Includes the demo micro-script that animates the launch button. The bottom
+ * `cta-input` section calls into it, so keep this section on the page when
+ * using `cta-input`.
+ *
+ * Frontmatter:
+ *   - type: hero-input
+ *     badge: "Series A &amp; Enterprise GTM • Backed by Y Combinator alumni"
+ *     title: 'Your AI sales agent finds <span class="text-primary">high-intent leads</span> and contacts them for you.'
+ *     description: Enter your website. Vero learns your business ICP ...
+ *     input:
+ *       icon: language                 # Material Symbols name
+ *       placeholder: "Enter your website (e.g. stripe.com)"
+ *       value: https://monolith-data.io
+ *     button: { label: Launch my agent for free, icon: arrow_forward }
+ *     avatars:
+ *       - { initials: SL, tone: primary-container }   # primary-container | secondary-container | tertiary-container | primary
+ *     rating: { stars: 5, score: 4.9 / 5 }
+ *     quote: "“Vero booked 18 enterprise demos in week one without human fatigue.”"
+ *     image: { src: /src/assets/images/astr-theme-hero.png, alt: Vero Dashboard }
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type AvatarTone =
+  | "primary-container"
+  | "secondary-container"
+  | "tertiary-container"
+  | "primary";
+
+interface Props extends BaseSectionProps {
+  badge?: string;
+  title: string;
+  description?: string;
+  input: { icon?: string; placeholder?: string; value?: string };
+  button: { label: string; icon?: string };
+  avatars?: { initials: string; tone?: AvatarTone }[];
+  rating?: { stars?: number; score?: string };
+  quote?: string;
+  image?: { src: string; alt?: string };
+}
+
+const {
+  id,
+  badge,
+  title,
+  description,
+  input,
+  button,
+  avatars = [],
+  rating,
+  quote,
+  image,
+} = Astro.props;
+
+const avatarTones: Record<AvatarTone, string> = {
+  "primary-container": "bg-primary-container text-on-primary",
+  "secondary-container": "bg-secondary-container text-on-secondary-container",
+  "tertiary-container": "bg-tertiary-container text-on-tertiary",
+  primary: "bg-primary text-on-primary",
+};
+
+const stars = Array.from({ length: rating?.stars ?? 0 });
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass(
+    "relative max-w-7xl mx-auto px-margin pt-32 pb-20 flex flex-col items-center text-center",
+    Astro.props,
+  )}
+>
+  {
+    badge && (
+      <div class="inline-flex items-center gap-2 px-8 py-1 bg-surface-container-lowest shadow-md rounded-full mb-12">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse" />
+        <span
+          class="text-sm font-semibold tracking-wider text-on-surface uppercase tracking-wider"
+          set:html={badge}
+        />
+      </div>
+    )
+  }
+  <h1
+    class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-on-surface tracking-tighter leading-tight max-w-5xl mx-auto mb-8"
+    set:html={title}
+  />
+  {
+    description && (
+      <p
+        class="text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto mb-12 leading-relaxed opacity-90"
+        set:html={description}
+      />
+    )
+  }
+  <div class="w-full max-w-xl mx-auto mb-12">
+    <div
+      class="p-1.5 bg-surface-container-lowest shadow-md rounded-full flex flex-col sm:flex-row items-center gap-2"
+    >
+      <div
+        class="flex items-center pl-8 flex-1 w-full gap-2 text-on-surface-variant"
+      >
+        {
+          input.icon && (
+            <span class="material-symbols-outlined text-[20px] text-primary">
+              {input.icon}
+            </span>
+          )
+        }
+        <input
+          class="w-full bg-transparent text-lg text-on-surface placeholder:text-outline/70 focus:outline-none py-3 px-3"
+          id="hero-url-input"
+          placeholder={input.placeholder}
+          type="text"
+          value={input.value}
+        />
+      </div>
+      <button
+        class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:bg-secondary transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer hover:-translate-y-0.5"
+        id="hero-launch-btn"
+        onclick="simulateAgentAnalysis()"
+        type="button"
+      >
+        <span set:html={button.label} />
+        {
+          button.icon && (
+            <span class="material-symbols-outlined text-[16px]">
+              {button.icon}
+            </span>
+          )
+        }
+      </button>
+    </div>
+  </div>
+  <div class="flex flex-wrap items-center justify-center gap-8 text-left mb-24">
+    {
+      avatars.length > 0 && (
+        <div class="flex -space-x-2 overflow-hidden">
+          {avatars.map((avatar) => (
+            <div
+              class={`w-7 h-7 rounded-full ${avatarTones[avatar.tone ?? "primary"]} text-sm font-semibold tracking-wider flex items-center justify-center shadow-md`}
+            >
+              {avatar.initials}
+            </div>
+          ))}
+        </div>
+      )
+    }
+    {
+      rating && (
+        <div class="flex items-center gap-1 text-on-surface">
+          {stars.map(() => (
+            <span
+              class="material-symbols-outlined text-[16px] text-amber-500"
+              style="font-variation-settings: 'FILL' 1;"
+            >
+              star
+            </span>
+          ))}
+          {rating.score && (
+            <span class="font-mono tracking-tight font-semibold ml-1">
+              {rating.score}
+            </span>
+          )}
+        </div>
+      )
+    }
+    {
+      quote && (
+        <>
+          <span class="text-outline-variant font-label-sm">•</span>
+          <p
+            class="text-sm md:text-base text-on-surface-variant italic max-w-sm"
+            set:html={quote}
+          />
+        </>
+      )
+    }
+  </div>
+  {
+    image && (
+      <div class="w-full max-w-5xl mx-auto rounded-2xl bg-white border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.07)] overflow-hidden text-left transition-all relative">
+        <Media
+          src={image.src}
+          alt={image.alt ?? ""}
+          class="w-full h-auto block"
+        />
+      </div>
+    )
+  }
+</section>
+
+<script>
+  // Interactive demo micro-script (also drives the cta-input section)
+  function simulateAgentAnalysis() {
+    const input = document.getElementById("hero-url-input");
+    const val = input.value.trim();
+    if (!val) {
+      input.focus();
+      return;
+    }
+    const domainDisplay = document.getElementById(
+      "demo-domain-display",
+    );
+    let cleanDomain = val
+      .replace(/^https?:\/\//, "")
+      .replace(/\/.*$/, "");
+    if (domainDisplay) {
+      domainDisplay.innerText = cleanDomain || "your-company.com";
+      domainDisplay.classList.add("text-secondary");
+      setTimeout(
+        () => domainDisplay.classList.remove("text-secondary"),
+        600,
+      );
+    }
+
+    const launchBtn = document.getElementById("hero-launch-btn");
+    if (launchBtn) {
+      const originalText = launchBtn.innerHTML;
+      launchBtn.innerHTML =
+        '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> Analyzing ICP...';
+      launchBtn.disabled = true;
+      setTimeout(() => {
+        launchBtn.innerHTML =
+          '<span class="material-symbols-outlined text-[16px]">check</span> Agent Deployed!';
+        setTimeout(() => {
+          launchBtn.innerHTML = originalText;
+          launchBtn.disabled = false;
+        }, 2000);
+      }, 1200);
+    }
+  }
+
+  function simulateAgentAnalysisBottom() {
+    const input = document.getElementById("footer-url-input");
+    if (input && input.value) {
+      const heroInput = document.getElementById("hero-url-input");
+      if (heroInput) {
+        heroInput.value = input.value;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => simulateAgentAnalysis(), 400);
+      }
+    }
+  }
+</script>

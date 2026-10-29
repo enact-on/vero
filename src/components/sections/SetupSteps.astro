@@ -1,0 +1,118 @@
+---
+/**
+ * Centered heading over a 3-column row of numbered setup-step cards, each
+ * with a highlighted footnote strip.
+ *
+ * Frontmatter:
+ *   - type: setup-steps
+ *     eyebrow: { icon: bolt, label: Frictionless Deployment }
+ *     title: 3 minutes to set up. First meetings today.
+ *     description: Enter your website. Your agent takes it from there.
+ *     steps:
+ *       - number: "01"
+ *         tone: primary-fixed        # primary-fixed | secondary-fixed | primary
+ *         title: Enter your website
+ *         description: Vero crawls your site ...
+ *         footnote: Zero manual prompt engineering
+ *         footnoteTone: primary      # primary | secondary
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Step {
+  number?: string;
+  tone?: "primary-fixed" | "secondary-fixed" | "primary";
+  title: string;
+  description: string;
+  footnote?: string;
+  footnoteTone?: "primary" | "secondary";
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: { icon?: string; label: string };
+  title: string;
+  description?: string;
+  steps: Step[];
+}
+
+const { id, eyebrow, title, description, steps = [] } = Astro.props;
+
+const tones = {
+  "primary-fixed": "bg-primary-fixed text-on-primary-fixed",
+  "secondary-fixed": "bg-secondary-fixed text-on-secondary-fixed",
+  primary: "bg-primary text-on-primary",
+};
+const footnoteTones = {
+  primary: "text-primary",
+  secondary: "text-secondary",
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass("w-full py-32 bg-surface-container-low", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-margin">
+    <div class="text-center max-w-2xl mx-auto mb-24">
+      {
+        eyebrow && (
+          <div class="inline-flex items-center gap-1.5 text-primary font-mono tracking-tight uppercase tracking-wider mb-2">
+            {eyebrow.icon && (
+              <span class="material-symbols-outlined text-[16px]">
+                {eyebrow.icon}
+              </span>
+            )}{" "}
+            <Fragment set:html={eyebrow.label} />
+          </div>
+        )
+      }
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-on-surface"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-base md:text-lg text-on-surface-variant leading-relaxed mt-2"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:p-12">
+      {
+        steps.map((step, index) => (
+          <div class="bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-md flex flex-col justify-between">
+            <div>
+              <div
+                class={`w-10 h-10 rounded-full ${tones[step.tone ?? "primary-fixed"]} font-headline-sm flex items-center justify-center mb-8 font-bold`}
+              >
+                {step.number ?? String(index + 1).padStart(2, "0")}
+              </div>
+              <h3
+                class="text-2xl md:text-3xl font-bold tracking-tight text-on-surface mb-2"
+                set:html={step.title}
+              />
+              <p
+                class="text-base md:text-lg text-on-surface-variant leading-relaxed leading-relaxed"
+                set:html={step.description}
+              />
+            </div>
+            {step.footnote && (
+              <div class="mt-12 pt-4 bg-surface-container-low p-4 rounded">
+                <span
+                  class={`font-code-tabular text-[11px] ${footnoteTones[step.footnoteTone ?? "primary"]} flex items-center gap-1`}
+                >
+                  <span class="material-symbols-outlined text-[14px]">
+                    done_all
+                  </span>{" "}
+                  <Fragment set:html={step.footnote} />
+                </span>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

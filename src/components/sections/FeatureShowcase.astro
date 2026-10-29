@@ -1,0 +1,61 @@
+---
+/**
+ * Two-column intro (eyebrow + heading left, description right) above a
+ * full-width product image.
+ *
+ * Frontmatter:
+ *   - type: feature-showcase
+ *     eyebrow: 01 / INTELLIGENCE
+ *     title: Know where the opportunity is before your competitors do.
+ *     description: Vero connects scattered buying signals ...
+ *     image: /src/assets/images/figma/feature-1.png
+ *     imageAlt: Intelligence Dashboard
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+}
+
+const { id, eyebrow, title, description, image, imageAlt } = Astro.props;
+---
+
+<section
+  id={id}
+  class={sectionClass("py-[80px] bg-[#FAFAF8] relative overflow-hidden", Astro.props)}
+>
+  <div class="max-w-[1180px] mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start mb-16">
+      <div data-animate="fade-up">
+        {
+          eyebrow && (
+            <span
+              class="text-[#77767C] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+              set:html={eyebrow}
+            />
+          )
+        }
+        <h2 class="text-h2 text-[#171719]" set:html={title} />
+      </div>
+      <div data-animate="fade-up" class="pt-2">
+        {
+          description && (
+            <p
+              class="text-[18px] text-[#737278] font-[400] leading-[28px] text-right lg:text-left"
+              set:html={description}
+            />
+          )
+        }
+      </div>
+    </div>
+
+    <div data-animate="fade-up" class="w-full rounded-[16px] overflow-hidden shadow-xl">
+      <Media src={image} alt={imageAlt ?? ""} class="w-full h-auto block" quality="max" />
+    </div>
+  </div>
+</section>

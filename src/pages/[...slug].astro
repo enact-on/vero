@@ -1,0 +1,51 @@
+---
+/**
+ * Renders every page in `src/content/pages/*.md`.
+ * `home.md` is served at `/`, `home-v2.md` at `/home-v2`, and so on
+ * (override with `slug:` in frontmatter). Static routes in `src/pages`
+ * take priority over this catch-all.
+ */
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionMapper from "../components/SectionMapper.astro";
+import PageWrappers from "../components/PageWrappers.astro";
+
+export async function getStaticPaths() {
+  const now = new Date();
+  const pages = await getCollection("pages", ({ data }) => {
+    if (!import.meta.env.PROD) return true;
+    return !data.draft && (!data.publishDate || data.publishDate <= now);
+  });
+
+  return pages.map((page) => {
+    const slug = page.data.slug ?? (page.id === "home" ? "" : page.id);
+    return { params: { slug: slug || undefined }, props: { page } };
+  });
+}
+
+const { page } = Astro.props;
+const { seo, layout, sections } = page.data;
+const { Content } = await render(page);
+
+// Only emitted when indexing is restricted; search engines default to "index, follow"
+const robots =
+  seo.index && seo.follow
+    ? undefined
+    : [seo.index ? "index" : "noindex", seo.follow ? "follow" : "nofollow"].join(", ");
+---
+
+<BaseLayout
+  headerStyle={layout.header}
+  footerStyle={layout.footer}
+  showAnnouncement={layout.announcement !== false}
+  announcement={typeof layout.announcement === "object" ? layout.announcement : undefined}
+  title={seo.title}
+  description={seo.description}
+  image={seo.image}
+  canonical={seo.canonical}
+  robots={robots}
+>
+  <PageWrappers wrappers={layout.wrappers}>
+    <SectionMapper sections={sections} content={Content} />
+  </PageWrappers>
+</BaseLayout>

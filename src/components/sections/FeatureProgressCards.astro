@@ -1,0 +1,421 @@
+---
+/**
+ * Stacked, numbered feature cards ("01 / 04") that alternate copy and a small
+ * fake-UI mockup. Each card picks one of four mockup kinds.
+ *
+ * Frontmatter:
+ *   - type: feature-progress-cards
+ *     eyebrow: Continuous Autopilot
+ *     title: Your sales agent runs 24/7. And gets better every week.
+ *     description: From finding the right buyer ...
+ *     features:
+ *       - step: 01 / 04
+ *         title: Finds &amp; scores your best leads first
+ *         description: Your agent detects ...
+ *         mockupPosition: right          # right | left
+ *         chips:                         # optional
+ *           - { label: Competitor churn intent +48%, tone: secondary }  # secondary | primary | container
+ *         note: { icon: verified, label: 100% human-in-the-loop review optional }  # optional
+ *         button: { label: Launch agent for free }   # optional, focuses the hero input
+ *         mockup:
+ *           kind: accounts               # accounts | checklist | message | chart
+ *           title: Priority Account Radar
+ *           badge: 12 High-Surge Accounts Today
+ *           accounts:
+ *             - { initials: NX, tone: primary, name: Nexus Logistics Inc., meta: "540 Employees • ...", score: Score 98/100, scoreTone: primary, note: 3 VP triggers detected }
+ *       # checklist: { kind, title, badge, rows: [{ label, status, pass: true }] }
+ *       # message:   { kind, title, badge, subject, body, hook, projection }
+ *       # chart:     { kind, title, badge, bars: [{ value, label, height: "28%", tone: primary-fixed, highlight: false }] }
+ *       #            bar tone: primary-fixed | secondary-fixed | primary
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Account {
+  initials: string;
+  tone?: "primary" | "secondary";
+  name: string;
+  meta?: string;
+  score?: string;
+  scoreTone?: "primary" | "primary-fixed";
+  note?: string;
+}
+
+type Mockup =
+  | { kind: "accounts"; title: string; badge?: string; accounts: Account[] }
+  | {
+      kind: "checklist";
+      title: string;
+      badge?: string;
+      rows: { label: string; status: string; pass?: boolean }[];
+    }
+  | {
+      kind: "message";
+      title: string;
+      badge?: string;
+      subject?: string;
+      body?: string;
+      hook?: string;
+      projection?: string;
+    }
+  | {
+      kind: "chart";
+      title: string;
+      badge?: string;
+      bars: {
+        value: string;
+        label: string;
+        height: string;
+        tone?: "primary-fixed" | "secondary-fixed" | "primary";
+        highlight?: boolean;
+      }[];
+    };
+
+interface Feature {
+  step?: string;
+  title: string;
+  description: string;
+  mockupPosition?: "right" | "left";
+  chips?: { label: string; tone?: "secondary" | "primary" | "container" }[];
+  note?: { icon?: string; label: string };
+  button?: { label: string };
+  mockup: Mockup;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  features: Feature[];
+}
+
+const { id, eyebrow, title, description, features = [] } = Astro.props;
+
+const accountTones = {
+  primary: "bg-primary text-on-primary",
+  secondary: "bg-secondary text-on-secondary",
+};
+const scoreTones = {
+  primary: "bg-primary text-on-primary",
+  "primary-fixed": "bg-primary-fixed text-on-primary-fixed",
+};
+const barTones = {
+  "primary-fixed": "bg-primary-fixed",
+  "secondary-fixed": "bg-secondary-fixed",
+  primary: "bg-primary",
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass("w-full py-32 bg-surface", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-margin">
+    <div class="mb-24 max-w-3xl">
+      {
+        eyebrow && (
+          <div class="inline-flex items-center gap-2 text-primary font-mono tracking-tight uppercase tracking-wider mb-2">
+            <span class="w-2 h-2 rounded-full bg-primary" />{" "}
+            <Fragment set:html={eyebrow} />
+          </div>
+        )
+      }
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-on-surface"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-xl leading-relaxed text-on-surface-variant mt-2"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+    <div class="space-y-16">
+      {
+        features.map((feature) => {
+          const right = (feature.mockupPosition ?? "right") === "right";
+          const hasExtra = !!(
+            feature.chips?.length ||
+            feature.note ||
+            feature.button
+          );
+          const mockup = feature.mockup;
+
+          const text = (
+            <div
+              class={
+                right ? "lg:col-span-5 order-2 lg:order-1" : "lg:col-span-5"
+              }
+            >
+              {feature.step && (
+                <span
+                  class="inline-block px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-mono tracking-tight rounded mb-2"
+                  set:html={feature.step}
+                />
+              )}
+              <h3
+                class="font-headline-lg text-headline-lg text-on-surface mb-4"
+                set:html={feature.title}
+              />
+              <p
+                class={`text-base md:text-lg text-on-surface-variant leading-relaxed leading-relaxed${hasExtra ? " mb-8" : ""}`}
+                set:html={feature.description}
+              />
+              {feature.chips?.length ? (
+                <div class="flex flex-wrap gap-2">
+                  {feature.chips.map((chip) => (
+                    <span class="px-4 py-1 bg-surface-container-low text-on-surface font-code-tabular text-[12px] rounded-full flex items-center gap-1">
+                      {chip.tone === "container" ? (
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-primary-container text-on-primary"
+                          set:html={chip.label}
+                        />
+                      ) : (
+                        <>
+                          <span
+                            class={`w-1.5 h-1.5 rounded-full ${chip.tone === "primary" ? "bg-primary" : "bg-secondary"}`}
+                          />{" "}
+                          <Fragment set:html={chip.label} />
+                        </>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              {feature.note && (
+                <div class="flex items-center gap-8">
+                  <div class="flex items-center gap-1.5 text-on-surface text-body-sm font-medium">
+                    {feature.note.icon && (
+                      <span class="material-symbols-outlined text-primary text-[18px]">
+                        {feature.note.icon}
+                      </span>
+                    )}
+                    <Fragment set:html={feature.note.label} />
+                  </div>
+                </div>
+              )}
+              {feature.button && (
+                <button
+                  class="px-8 py-2.5 bg-primary text-on-primary text-base font-semibold rounded-full shadow hover:bg-secondary transition-all cursor-pointer"
+                  onclick="document.getElementById('hero-url-input').focus()"
+                  type="button"
+                  set:html={feature.button.label}
+                />
+              )}
+            </div>
+          );
+
+          const visual = (
+            <div
+              class={
+                right
+                  ? "lg:col-span-7 order-1 lg:order-2 bg-surface-container-low rounded-xl p-8"
+                  : "lg:col-span-7 bg-surface-container-low rounded-xl p-8"
+              }
+            >
+              <div class="bg-surface-container-lowest rounded-lg p-8 shadow-md">
+                {mockup.kind === "accounts" && (
+                  <>
+                    <div class="flex items-center justify-between pb-4 mb-4 bg-surface-container-low/40 -mx-8 -mt-8 px-8 pt-4 rounded-t-lg">
+                      <div
+                        class="text-base font-semibold text-on-surface font-semibold"
+                        set:html={mockup.title}
+                      />
+                      {mockup.badge && (
+                        <div
+                          class="font-mono tracking-tight text-primary font-bold"
+                          set:html={mockup.badge}
+                        />
+                      )}
+                    </div>
+                    <div class="space-y-2">
+                      {mockup.accounts.map((account) => (
+                        <div class="flex items-center justify-between p-4 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors">
+                          <div class="flex items-center gap-4">
+                            <div
+                              class={`w-8 h-8 rounded-full ${accountTones[account.tone ?? "primary"]} flex items-center justify-center font-headline-sm text-[12px]`}
+                            >
+                              {account.initials}
+                            </div>
+                            <div>
+                              <div
+                                class="text-xl md:text-2xl font-bold tracking-tight text-on-surface"
+                                set:html={account.name}
+                              />
+                              {account.meta && (
+                                <div
+                                  class="font-body-sm text-[11px] text-on-surface-variant"
+                                  set:html={account.meta}
+                                />
+                              )}
+                            </div>
+                          </div>
+                          <div class="text-right">
+                            {account.score && (
+                              <span
+                                class={`px-2 py-0.5 ${scoreTones[account.scoreTone ?? "primary"]} font-mono tracking-tight rounded-full`}
+                                set:html={account.score}
+                              />
+                            )}
+                            {account.note && (
+                              <div
+                                class="text-[10px] text-on-surface-variant mt-0.5"
+                                set:html={account.note}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+                {mockup.kind === "checklist" && (
+                  <>
+                    <div class="flex items-center justify-between mb-8">
+                      <span
+                        class="text-base font-semibold text-on-surface font-semibold"
+                        set:html={mockup.title}
+                      />
+                      {mockup.badge && (
+                        <span
+                          class="font-mono tracking-tight text-secondary"
+                          set:html={mockup.badge}
+                        />
+                      )}
+                    </div>
+                    <div class="space-y-2">
+                      {mockup.rows.map((row) => (
+                        <div class="p-2.5 rounded bg-surface-container-low flex items-center justify-between text-[12px]">
+                          <span class="text-on-surface flex items-center gap-2">
+                            <span
+                              class={`material-symbols-outlined text-[16px] ${row.pass === false ? "text-error" : "text-primary"}`}
+                            >
+                              {row.pass === false ? "cancel" : "check_circle"}
+                            </span>
+                            <Fragment set:html={row.label} />
+                          </span>
+                          <span
+                            class={`font-code-tabular ${row.pass === false ? "text-error" : "text-on-surface-variant"}`}
+                            set:html={row.status}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+                {mockup.kind === "message" && (
+                  <>
+                    <div class="flex items-center justify-between pb-4 mb-4">
+                      <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary" />
+                        <span
+                          class="text-base font-semibold text-on-surface font-semibold"
+                          set:html={mockup.title}
+                        />
+                      </div>
+                      {mockup.badge && (
+                        <span
+                          class="text-[11px] font-code-tabular text-primary"
+                          set:html={mockup.badge}
+                        />
+                      )}
+                    </div>
+                    <div class="p-4 rounded bg-surface-container-low text-body-sm leading-relaxed mb-4">
+                      {mockup.subject && (
+                        <p
+                          class="font-semibold text-on-surface mb-1"
+                          set:html={mockup.subject}
+                        />
+                      )}
+                      {mockup.body && (
+                        <p
+                          class="text-on-surface-variant text-[13px]"
+                          set:html={mockup.body}
+                        />
+                      )}
+                    </div>
+                    <div class="flex items-center justify-between text-body-sm pt-2">
+                      {mockup.hook && (
+                        <span
+                          class="text-on-surface-variant text-[11px]"
+                          set:html={mockup.hook}
+                        />
+                      )}
+                      {mockup.projection && (
+                        <span
+                          class="font-code-tabular text-primary font-semibold text-[12px]"
+                          set:html={mockup.projection}
+                        />
+                      )}
+                    </div>
+                  </>
+                )}
+                {mockup.kind === "chart" && (
+                  <>
+                    <div class="flex items-center justify-between mb-8">
+                      <span
+                        class="text-base font-semibold text-on-surface font-semibold"
+                        set:html={mockup.title}
+                      />
+                      {mockup.badge && (
+                        <span
+                          class="font-mono tracking-tight text-primary font-bold"
+                          set:html={mockup.badge}
+                        />
+                      )}
+                    </div>
+                    <div class="h-44 w-full flex items-end justify-between gap-8 pt-8 px-4">
+                      {mockup.bars.map((bar) => (
+                        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                          <span
+                            class={
+                              bar.highlight
+                                ? "font-mono tracking-tight text-primary font-bold"
+                                : "font-mono tracking-tight text-on-surface-variant"
+                            }
+                            set:html={bar.value}
+                          />
+                          <div
+                            class={`w-full ${barTones[bar.tone ?? "primary-fixed"]} rounded-t`}
+                            style={`height: ${bar.height};`}
+                          />
+                          <span
+                            class={
+                              bar.highlight
+                                ? "text-sm font-semibold tracking-wider font-bold text-on-surface"
+                                : "text-sm font-semibold tracking-wider text-on-surface-variant"
+                            }
+                            set:html={bar.label}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+
+          return (
+            <div class="bg-surface-container-lowest rounded-xl shadow-md p-8 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+              {right ? (
+                <>
+                  {text}
+                  {visual}
+                </>
+              ) : (
+                <>
+                  {visual}
+                  {text}
+                </>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

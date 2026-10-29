@@ -1,0 +1,300 @@
+---
+/**
+ * Dark section with numbered agent tabs on the left and a matching
+ * "agent run" card on the right. Tabs auto-rotate every 5 seconds.
+ *
+ * Frontmatter:
+ *   - type: agent-tabs
+ *     eyebrow: 03 / AI AGENTS
+ *     title: More intelligence.<br />Less manual work.
+ *     description: Deploy purpose-built agents ...
+ *     agents:
+ *       - title: Intelligence with AI & automation      # tab
+ *         description: AI resolves routine queries ...
+ *         panel:
+ *           name: Research agent
+ *           status: Completed in 48 seconds
+ *           tone: green                                # green | primary | orange (status dot)
+ *           goalLabel: GOAL
+ *           goal: Research Acme’s GTM strategy ...
+ *           steps:
+ *             - { label: Company and market research, meta: 12 sources }
+ *           result:
+ *             label: FINDING
+ *             badge: High confidence
+ *             title: Enterprise expansion is Acme’s top priority
+ *             description: Leadership commentary ...
+ *             sources: "Sources: Earnings call · 4 job posts"
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Panel {
+  name: string;
+  status?: string;
+  tone?: "green" | "primary" | "orange";
+  goalLabel?: string;
+  goal: string;
+  steps?: { label: string; meta?: string }[];
+  result?: {
+    label?: string;
+    badge?: string;
+    title: string;
+    description?: string;
+    sources?: string;
+  };
+}
+
+interface Agent {
+  number?: string;
+  title: string;
+  description?: string;
+  panel: Panel;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  agents: Agent[];
+}
+
+const { id, eyebrow, title, description, agents = [] } = Astro.props;
+
+const dotTones = {
+  green: "bg-[#248361] shadow-[0_0_0_3px_#E5F4ED]",
+  primary: "bg-primary shadow-[0_0_0_3px_var(--color-primary-soft)]",
+  orange: "bg-[#E58A1F] shadow-[0_0_0_3px_#FDF2E8]",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass("py-12 lg:py-24 bg-[#1D1D22] text-white", Astro.props)}
+>
+  <div class="max-w-[1180px] mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-[50px] items-center mb-[75px]">
+      <div data-animate="fade-up">
+        {
+          eyebrow && (
+            <span
+              class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+              set:html={eyebrow}
+            />
+          )
+        }
+        <h2 class="text-h2 text-white" set:html={title} />
+      </div>
+      <div data-animate="fade-up" class="lg:text-right">
+        {
+          description && (
+            <p
+              class="text-[16px] text-[#A09FA7] font-[400] leading-[24px] max-w-[565px] ml-auto"
+              set:html={description}
+            />
+          )
+        }
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[442px_1fr] gap-[75px] items-center">
+      <div data-animate="fade-up" class="flex flex-col gap-0" id="agent-tabs-container">
+        {
+          agents.map((agent, index) => {
+            const active = index === 0;
+            return (
+              <button
+                class={`agent-tab text-left py-6 border-t ${active ? "border-primary" : "border-[#37363C]"} flex flex-col gap-4 w-full transition-colors duration-300 group`}
+                data-index={String(index)}
+              >
+                <div
+                  class={`tab-icon w-[30px] h-[30px] rounded-[8px] ${active ? "bg-[#36314C] text-white" : "bg-[#28272D] text-[#77767E]"} flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors`}
+                >
+                  {agent.number ?? String(index + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h4
+                    class={`tab-title text-[16px] font-[700] ${active ? "text-white" : "text-[#77767E]"} mb-2 transition-colors`}
+                    set:html={agent.title}
+                  />
+                  {agent.description && (
+                    <p
+                      class={`tab-desc ${active ? "text-[#EEEEEE]" : "text-[#77767E]"} text-[16px] font-[400] leading-relaxed transition-colors`}
+                      set:html={agent.description}
+                    />
+                  )}
+                </div>
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <div class="grid grid-cols-1 grid-rows-1" data-animate="fade-up">
+        {
+          agents.map(({ panel }, index) => (
+            <div
+              class={`agent-panel col-start-1 row-start-1 transition-all duration-500 ${index === 0 ? "opacity-100 z-10 scale-100" : "opacity-0 pointer-events-none scale-95 z-0"} bg-[#F9F9FA] rounded-[10px] shadow-[0px_25px_60px_rgba(0,0,0,0.27)] flex flex-col text-[#171719] overflow-hidden`}
+              data-index={String(index)}
+            >
+              <div class="px-5 py-4 bg-white border-b border-[#E5E4E7] flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <div
+                    class={`w-[6px] h-[6px] rounded-full ${dotTones[panel.tone ?? "green"]}`}
+                  />
+                  <span class="text-[10px] font-[700]" set:html={panel.name} />
+                </div>
+                {panel.status && (
+                  <span class="text-[10px] text-[#99989E]" set:html={panel.status} />
+                )}
+              </div>
+
+              <div class="p-5">
+                <div class="p-4 bg-white border border-[#E5E4E7] rounded-[7px] mb-5">
+                  {panel.goalLabel && (
+                    <span
+                      class="text-[10px] font-[800] text-[#95949A] tracking-[0.06em] block mb-2"
+                      set:html={panel.goalLabel}
+                    />
+                  )}
+                  <p class="text-[14px] text-[#171719]" set:html={panel.goal} />
+                </div>
+
+                {panel.steps && panel.steps.length > 0 && (
+                  <div class="flex flex-col gap-4 mb-5">
+                    {panel.steps.map((step) => (
+                      <div class="flex justify-between items-center pb-2 border-b border-[#E8E7E9]">
+                        <div class="flex items-center gap-3">
+                          <span class="material-symbols-outlined text-[#171719] text-[16px]">
+                            check_circle
+                          </span>
+                          <span class="text-[10px] text-[#171719]" set:html={step.label} />
+                        </div>
+                        {step.meta && (
+                          <span class="text-[8px] text-[#99989E]" set:html={step.meta} />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {panel.result && (
+                  <div class="p-4 bg-white border border-primary border-l-[3px] rounded-[7px]">
+                    <div class="flex justify-between items-center mb-3">
+                      <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[14px]">
+                          auto_awesome
+                        </span>
+                        {panel.result.label && (
+                          <span
+                            class="text-[6px] font-[800] text-primary tracking-[0.1em]"
+                            set:html={panel.result.label}
+                          />
+                        )}
+                      </div>
+                      {panel.result.badge && (
+                        <span
+                          class="px-2 py-1 bg-[#E5F4ED] text-[#248361] rounded-full text-[6px]"
+                          set:html={panel.result.badge}
+                        />
+                      )}
+                    </div>
+                    <h5
+                      class="text-[11px] text-[#171719] font-[400] mb-2"
+                      set:html={panel.result.title}
+                    />
+                    {panel.result.description && (
+                      <p
+                        class="text-[8px] text-[#69686F] mb-3 leading-tight"
+                        set:html={panel.result.description}
+                      />
+                    )}
+                    {panel.result.sources && (
+                      <span class="text-[6px] text-[#99989E]" set:html={panel.result.sources} />
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAgentSlider() {
+    const tabs = document.querySelectorAll<HTMLElement>(".agent-tab");
+    const panels = document.querySelectorAll<HTMLElement>(".agent-panel");
+    let currentIndex = 0;
+    let autoPlayInterval: ReturnType<typeof setInterval> | undefined;
+
+    if (!tabs.length || !panels.length) return;
+
+    function switchTab(index: number) {
+      tabs.forEach((tab, i) => {
+        const icon = tab.querySelector(".tab-icon");
+        const title = tab.querySelector(".tab-title");
+        const desc = tab.querySelector(".tab-desc");
+
+        if (i === index) {
+          tab.classList.remove("border-[#37363C]");
+          tab.classList.add("border-primary");
+          icon?.classList.remove("bg-[#28272D]", "text-[#77767E]");
+          icon?.classList.add("bg-[#36314C]", "text-white");
+          title?.classList.remove("text-[#77767E]");
+          title?.classList.add("text-white");
+          desc?.classList.remove("text-[#77767E]");
+          desc?.classList.add("text-[#EEEEEE]");
+        } else {
+          tab.classList.remove("border-primary");
+          tab.classList.add("border-[#37363C]");
+          icon?.classList.remove("bg-[#36314C]", "text-white");
+          icon?.classList.add("bg-[#28272D]", "text-[#77767E]");
+          title?.classList.remove("text-white");
+          title?.classList.add("text-[#77767E]");
+          desc?.classList.remove("text-[#EEEEEE]");
+          desc?.classList.add("text-[#77767E]");
+        }
+      });
+
+      panels.forEach((panel, i) => {
+        if (i === index) {
+          panel.classList.remove("opacity-0", "pointer-events-none", "z-0", "scale-95");
+          panel.classList.add("opacity-100", "z-10", "scale-100");
+        } else {
+          panel.classList.remove("opacity-100", "z-10", "scale-100");
+          panel.classList.add("opacity-0", "pointer-events-none", "z-0", "scale-95");
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(() => {
+        switchTab((currentIndex + 1) % tabs.length);
+      }, 5000);
+    }
+
+    // Attach events without cloning so the tabs reference remains valid
+    tabs.forEach((tab, i) => {
+      tab.onclick = () => {
+        switchTab(i);
+        startAutoPlay(); // Restart timer on manual click
+      };
+    });
+
+    switchTab(0);
+    startAutoPlay();
+  }
+
+  // Support both standard DOM load and Astro's ViewTransitions page load
+  document.addEventListener("DOMContentLoaded", initAgentSlider);
+  document.addEventListener("astro:page-load", initAgentSlider);
+</script>

@@ -1,0 +1,86 @@
+---
+/**
+ * Image on the left, text column on the right with category tags and a link.
+ *
+ * Frontmatter:
+ *   - type: integrations-showcase
+ *     eyebrow: 05 / INTEGRATIONS
+ *     title: Built for the stack you already have.
+ *     description: Vero connects to your systems of record ...
+ *     tags: [CRM, Engagement, Data, Marketing, Communication]
+ *     link: { label: Explore all integrations, href: "#" }
+ *     image: /src/assets/images/figma/integrations.png
+ *     imageAlt: Integrations
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  tags?: string[];
+  link?: { label: string; href: string };
+  image: string;
+  imageAlt?: string;
+}
+
+const { id, eyebrow, title, description, tags = [], link, image, imageAlt } = Astro.props;
+---
+
+<section id={id} class={sectionClass("py-[80px] bg-[#FAFAF8]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-[648px_432px] gap-[100px] items-center">
+      <div data-animate="fade-up" class="order-2 lg:order-1">
+        <Media
+          src={image}
+          alt={imageAlt ?? ""}
+          class="w-full h-auto rounded-[16px] shadow-md"
+          quality="max"
+        />
+      </div>
+      <div data-animate="fade-up" class="order-1 lg:order-2 flex flex-col items-start">
+        {
+          eyebrow && (
+            <span
+              class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-[39px] block uppercase"
+              set:html={eyebrow}
+            />
+          )
+        }
+        <h3 class="text-h2 text-[#171719] mb-[20px]" set:html={title} />
+        {
+          description && (
+            <p
+              class="text-[16px] text-[#69686E] font-[400] leading-[24px] mb-[24px]"
+              set:html={description}
+            />
+          )
+        }
+        {
+          tags.length > 0 && (
+            <div class="flex flex-wrap gap-[7px] mb-[24px]">
+              {tags.map((tag) => (
+                <span
+                  class="px-3 py-1 bg-[#F0EFEC] text-[#171719] rounded-[4px] text-[12px]"
+                  set:html={tag}
+                />
+              ))}
+            </div>
+          )
+        }
+        {
+          link && (
+            <a
+              href={link.href}
+              class="inline-flex items-center gap-2 text-primary font-[800] text-[14px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+            >
+              <Fragment set:html={link.label} />
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -22,9 +22,13 @@ export interface Props {
   description?: string;
   image?: string;
   canonical?: string;
+  /** e.g. "noindex, nofollow" */
+  robots?: string;
   headerStyle?: "v1" | "v2" | "v3" | "none";
   footerStyle?: "v1" | "v2" | "v3" | "none";
   showAnnouncement?: boolean;
+  /** Overrides the default announcement bar copy */
+  announcement?: { text: string; href?: string; ctaText?: string };
 }
 
 const {
@@ -32,9 +36,15 @@ const {
   description = siteConfig.description,
   image = "/og-image.png",
   canonical,
+  robots,
   headerStyle = "none",
   footerStyle = "none",
   showAnnouncement = false,
+  announcement = {
+    text: `${siteConfig.name} 2.0 is here. Discover our new AI-powered workflow builder.`,
+    href: "/product",
+    ctaText: "See what's new",
+  },
 } = Astro.props;
 
 const themeColors = siteConfig.branding.colors;
@@ -120,6 +130,7 @@ const themeColors = siteConfig.branding.colors;
       description={description}
       image={image}
       canonical={canonical}
+      robots={robots}
     />
 
     <script is:inline>
@@ -217,9 +228,9 @@ const themeColors = siteConfig.branding.colors;
     {
       showAnnouncement && (
         <AnnouncementBar
-          text={`${siteConfig.name} 2.0 is here. Discover our new AI-powered workflow builder.`}
-          href="/product"
-          ctaText="See what's new"
+          text={announcement.text}
+          href={announcement.href}
+          ctaText={announcement.ctaText}
         />
       )
     }

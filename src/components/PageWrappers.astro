@@ -1,0 +1,31 @@
+---
+/**
+ * Renders the page's `layout.wrappers` list as nested elements (outer → inner)
+ * around the slot. Each wrapper can add decorative HTML as its first child.
+ */
+interface Wrapper {
+  tag: "main" | "div";
+  class?: string;
+  decor?: string;
+}
+
+interface Props {
+  wrappers: Wrapper[];
+}
+
+const [wrapper, ...rest] = Astro.props.wrappers;
+const Tag = wrapper?.tag ?? "div";
+---
+
+{
+  wrapper ? (
+    <Tag class={wrapper.class}>
+      {wrapper.decor && <Fragment set:html={wrapper.decor} />}
+      <Astro.self wrappers={rest}>
+        <slot />
+      </Astro.self>
+    </Tag>
+  ) : (
+    <slot />
+  )
+}

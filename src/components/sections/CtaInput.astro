@@ -1,0 +1,120 @@
+---
+/**
+ * Bottom call-to-action with a website input widget and a row of check marks.
+ * The launch button copies the URL into the `hero-input` section's field and
+ * runs its demo, so use it on pages that also have `hero-input`.
+ *
+ * Frontmatter:
+ *   - type: cta-input
+ *     badge: { icon: auto_awesome, label: Instant Setup }
+ *     title: Your next 10 customers are already looking for you. ...
+ *     description: Start booking qualified sales meetings ...
+ *     input:
+ *       icon: public                    # Material Symbols name
+ *       placeholder: Enter your website URL...
+ *       value: https://acme-analytics.com
+ *     button: { label: Launch agent, icon: arrow_forward }
+ *     checks: [14-day free trial, Live in 3 minutes, No credit card required]
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  badge?: { icon?: string; label: string };
+  title: string;
+  description?: string;
+  input: { icon?: string; placeholder?: string; value?: string };
+  button: { label: string; icon?: string };
+  checks?: string[];
+}
+
+const { id, badge, title, description, input, button, checks = [] } =
+  Astro.props;
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass(
+    "w-full py-32 bg-surface-container-lowest shadow-md",
+    Astro.props,
+  )}
+>
+  <div class="max-w-4xl mx-auto px-margin text-center">
+    {
+      badge && (
+        <div class="inline-flex items-center gap-2 px-8 py-1 bg-primary-fixed text-on-primary-fixed font-mono tracking-tight rounded-full mb-8">
+          {badge.icon && (
+            <span class="material-symbols-outlined text-[14px]">
+              {badge.icon}
+            </span>
+          )}{" "}
+          <Fragment set:html={badge.label} />
+        </div>
+      )
+    }
+    <h2
+      class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-on-surface mb-4"
+      set:html={title}
+    />
+    {
+      description && (
+        <p
+          class="text-base md:text-lg text-on-surface-variant leading-relaxed max-w-xl mx-auto mb-12"
+          set:html={description}
+        />
+      )
+    }
+    <div class="max-w-lg mx-auto mb-8">
+      <div
+        class="p-1.5 bg-surface-container-low rounded-full flex flex-col sm:flex-row items-center gap-2 shadow-inner"
+      >
+        <div
+          class="flex items-center pl-8 flex-1 w-full gap-2 text-on-surface-variant"
+        >
+          {
+            input.icon && (
+              <span class="material-symbols-outlined text-[20px] text-primary">
+                {input.icon}
+              </span>
+            )
+          }
+          <input
+            class="w-full bg-transparent text-lg text-on-surface placeholder:text-outline/70 focus:outline-none py-3 px-3"
+            id="footer-url-input"
+            placeholder={input.placeholder}
+            type="text"
+            value={input.value}
+          />
+        </div>
+        <button
+          class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:bg-secondary transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer hover:-translate-y-0.5"
+          onclick="simulateAgentAnalysisBottom()"
+          type="button"
+        >
+          <span set:html={button.label} />
+          {
+            button.icon && (
+              <span class="material-symbols-outlined text-[16px]">
+                {button.icon}
+              </span>
+            )
+          }
+        </button>
+      </div>
+    </div>
+    {
+      checks.length > 0 && (
+        <div class="flex flex-wrap items-center justify-center gap-8 text-on-surface-variant font-code-tabular text-[12px]">
+          {checks.map((check) => (
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-primary">
+                check
+              </span>{" "}
+              <Fragment set:html={check} />
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

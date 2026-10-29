@@ -1,0 +1,61 @@
+---
+/**
+ * Tinted social-proof band: a caption above a 6-column row of text wordmarks.
+ *
+ * Frontmatter:
+ *   - type: logo-ticker
+ *     title: Trusted by 2,500+ high-growth revenue leaders ...
+ *     logos:
+ *       - { name: Ramp, style: tighter }   # tighter | semibold | bold | uppercase
+ *       - { name: Datastream, style: semibold }
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type LogoStyle = "tighter" | "semibold" | "bold" | "uppercase";
+
+interface Props extends BaseSectionProps {
+  title?: string;
+  logos: { name: string; style?: LogoStyle }[];
+}
+
+const { id, title, logos = [] } = Astro.props;
+
+const styles: Record<LogoStyle, string> = {
+  tighter: "tracking-tighter text-on-surface font-bold",
+  semibold: "tracking-tight text-on-surface font-semibold",
+  bold: "tracking-tight text-on-surface font-bold",
+  uppercase: "tracking-widest text-on-surface font-medium uppercase",
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass(
+    "w-full bg-surface-container-low py-20 shadow-md",
+    Astro.props,
+  )}
+>
+  <div class="max-w-7xl mx-auto px-margin text-center">
+    {
+      title && (
+        <p
+          class="text-sm font-semibold tracking-wider text-on-surface-variant uppercase tracking-wider mb-8"
+          set:html={title}
+        />
+      )
+    }
+    <div
+      class="grid grid-cols-2 md:grid-cols-6 gap-8 md:p-12 items-center justify-center opacity-70"
+    >
+      {
+        logos.map((logo) => (
+          <span
+            class={`text-2xl md:text-3xl font-bold tracking-tight ${styles[logo.style ?? "bold"]}`}
+            set:html={logo.name}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,57 @@
+---
+/**
+ * Renders a page's `sections` frontmatter list.
+ *
+ * Every component in `src/components/sections/` is registered automatically:
+ * `type: faq-accordion` renders `FaqAccordion.astro`. All other keys of a
+ * section entry are passed to the component as props. The special type
+ * `markdown-content` renders the markdown body of the page file.
+ */
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Section {
+  type: string;
+  hidden?: boolean;
+  [key: string]: any;
+}
+
+interface Props {
+  sections: Section[];
+  /** Rendered markdown body of the page (from `render(entry)`) */
+  content?: AstroComponentFactory;
+}
+
+const { sections, content } = Astro.props;
+
+const modules = import.meta.glob<{ default: AstroComponentFactory }>(
+  "./sections/*.astro",
+  { eager: true },
+);
+
+const toKebab = (name: string) =>
+  name
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+    .toLowerCase();
+
+const registry = new Map(
+  Object.entries(modules).map(([path, mod]) => [
+    toKebab(path.split("/").pop()!.replace(".astro", "")),
+    mod.default,
+  ]),
+);
+
+const items = sections
+  .filter((section) => !section.hidden)
+  .map(({ type, hidden, ...props }) => {
+    const Component = registry.get(type);
+    if (!Component) {
+      throw new Error(
+        `Unknown section type "${type}". Available: ${[...registry.keys()].sort().join(", ")}`,
+      );
+    }
+    return { Component, props };
+  });
+---
+
+{items.map(({ Component, props }) => <Component {...props} content={content} />)}

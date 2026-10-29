@@ -1,0 +1,101 @@
+---
+/**
+ * Two-column feature block: eyebrow, heading, paragraph and check list on one
+ * side, a product image on the other. Stack several with alternating
+ * `reverse` / `background` for a zig-zag feature tour.
+ *
+ * Frontmatter:
+ *   - type: feature-split
+ *     eyebrow: ACCOUNT INTELLIGENCE
+ *     title: Know exactly who is ready to buy.
+ *     description: Stop guessing who to contact...
+ *     bullets:
+ *       - Real-time intent scoring
+ *       - Funding & hiring signals
+ *     image: /src/assets/images/visual-image-1.png
+ *     imageAlt: Vero Dashboard
+ *     reverse: false          # true → image on the left (desktop)
+ *     background: gray        # gray | white
+ *     imageZoom: false        # true → slightly enlarged image
+ */
+import Container from "../ui/layout/Container.astro";
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  bullets?: string[];
+  image: string;
+  imageAlt?: string;
+  reverse?: boolean;
+  background?: "gray" | "white";
+  imageZoom?: boolean;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  bullets = [],
+  image,
+  imageAlt,
+  reverse = false,
+  background = "gray",
+  imageZoom = false,
+} = Astro.props;
+
+const backgrounds = {
+  gray: "bg-gray-50",
+  white: "bg-white",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass(
+    `section py-8 lg:py-16 ${backgrounds[background]} overflow-hidden`,
+    Astro.props,
+  )}
+>
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+      <div class={reverse ? "relative z-10 lg:order-last" : "relative z-10"}>
+        {eyebrow && <span class="text-eyebrow mb-4 block" set:html={eyebrow} />}
+        <h2 class="text-h2 mb-6" set:html={title} />
+        {description && <p class="text-body-large mb-8" set:html={description} />}
+        {
+          bullets.length > 0 && (
+            <ul class="list-none p-0 m-0 mb-8 space-y-3">
+              {bullets.map((bullet) => (
+                <li class="flex items-start gap-3 font-medium">
+                  <svg
+                    class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>{" "}
+                  <Fragment set:html={bullet} />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+      <div
+        class:list={[
+          "relative rounded-xl shadow-xl bg-surface",
+          imageZoom && "transform scale-105",
+          reverse && "lg:order-first",
+        ]}
+      >
+        <Media src={image} alt={imageAlt ?? ""} class="w-full h-auto block" />
+      </div>
+    </div>
+  </Container>
+</section>

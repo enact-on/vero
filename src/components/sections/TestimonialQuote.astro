@@ -1,0 +1,218 @@
+---
+/**
+ * Large single-quote testimonial slider with dots and prev/next arrows.
+ * Auto-advances every 6 seconds.
+ *
+ * Frontmatter:
+ *   - type: testimonial-quote
+ *     eyebrow: CUSTOMER STORY
+ *     testimonials:
+ *       - company: NORTHSTAR LABS
+ *         quote: "“Vero gave our team a shared understanding ...”"
+ *         initials: RB
+ *         avatarTone: sand                # sand | blue | rose
+ *         name: Rachel Bennett
+ *         role: VP of Revenue, Northstar Labs
+ *         link: { label: Read the customer story, href: "#" }
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Testimonial {
+  company?: string;
+  quote: string;
+  initials?: string;
+  avatarTone?: "sand" | "blue" | "rose";
+  name: string;
+  role?: string;
+  link?: { label: string; href: string };
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  testimonials: Testimonial[];
+}
+
+const { id, eyebrow, testimonials = [] } = Astro.props;
+
+const avatarTones = {
+  sand: "bg-[#DDD0C5] text-[#5B493E]",
+  blue: "bg-[#C5D0DD] text-[#3E4D5B]",
+  rose: "bg-[#DDC5CA] text-[#5B3E45]",
+};
+---
+
+<section id={id} class={sectionClass("py-12 lg:py-24 bg-[#FAFAF8]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4 flex flex-col gap-[80px]">
+    {
+      eyebrow && (
+        <div data-animate="fade-up" class="flex gap-4 items-center">
+          <span
+            class="text-[12px] font-[800] tracking-[0.093em] text-[#87868B] uppercase"
+            set:html={eyebrow}
+          />
+          <div class="h-px bg-[#E3E2DD] flex-1" />
+        </div>
+      )
+    }
+    <div data-animate="fade-up" class="max-w-[800px] relative">
+      <div class="grid grid-cols-1 grid-rows-1 w-full" id="testimonial-slider">
+        {
+          testimonials.map((item, index) => (
+            <div
+              class={`testimonial-slide col-start-1 row-start-1 w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${index === 0 ? "opacity-100 z-10 translate-x-0" : "opacity-0 z-0 translate-x-8 pointer-events-none"}`}
+            >
+              {item.company && (
+                <div class="flex items-center gap-3 mb-[40px]">
+                  <h4
+                    class="text-base font-[800] text-[#171719] tracking-[-0.03em] uppercase mb-0"
+                    set:html={item.company}
+                  />
+                </div>
+              )}
+              <h3
+                class="text-[32px] md:text-[42px] font-[400] text-[#171719] leading-[1.2] md:leading-[48px] tracking-[-0.04em] mb-[40px]"
+                set:html={item.quote}
+              />
+              <div class="flex items-center gap-4 mb-[40px]">
+                {item.initials && (
+                  <div
+                    class={`w-[42px] h-[42px] rounded-full ${avatarTones[item.avatarTone ?? "sand"]} flex items-center justify-center font-[800] text-[12px]`}
+                    set:html={item.initials}
+                  />
+                )}
+                <div>
+                  <h4 class="font-[700] text-[#171719] text-[15px] mb-1" set:html={item.name} />
+                  {item.role && (
+                    <p class="text-[14px] text-[#8D8C91]" set:html={item.role} />
+                  )}
+                </div>
+              </div>
+              {item.link && (
+                <a
+                  href={item.link.href}
+                  class="inline-flex items-center gap-2 text-primary font-[700] text-[15px] border-b border-primary/30 pb-1 hover:border-primary transition-all"
+                >
+                  <Fragment set:html={item.link.label} />
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="flex items-center justify-between sm:justify-start gap-8 mt-6 relative z-20">
+        <div class="flex items-center gap-3" id="testimonial-dots">
+          {
+            testimonials.map((_, index) => (
+              <button
+                class={`test-dot w-[10px] h-[10px] rounded-full ${index === 0 ? "bg-[#171719]" : "bg-[#D4D3CD] hover:bg-[#A9A8A2]"} transition-all duration-300`}
+                data-index={String(index)}
+                aria-label={`Slide ${index + 1}`}
+              />
+            ))
+          }
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            class="test-prev w-[40px] h-[40px] rounded-full border border-[#E3E2DD] flex items-center justify-center text-[#171719] hover:bg-[#171719] hover:text-white transition-colors cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          </button>
+          <button
+            class="test-next w-[40px] h-[40px] rounded-full border border-[#E3E2DD] flex items-center justify-center text-[#171719] hover:bg-[#171719] hover:text-white transition-colors cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTestimonialSlider() {
+    const slides = document.querySelectorAll<HTMLElement>(".testimonial-slide");
+    const dots = document.querySelectorAll<HTMLElement>(".test-dot");
+    const prevBtn = document.querySelector<HTMLElement>(".test-prev");
+    const nextBtn = document.querySelector<HTMLElement>(".test-next");
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoPlay: ReturnType<typeof setInterval> | undefined;
+
+    function goToSlide(index: number) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove(
+            "opacity-0",
+            "z-0",
+            "translate-x-8",
+            "-translate-x-8",
+            "pointer-events-none",
+          );
+          slide.classList.add("opacity-100", "z-10", "translate-x-0");
+        } else {
+          slide.classList.remove("opacity-100", "z-10", "translate-x-0");
+          slide.classList.add("opacity-0", "z-0", "pointer-events-none");
+          if (i < index) {
+            slide.classList.add("-translate-x-8");
+            slide.classList.remove("translate-x-8");
+          } else {
+            slide.classList.add("translate-x-8");
+            slide.classList.remove("-translate-x-8");
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+          dot.classList.add("bg-[#171719]");
+        } else {
+          dot.classList.remove("bg-[#171719]");
+          dot.classList.add("bg-[#D4D3CD]", "hover:bg-[#A9A8A2]");
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    const nextSlide = () => goToSlide(currentIndex + 1);
+    const prevSlide = () => goToSlide(currentIndex - 1);
+
+    function startAutoPlay() {
+      if (autoPlay) clearInterval(autoPlay);
+      autoPlay = setInterval(nextSlide, 6000);
+    }
+
+    if (prevBtn)
+      prevBtn.onclick = () => {
+        prevSlide();
+        startAutoPlay();
+      };
+    if (nextBtn)
+      nextBtn.onclick = () => {
+        nextSlide();
+        startAutoPlay();
+      };
+
+    dots.forEach((dot, i) => {
+      dot.onclick = () => {
+        goToSlide(i);
+        startAutoPlay();
+      };
+    });
+
+    goToSlide(0);
+    startAutoPlay();
+  }
+
+  // Support both standard DOM load and Astro's ViewTransitions page load
+  document.addEventListener("DOMContentLoaded", initTestimonialSlider);
+  document.addEventListener("astro:page-load", initTestimonialSlider);
+</script>

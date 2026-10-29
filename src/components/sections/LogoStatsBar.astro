@@ -1,0 +1,117 @@
+---
+/**
+ * Bordered strip: scrolling wordmark logos (left) + headline stats (right).
+ *
+ * Frontmatter:
+ *   - type: logo-stats-bar
+ *     eyebrow: The agent infrastructure powering high-growth revenue teams
+ *     logos:                    # rendered twice for the seamless marquee loop
+ *       - name: shopify
+ *         weight: semibold      # medium | semibold | bold (default bold)
+ *         size: lg              # base | lg (default base)
+ *         tracking: tight       # tight | wide | normal (default normal)
+ *         animate: false        # true adds data-animate="fade-up"
+ *     stats:
+ *       - { value: 2.4B+, label: Signals analyzed weekly, tone: dark }   # dark | primary
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Logo {
+  name: string;
+  weight?: "medium" | "semibold" | "bold";
+  size?: "base" | "lg";
+  tracking?: "tight" | "wide" | "normal";
+  animate?: boolean;
+}
+
+interface Stat {
+  value: string;
+  label: string;
+  tone?: "dark" | "primary";
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  logos?: Logo[];
+  stats?: Stat[];
+}
+
+const { id, eyebrow, logos = [], stats = [] } = Astro.props;
+
+const weights = { medium: "font-[500]", semibold: "font-[600]", bold: "font-bold" };
+const sizes = { base: "text-base", lg: "text-lg" };
+const trackings = { tight: "tracking-tight", wide: "tracking-wide", normal: "" };
+const statTones = { dark: "text-gray-950", primary: "text-primary" };
+
+const logoClass = (logo: Logo) =>
+  [
+    weights[logo.weight ?? "bold"],
+    sizes[logo.size ?? "base"],
+    trackings[logo.tracking ?? "normal"],
+    "text-gray-800",
+  ]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<section
+  id={id}
+  class={sectionClass("border-y border-gray-200 bg-white py-12", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7">
+        {
+          eyebrow && (
+            <p
+              class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6 text-center lg:text-left"
+              set:html={eyebrow}
+            />
+          )
+        }
+        <div
+          class="relative overflow-hidden w-full group [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] flex"
+        >
+          <div
+            class="flex animate-marquee opacity-70 grayscale group-hover:grayscale-0 transition-all items-center whitespace-nowrap"
+          >
+            {
+              [0, 1].map(() => (
+                <div class="flex items-center gap-5 pr-16 justify-around min-w-full">
+                  {logos.map((logo) => (
+                    <span
+                      data-animate={logo.animate ? "fade-up" : undefined}
+                      class={logoClass(logo)}
+                      set:html={logo.name}
+                    />
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:block lg:col-span-1 h-12 w-px bg-gray-200 mx-auto">
+      </div>
+      <div
+        class="lg:col-span-4 flex items-center justify-around text-center lg:text-left"
+      >
+        {
+          stats.map((stat) => (
+            <div>
+              <div
+                data-animate="fade-up"
+                class={`text-3xl sm:text-4xl font-bold ${statTones[stat.tone ?? "dark"]}`}
+                set:html={stat.value}
+              />
+              <div
+                class="text-xs text-gray-500 font-medium mt-0.5"
+                set:html={stat.label}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

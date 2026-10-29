@@ -1,0 +1,149 @@
+---
+/**
+ * Centered heading over a 2-column row of pricing plan cards.
+ *
+ * Frontmatter:
+ *   - type: pricing-plans
+ *     title: Simple, outcome-aligned pricing.
+ *     description: Start with a 14-day free trial. ...
+ *     plans:
+ *       - variant: featured           # featured (white card, primary CTA) | standard (tinted card)
+ *         name: Pro Agent
+ *         badge: MOST POPULAR
+ *         description: Ideal for high-growth tech companies ...
+ *         price: $99
+ *         period: / month
+ *         features: [2 Autonomous SDR Agents (Runs 24/7), ...]
+ *         cta:
+ *           label: Start 14-day free trial
+ *           # href: "#"               # omit href → button that focuses the hero website input
+ *           # path: contact           # optional data-path for link resolution
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Plan {
+  variant?: "featured" | "standard";
+  name: string;
+  badge?: string;
+  description?: string;
+  price: string;
+  period?: string;
+  features: string[];
+  cta?: { label: string; href?: string; path?: string };
+}
+
+interface Props extends BaseSectionProps {
+  title: string;
+  description?: string;
+  plans: Plan[];
+}
+
+const { id, title, description, plans = [] } = Astro.props;
+
+const variants = {
+  featured: {
+    card: "p-8 md:p-12 rounded-2xl bg-white border border-gray-100 shadow-xl shadow-lg flex flex-col justify-between",
+    badge: "bg-primary-fixed text-on-primary-fixed font-code-tabular text-[11px] rounded font-semibold",
+    cta: "w-full py-3 bg-primary text-on-primary text-base font-semibold rounded-full shadow hover:bg-secondary transition-all",
+  },
+  standard: {
+    card: "p-8 md:p-12 rounded-2xl bg-surface-container-low shadow-md flex flex-col justify-between",
+    badge: "bg-surface-container-high text-on-surface font-code-tabular text-[11px] rounded",
+    cta: "w-full py-3 bg-surface-container-lowest text-on-surface text-base font-semibold rounded-full shadow-md hover:bg-surface-container-high transition-all",
+  },
+};
+---
+
+<section
+  id={id}
+  data-animate="fade-up"
+  class={sectionClass("w-full py-32 bg-surface", Astro.props)}
+>
+  <div class="max-w-7xl mx-auto px-margin">
+    <div class="text-center max-w-2xl mx-auto mb-24">
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-on-surface"
+        set:html={title}
+      />
+      {
+        description && (
+          <p
+            class="text-base md:text-lg text-on-surface-variant leading-relaxed mt-2"
+            set:html={description}
+          />
+        )
+      }
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-8 md:p-12 max-w-3xl mx-auto items-stretch"
+    >
+      {
+        plans.map((plan) => {
+          const v = variants[plan.variant ?? "standard"];
+          return (
+            <div class={v.card}>
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <h3
+                    class="font-headline-lg text-headline-lg text-on-surface"
+                    set:html={plan.name}
+                  />
+                  {plan.badge && (
+                    <span
+                      class={`px-2 py-0.5 ${v.badge}`}
+                      set:html={plan.badge}
+                    />
+                  )}
+                </div>
+                {plan.description && (
+                  <p
+                    class="text-base md:text-lg opacity-80 leading-relaxed text-on-surface-variant mb-8"
+                    set:html={plan.description}
+                  />
+                )}
+                <div class="mb-12">
+                  <span
+                    class="font-display-hero text-display-hero text-on-surface font-bold"
+                    set:html={plan.price}
+                  />
+                  {plan.period && (
+                    <span
+                      class="font-body-sm text-on-surface-variant"
+                      set:html={plan.period}
+                    />
+                  )}
+                </div>
+                <ul class="space-y-4 text-body-sm text-on-surface-variant mb-12">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-center gap-2 text-on-surface">
+                      <span class="material-symbols-outlined text-primary text-[18px]">
+                        check
+                      </span>
+                      <Fragment set:html={feature} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {plan.cta &&
+                (plan.cta.href ? (
+                  <a
+                    class={`${v.cta} text-center block`}
+                    data-path={plan.cta.path}
+                    href={plan.cta.href}
+                    set:html={plan.cta.label}
+                  />
+                ) : (
+                  <button
+                    class={`${v.cta} cursor-pointer`}
+                    onclick="document.getElementById('hero-url-input').focus()"
+                    type="button"
+                    set:html={plan.cta.label}
+                  />
+                ))}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

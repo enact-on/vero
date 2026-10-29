@@ -1,0 +1,112 @@
+---
+/**
+ * Dark section: heading block, full-width screenshot and a 4-card grid of
+ * security / governance features.
+ *
+ * Frontmatter:
+ *   - type: security-grid
+ *     id: enterprise
+ *     eyebrow: Controls &amp; Governance
+ *     title: Enterprise-grade controls and visibility.
+ *     description: Granular spending budgets ...
+ *     image: /src/assets/images/figma/banner-pipeline.png
+ *     imageAlt: Pipeline Analytics
+ *     cards:
+ *       - icon: verified        # Material Symbols name
+ *         tone: primary         # primary | emerald | purple | pink
+ *         title: SOC 2 Type II Certified
+ *         description: Independently audited annually ...
+ */
+import Media from "../ui/primitives/Media.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+type Tone = "primary" | "emerald" | "purple" | "pink";
+
+interface Card {
+  icon: string;
+  tone?: Tone;
+  title: string;
+  description?: string;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  cards?: Card[];
+}
+
+const { id, eyebrow, title, description, image, imageAlt, cards = [] } =
+  Astro.props;
+
+const tones: Record<Tone, string> = {
+  primary: "bg-primary/20 text-primary",
+  emerald: "bg-emerald-500/20 text-emerald-400",
+  purple: "bg-purple-500/20 text-purple-400",
+  pink: "bg-pink-500/20 text-pink-400",
+};
+---
+
+<section
+  id={id}
+  class={sectionClass(
+    "py-24 bg-[#0a0c10] text-white relative overflow-hidden",
+    Astro.props,
+  )}
+>
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent"
+  >
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-16">
+      {
+        eyebrow && (
+          <div
+            data-animate="fade-up"
+            class="text-eyebrow text-primary mb-2"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 data-animate="fade-up" class="text-h2 text-white mb-4" set:html={title} />
+      {description && <p class="text-base text-gray-400" set:html={description} />}
+    </div>
+    {
+      image && (
+        <div class="w-full" data-animate="fade-up">
+          <Media
+            src={image}
+            alt={imageAlt}
+            class="w-full h-auto drop-shadow-2xl rounded-2xl border border-white/10"
+          />
+        </div>
+      )
+    }
+    {
+      cards.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          {cards.map((card) => (
+            <div class="bg-[#12161f]/70 border border-white/10 p-4 rounded-xl">
+              <div
+                class={`w-7 h-7 rounded-lg ${tones[card.tone ?? "primary"]} flex items-center justify-center mb-3`}
+              >
+                <span class="material-symbols-outlined text-[18px]">{card.icon}</span>
+              </div>
+              <h5
+                data-animate="fade-up"
+                class="text-xs font-bold text-white mb-1"
+                set:html={card.title}
+              />
+              {card.description && (
+                <p class="text-[11px] text-gray-400" set:html={card.description} />
+              )}
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

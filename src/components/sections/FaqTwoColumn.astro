@@ -1,0 +1,119 @@
+---
+/**
+ * FAQ accordion in two columns. Questions are listed in reading order and
+ * split left/right alternately (1st left, 2nd right, 3rd left, ...).
+ *
+ * Frontmatter:
+ *   - type: faq-two-column
+ *     eyebrow: FREQUENTLY ASKED QUESTIONS
+ *     title: Everything you need to know.
+ *     faqs:
+ *       - question: What makes Vero different from intent data providers?
+ *         answer: Vero does more than surface anonymous activity ...
+ *         open: true          # optional, expanded on load
+ */
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Faq {
+  question: string;
+  answer: string;
+  open?: boolean;
+}
+
+interface Props extends BaseSectionProps {
+  eyebrow?: string;
+  title: string;
+  faqs: Faq[];
+}
+
+const { id, eyebrow, title, faqs = [] } = Astro.props;
+
+const columns = [
+  faqs.filter((_, index) => index % 2 === 0),
+  faqs.filter((_, index) => index % 2 === 1),
+];
+---
+
+<section id={id} class={sectionClass("py-12 lg:py-24 bg-[#FAFAF8]", Astro.props)}>
+  <div class="max-w-[1180px] mx-auto px-4">
+    <div class="mb-[60px]" data-animate="fade-up">
+      {
+        eyebrow && (
+          <span
+            class="text-[#85848D] font-[800] tracking-[0.105em] text-[12px] mb-4 block uppercase"
+            set:html={eyebrow}
+          />
+        )
+      }
+      <h2 class="text-h2 text-[#171719]" set:html={title} />
+    </div>
+
+    <div data-animate="fade-up" class="grid grid-cols-1 md:grid-cols-2 gap-x-[120px]">
+      {
+        columns.map((items) => (
+          <div class="flex flex-col">
+            {items.map((faq, index) => (
+              <div
+                class={`faq-item${faq.open ? " is-open" : ""} flex flex-col ${index === 0 ? "border-t border-b" : "border-b"} border-[#E3E2DD]`}
+              >
+                <button class="faq-button flex justify-between items-center py-[24px] text-left group cursor-pointer w-full">
+                  <span
+                    class="text-[16px] font-[700] text-[#171719] group-hover:text-primary transition-colors pr-4"
+                    set:html={faq.question}
+                  />
+                  <span class="faq-icon text-[#85848D] text-[20px] font-light">
+                    {faq.open ? "−" : "+"}
+                  </span>
+                </button>
+                <div
+                  class="faq-content grid transition-[grid-template-rows] duration-300 ease-in-out"
+                  style={`grid-template-rows: ${faq.open ? "1fr" : "0fr"};`}
+                >
+                  <div class="overflow-hidden">
+                    <p
+                      class="text-[15px] text-[#69686E] leading-[24px] pb-[24px] max-w-[480px]"
+                      set:html={faq.answer}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFAQs() {
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-button");
+      const icon = item.querySelector(".faq-icon");
+      const content = item.querySelector<HTMLElement>(".faq-content");
+      if (!button || !icon || !content) return;
+
+      // clone to avoid double event listeners during HMR / repeated init
+      const newButton = button.cloneNode(true);
+      button.parentNode?.replaceChild(newButton, button);
+
+      newButton.addEventListener("click", () => {
+        const isOpen = item.classList.contains("is-open");
+        if (!isOpen) {
+          item.classList.add("is-open");
+          icon.textContent = "−";
+          content.style.gridTemplateRows = "1fr";
+        } else {
+          item.classList.remove("is-open");
+          icon.textContent = "+";
+          content.style.gridTemplateRows = "0fr";
+        }
+      });
+    });
+  }
+
+  // Support both standard DOM load and Astro's ViewTransitions page load
+  document.addEventListener("DOMContentLoaded", initFAQs);
+  document.addEventListener("astro:page-load", initFAQs);
+</script>

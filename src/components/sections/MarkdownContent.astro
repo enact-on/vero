@@ -1,0 +1,70 @@
+---
+/**
+ * Renders the markdown body of the page file (everything below the
+ * frontmatter) as a rich-text section.
+ *
+ * Frontmatter:
+ *   - type: markdown-content
+ *     width: narrow | wide        # optional, default narrow
+ */
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import Container from "../ui/layout/Container.astro";
+import { sectionClass, type BaseSectionProps } from "../../lib/sections";
+
+interface Props extends BaseSectionProps {
+  width?: "narrow" | "wide";
+  content?: AstroComponentFactory;
+}
+
+const { id, width = "narrow", content: Content } = Astro.props;
+---
+
+<section id={id} class={sectionClass("py-12 lg:py-24 bg-white", Astro.props)}>
+  <Container>
+    <div
+      class:list={[
+        "markdown-content mx-auto text-[17px] leading-[1.7] text-[#555]",
+        width === "narrow" ? "max-w-[760px]" : "max-w-[1080px]",
+      ]}
+    >
+      {Content && <Content />}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .markdown-content :global(h2) {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #171719;
+    margin: 2em 0 0.6em;
+  }
+  .markdown-content :global(h3) {
+    font-size: 22px;
+    font-weight: 600;
+    color: #171719;
+    margin: 1.6em 0 0.5em;
+  }
+  .markdown-content :global(p),
+  .markdown-content :global(ul),
+  .markdown-content :global(ol) {
+    margin: 0 0 1.1em;
+  }
+  .markdown-content :global(ul) {
+    list-style: disc;
+    padding-left: 1.4em;
+  }
+  .markdown-content :global(ol) {
+    list-style: decimal;
+    padding-left: 1.4em;
+  }
+  .markdown-content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .markdown-content :global(> :first-child) {
+    margin-top: 0;
+  }
+</style>
