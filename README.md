@@ -179,7 +179,7 @@ Forget low-resolution PNG exports. Vero ships with **10 modular, CSS-rendered Sa
 - **Component Variants**: [Class Variance Authority (CVA)](https://cva.style/docs) + `clsx` + `tailwind-merge`
 - **Typography**: [Manrope & Inter](https://fonts.google.com/) with modular CSS scale
 - **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict type-checking)
-- **Package Manager**: [pnpm](https://pnpm.io/) (Compatible with npm & yarn)
+- **Package Manager**: [npm](https://www.npmjs.com/)
 
 ---
 
@@ -187,7 +187,7 @@ Forget low-resolution PNG exports. Vero ships with **10 modular, CSS-rendered Sa
 
 ### Prerequisites
 - **Node.js**: `v22.12.0` or higher
-- **Package Manager**: `pnpm` (recommended), `npm`, or `yarn`
+- **Package Manager**: `npm` (bundled with Node.js)
 
 ### 1. Clone the Repository
 ```bash
@@ -197,31 +197,24 @@ cd vero
 
 ### 2. Install Dependencies
 ```bash
-# Using pnpm (recommended)
-pnpm install
-
-# Or using npm
 npm install
-
-# Or using yarn
-yarn install
 ```
 
 ### 3. Start the Development Server
 ```bash
-pnpm dev
+npm run dev
 ```
 Visit `http://localhost:4321` in your browser. Live reloading is instantly enabled!
 
 ### 4. Build for Production
 ```bash
-pnpm build
+npm run build
 ```
 This compiles your Astro project into the `dist/` directory.
 
 ### 5. Preview Production Build
 ```bash
-pnpm preview
+npm run preview
 ```
 
 ---
@@ -429,7 +422,7 @@ Contributions are warmly welcome! If you'd like to improve Vero:
 4. **Push to the branch**: `git push origin feature/amazing-feature`
 5. **Open a Pull Request**
 
-Please make sure to test your changes with `pnpm build` before submitting.
+Please make sure to test your changes with `npm run build` before submitting.
 
 ---
 
